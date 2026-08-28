@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // 1. Logika Partikel Canvas
     const canvas = document.getElementById('particle-canvas');
     const ctx = canvas.getContext('2d');
     const container = document.getElementById('mobile-container');
@@ -51,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     animate();
     window.addEventListener('resize', init);
 
+    // 2. Logika Scroll Halus untuk Link Navigasi
     const allNavLinks = document.querySelectorAll('.nav-link');
     
     allNavLinks.forEach(link => {
@@ -68,6 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    // 3. Logika Deteksi Halaman (Menu Berubah Warna Sesuai Posisi Scroll)
     const sections = document.querySelectorAll('main > section');
     
     const observerOptions = {
