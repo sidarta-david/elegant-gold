@@ -1,10 +1,10 @@
+/* Mereset dan memastikan browser tidak menampilkan hal yang tidak diinginkan */
 html, body {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
   background-color: #131313;
-  overflow: hidden;
 }
 
 .pb-safe {
@@ -14,6 +14,7 @@ html, body {
   padding-top: env(safe-area-inset-top, 16px);
 }
 
+/* Pola background opsional untuk sisi kanan Desktop */
 .bg-pattern-floral {
   background-image: radial-gradient(#d4af37 0.5px, transparent 0.5px), radial-gradient(#d4af37 0.5px, #1a1a1a 0.5px);
   background-size: 20px 20px;
@@ -21,6 +22,7 @@ html, body {
   opacity: 0.9;
 }
 
+/* Kustomisasi Scrollbar pada Mobile Wrapper */
 .custom-scrollbar::-webkit-scrollbar {
   width: 5px;
 }
@@ -35,6 +37,7 @@ html, body {
   background-color: rgba(212, 175, 55, 0.8);
 }
 
+/* Transisi halus ketika Icon Material Symbols berganti mengisi/kosong */
 .nav-icon {
   transition: font-variation-settings 0.3s ease-in-out, color 0.3s ease;
 }
