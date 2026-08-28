@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Logika Partikel Canvas
     const canvas = document.getElementById('particle-canvas');
     const ctx = canvas.getContext('2d');
     const container = document.getElementById('mobile-container');
@@ -52,21 +51,15 @@ document.addEventListener("DOMContentLoaded", () => {
     animate();
     window.addEventListener('resize', init);
 
-    // ==========================================
-    // 2. Logika Scroll untuk Menu PC
-    // ==========================================
-    const pcNavLinks = document.querySelectorAll('.pc-nav a');
+    const allNavLinks = document.querySelectorAll('.nav-link');
     
-    pcNavLinks.forEach(link => {
+    allNavLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault(); // Mencegah lompatan default
-            
-            // Ambil ID tujuan (contoh: #profile)
+            e.preventDefault(); 
             const targetId = this.getAttribute('href').substring(1);
             const targetElement = document.getElementById(targetId);
             
             if (targetElement) {
-                // Scroll container mobile ke elemen tersebut secara halus
                 container.scrollTo({
                     top: targetElement.offsetTop,
                     behavior: 'smooth'
@@ -74,4 +67,40 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
+
+    const sections = document.querySelectorAll('main > section');
+    
+    const observerOptions = {
+        root: container,
+        rootMargin: '-20% 0px -60% 0px', 
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const currentId = entry.target.getAttribute('id');
+                updateActiveNav(currentId);
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => observer.observe(section));
+
+    function updateActiveNav(activeId) {
+        allNavLinks.forEach(link => {
+            const icon = link.querySelector('.nav-icon');
+            const targetId = link.getAttribute('href').substring(1);
+
+            if (targetId === activeId) {
+                link.classList.add('text-primary');
+                link.classList.remove('text-[#8c8577]');
+                if(icon) icon.style.fontVariationSettings = "'FILL' 1";
+            } else {
+                link.classList.remove('text-primary');
+                link.classList.add('text-[#8c8577]');
+                if(icon) icon.style.fontVariationSettings = "'FILL' 0";
+            }
+        });
+    }
 });
