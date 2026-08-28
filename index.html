@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+  <title>Undangan Pernikahan</title>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  
+  <!-- CSS External -->
+  <link href="style.css" rel="stylesheet">
+
+  <!-- Tailwind CSS & Config -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { 
+      darkMode: "class", 
+      theme: { 
+        extend: { 
+          colors: { 
+            "surface": "#131313", 
+            "primary-container": "#d4af37", 
+            "primary": "#d4af37", /* Diubah menjadi #D4AF37 murni */
+            "on-surface": "#e4e2e1", 
+            "on-surface-variant": "#d0c5af", 
+            "surface-container": "#1f2020",
+          }, 
+          fontFamily: { 
+            "display-lg": ["Playfair Display"], 
+            "headline-md": ["Playfair Display"], 
+            "body-md": ["DM Sans"], 
+            "headline-sm": ["Playfair Display"], 
+            "label-caps": ["DM Sans"] 
+          } 
+        } 
+      } 
+    };
+  </script>
+</head>
+<body class="font-body-md text-body-md bg-[#131313] text-on-surface overflow-hidden">
+
+  <!-- WRAPPER UTAMA (Versi PC & Mobile) -->
+  <div class="desktop-wrapper flex w-full h-screen">
+    
+    <!-- Bagian Kiri: Hanya Tampil di PC (Desktop) -->
+    <div class="hidden lg:flex flex-1 relative bg-black items-center justify-center flex-col overflow-hidden">
+      <!-- Background PC -->
+      <div class="absolute inset-0 bg-gradient-to-br from-surface to-black opacity-80 z-0"></div>
+      <!-- Teks & Elemen PC -->
+      <div class="z-10 text-center">
+        <h1 class="font-display-lg text-primary text-5xl mb-4 italic">Design & Presets</h1>
+        <p class="font-body-md text-on-surface-variant tracking-widest">PERNIKAHAN PRIYA & RAHUL</p>
+      </div>
+      <!-- Partikel tambahan khusus kiri -->
+      <div class="absolute inset-0 z-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20"></div>
+    </div>
+
+    <!-- Bagian Kanan: Kontainer Mobile-First (360px - 390px) -->
+    <div class="w-full lg:w-[500px] h-full flex justify-center items-center lg:bg-[#1a1a1a] relative lg:border-l lg:border-primary/20 bg-pattern-floral">
+      
+      <!-- MOBILE CONTAINER -->
+      <div id="mobile-container" class="w-full h-full max-w-[390px] min-w-[360px] bg-surface relative overflow-x-hidden overflow-y-auto lg:h-[844px] lg:max-h-[95vh] lg:rounded-[40px] lg:shadow-2xl lg:border lg:border-primary/30 custom-scrollbar">
+        
+        <!-- Canvas Partikel -->
+        <canvas id="particle-canvas" class="absolute top-0 left-0 w-full h-full pointer-events-none z-0 opacity-40"></canvas>
+
+        <!-- Header -->
+        <header class="sticky top-0 w-full z-50 bg-surface/80 backdrop-blur-xl pt-safe">
+          <div class="flex items-center justify-between h-16 px-5">
+            <div class="flex items-center gap-2">
+              <span class="font-headline-sm text-primary tracking-widest uppercase">Profile</span>
+            </div>
+            <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+              <span class="material-symbols-outlined text-surface text-[18px]">person</span>
+            </div>
+          </div>
+        </header>
+
+        <main class="relative z-10 w-full">
+          
+          <!-- ========================================== -->
+          <!-- SECTION: HOME -->
+          <!-- ========================================== -->
+          <section id="home" class="min-h-[50vh] flex flex-col items-center justify-center text-center px-5 py-10">
+            <h1 class="font-display-lg text-primary text-4xl mb-2">Priya & Rahul</h1>
+            <p class="font-body-md text-on-surface-variant">Kami mengundang Anda untuk merayakan cinta kami.</p>
+          </section>
+
+          <!-- ========================================== -->
+          <!-- SECTION: PROFIL MEMPELAI -->
+          <!-- ========================================== -->
+          <section id="profile" class="flex flex-col items-center px-5 py-10 text-center relative z-10">
+            
+            <!-- Mempelai Wanita -->
+            <div class="relative w-[280px] h-[350px] mb-8 group perspective-[1000px]">
+              <div class="absolute inset-0 bg-primary/10 rounded-full blur-2xl transform -translate-y-4"></div>
+              <div class="w-full h-full rounded-[40px] overflow-hidden shadow-xl transform transition-transform duration-700 p-[2px] bg-gradient-to-br from-primary/40 via-transparent to-primary/10">
+                <div class="w-full h-full bg-surface-container rounded-[38px] overflow-hidden relative">
+                  <!-- FOTO WANITA -->
+                  <img class="w-full h-full object-cover opacity-90 transition-opacity duration-500 group-hover:opacity-100" alt="Mempelai Wanita" src="wanita.jpg">
+                  <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-60"></div>
+                </div>
+              </div>
+              <div class="absolute -bottom-6 -right-6 w-16 h-16 rounded-full bg-surface border border-primary/30 flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.2)] z-20">
+                <span class="font-display-lg text-primary text-2xl leading-none italic">P</span>
+              </div>
+            </div>
+            <h2 class="font-headline-md text-4xl text-on-surface mb-4">Priya Sharma</h2>
+            <p class="font-body-md text-on-surface-variant max-w-[320px] mx-auto mb-8 leading-relaxed">
+              Putri pertama yang selalu membawa kehangatan dan keceriaan di setiap langkahnya.
+            </p>
+
+            <!-- Divider -->
+            <div class="w-full flex justify-center items-center py-10 px-5 gap-4">
+              <div class="h-[1px] flex-1 bg-gradient-to-r from-transparent to-primary/20"></div>
+              <span class="material-symbols-outlined text-primary/40 text-sm">favorite</span>
+              <div class="h-[1px] flex-1 bg-gradient-to-l from-transparent to-primary/20"></div>
+            </div>
+
+            <!-- Mempelai Pria -->
+            <div class="relative w-[280px] h-[350px] mb-8 group perspective-[1000px]">
+              <div class="absolute inset-0 bg-primary/10 rounded-full blur-2xl transform -translate-y-4"></div>
+              <div class="w-full h-full rounded-[40px] overflow-hidden shadow-xl transform transition-transform duration-700 p-[2px] bg-gradient-to-bl from-primary/40 via-transparent to-primary/10">
+                <div class="w-full h-full bg-surface-container rounded-[38px] overflow-hidden relative">
+                  <!-- FOTO PRIA -->
+                  <img class="w-full h-full object-cover opacity-90 transition-opacity duration-500 group-hover:opacity-100" alt="Mempelai Pria" src="Pria.jpg">
+                  <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-60"></div>
+                </div>
+              </div>
+              <div class="absolute -top-6 -left-6 w-16 h-16 rounded-full bg-surface border border-primary/30 flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.2)] z-20">
+                <span class="font-display-lg text-primary text-2xl leading-none italic">R</span>
+              </div>
+            </div>
+            <h2 class="font-headline-md text-4xl text-on-surface mb-4">Rahul Kumar</h2>
+            <p class="font-body-md text-on-surface-variant max-w-[320px] mx-auto mb-8 leading-relaxed">
+              Putra berdedikasi tinggi yang akan menjadi tiang kokoh untuk masa depan bersama.
+            </p>
+          </section>
+
+          <!-- ========================================== -->
+          <!-- SECTION: DETAIL JADWAL ACARA & ALAMAT -->
+          <!-- ========================================== -->
+          <section id="schedule" class="flex flex-col items-center px-5 py-10 w-full">
+            <div class="w-full max-w-[340px]">
+              <h2 class="font-headline-md text-3xl text-primary mb-6 text-center">Jadwal Acara</h2>
+              
+              <!-- Card Akad Nikah -->
+              <article class="schedule-card bg-surface-container rounded-2xl p-6 mb-6 border border-primary/30 shadow-lg">
+                <div class="flex items-center gap-3 mb-4 border-b border-primary/20 pb-4">
+                  <span class="material-symbols-outlined text-primary text-2xl">edit_document</span>
+                  <h3 class="font-headline-sm text-on-surface text-xl">Akad Nikah</h3>
+                </div>
+                <div class="flex flex-col gap-4 text-body-md text-on-surface-variant">
+                  <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-primary mt-0.5">calendar_today</span>
+                    <p>Sabtu, 25 Oktober 2025</p>
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-primary mt-0.5">schedule</span>
+                    <p>Pukul 08:00 - 10:00 WIB</p>
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-primary mt-0.5">location_on</span>
+                    <p>Masjid Al-Ikhlas, Jl. Melati No. 12, Jakarta Selatan</p>
+                  </div>
+                  <button class="mt-2 w-full py-2 rounded-full border border-primary text-primary hover:bg-primary hover:text-surface transition-colors font-label-caps tracking-widest text-xs">
+                    LIHAT LOKASI
+                  </button>
+                </div>
+              </article>
+
+              <!-- Card Resepsi -->
+              <article class="schedule-card bg-surface-container rounded-2xl p-6 mb-6 border border-primary/30 shadow-lg">
+                <div class="flex items-center gap-3 mb-4 border-b border-primary/20 pb-4">
+                  <span class="material-symbols-outlined text-primary text-2xl">favorite</span>
+                  <h3 class="font-headline-sm text-on-surface text-xl">Resepsi Pernikahan</h3>
+                </div>
+                <div class="flex flex-col gap-4 text-body-md text-on-surface-variant">
+                  <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-primary mt-0.5">calendar_today</span>
+                    <p>Sabtu, 25 Oktober 2025</p>
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-primary mt-0.5">schedule</span>
+                    <p>Pukul 11:00 - 14:00 WIB</p>
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-primary mt-0.5">location_on</span>
+                    <p>Gedung Serbaguna Cempaka, Jl. Cempaka No. 45, Jakarta Selatan</p>
+                  </div>
+                  <button class="mt-2 w-full py-2 rounded-full bg-primary text-surface hover:bg-primary-container transition-colors font-label-caps tracking-widest text-xs">
+                    LIHAT LOKASI
+                  </button>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- ========================================== -->
+          <!-- SECTION: GALERI -->
+          <!-- ========================================== -->
+          <section id="gallery" class="py-10 text-center">
+            <h2 class="font-headline-md text-primary mb-4">Galeri Kami</h2>
+            <p class="text-on-surface-variant text-sm px-5">Momen-momen indah yang kami abadikan.</p>
+            <!-- Konten Galeri dapat ditambahkan di sini -->
+          </section>
+
+          <!-- ========================================== -->
+          <!-- SECTION: HADIAH -->
+          <!-- ========================================== -->
+          <section id="gift" class="py-10 text-center">
+            <h2 class="font-headline-md text-primary mb-4">Kirim Hadiah</h2>
+            <p class="text-on-surface-variant text-sm px-5">Bentuk tanda kasih dari Anda.</p>
+            <!-- Konten Rekening/Hadiah dapat ditambahkan di sini -->
+          </section>
+
+          <div class="h-24"></div> <!-- Padding bawah agar tidak tertutup navbar -->
+        </main>
+
+        <!-- Navbar Bawah -->
+        <nav class="absolute bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-1px_10px_rgba(212,175,55,0.1)]">
+          <div class="flex justify-around items-center h-16">
+            <a class="flex flex-col items-center gap-1 transition-all text-on-surface-variant hover:text-primary" href="#home"><span class="material-symbols-outlined">home</span><span class="font-label-caps text-[10px]">Home</span></a>
+            <a class="flex flex-col items-center gap-1 transition-all text-primary scale-110" href="#profile"><span class="material-symbols-outlined">badge</span><span class="font-label-caps text-[10px]">Profile</span></a>
+            <a class="flex flex-col items-center gap-1 transition-all text-on-surface-variant hover:text-primary" href="#schedule"><span class="material-symbols-outlined">event</span><span class="font-label-caps text-[10px]">Jadwal</span></a>
+            <a class="flex flex-col items-center gap-1 transition-all text-on-surface-variant hover:text-primary" href="#gallery"><span class="material-symbols-outlined">photo_library</span><span class="font-label-caps text-[10px]">Gallery</span></a>
+            <a class="flex flex-col items-center gap-1 transition-all text-on-surface-variant hover:text-primary" href="#gift"><span class="material-symbols-outlined">featured_seasonal_and_gifts</span><span class="font-label-caps text-[10px]">Gift</span></a>
+          </div>
+        </nav>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Javascript External -->
+  <script src="script.js"></script>
+</body>
+</html>
