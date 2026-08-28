@@ -24,7 +24,7 @@
         extend: { 
           colors: { 
             "surface": "#131313", 
-            "primary": "#d4af37", /* Emas Mewah */
+            "primary": "#d4af37", 
             "on-surface": "#e4e2e1", 
             "on-surface-variant": "#d0c5af", 
             "surface-container": "#1f2020",
@@ -48,11 +48,9 @@
     
     <!-- BAGIAN KIRI: HANYA TAMPIL DI PC (DESKTOP) -->
     <div class="hidden lg:flex flex-1 relative bg-black items-center justify-center flex-col overflow-hidden">
-      <!-- Background PC -->
       <div class="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] to-black z-0"></div>
       <div class="absolute inset-0 z-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20"></div>
       
-      <!-- Teks & Elemen PC -->
       <div class="z-10 text-center">
         <h1 class="font-display-lg text-primary text-6xl mb-4 italic tracking-wide">Design & Presets</h1>
         <p class="font-body-md text-on-surface-variant tracking-[0.3em] text-sm uppercase">Pernikahan Priya & Rahul</p>
@@ -136,7 +134,6 @@
               Putri pertama yang selalu membawa kehangatan dan keceriaan di setiap langkahnya.
             </p>
 
-            <!-- Divider -->
             <div class="w-full flex justify-center items-center py-6 px-5 gap-4">
               <div class="h-[1px] flex-1 bg-gradient-to-r from-transparent to-primary/30"></div>
               <span class="material-symbols-outlined text-primary/50 text-xl animate-pulse">favorite</span>
@@ -189,14 +186,15 @@
                     <p class="leading-relaxed">Masjid Al-Ikhlas, Jl. Melati No. 12, Jakarta Selatan</p>
                   </div>
 
-                  <!-- Frame Peta Google Maps (Akad) -->
                   <div class="w-full h-36 mt-2 rounded-xl overflow-hidden border border-white/10 opacity-80 hover:opacity-100 transition-opacity">
                     <iframe src="https://maps.google.com/maps?q=Masjid%20Al-Ikhlas,%20Jakarta%20Selatan&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                   </div>
 
-                  <!-- Tombol Aksi Akad -->
                   <div class="flex flex-col gap-3 mt-2">
-                    <!-- Tombol 1: Google Maps -->
+                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Akad+Nikah+Priya+dan+Rahul&dates=20251025T010000Z/20251025T030000Z&details=Acara+Akad+Nikah+Priya+dan+Rahul&location=Masjid+Al-Ikhlas,+Jl.+Melati+No.+12,+Jakarta+Selatan" target="_blank" class="w-full py-3 rounded-xl border border-primary/50 text-primary hover:bg-primary/10 transition-colors font-body-md font-bold tracking-widest text-xs uppercase text-center flex items-center justify-center gap-2">
+                      <span class="material-symbols-outlined text-[18px]">calendar_add_on</span>
+                      Tambahkan ke Kalender
+                    </a>
                     <a href="https://www.google.com/maps/search/?api=1&query=Masjid+Al-Ikhlas,+Jl.+Melati+No.+12,+Jakarta+Selatan" target="_blank" class="w-full py-3 rounded-xl border border-primary text-primary hover:bg-primary hover:text-[#131313] transition-colors font-body-md font-bold tracking-widest text-xs uppercase text-center flex items-center justify-center gap-2">
                       <span class="material-symbols-outlined text-[18px]">map</span>
                       Lihat Lokasi
@@ -226,15 +224,15 @@
                     <p class="leading-relaxed">Gedung Serbaguna Cempaka, Jl. Cempaka No. 45, Jakarta Selatan</p>
                   </div>
 
-                  <!-- Frame Peta Google Maps (Resepsi) -->
                   <div class="w-full h-36 mt-2 rounded-xl overflow-hidden border border-white/10 opacity-80 hover:opacity-100 transition-opacity">
                     <iframe src="https://maps.google.com/maps?q=Gedung%20Serbaguna%20Cempaka,%20Jakarta%20Selatan&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                   </div>
 
-                  <!-- Tombol Aksi Resepsi -->
                   <div class="flex flex-col gap-3 mt-2">
-                     
-                    <!-- Tombol 2: Google Maps (Filled Emas) -->
+                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Resepsi+Pernikahan+Priya+dan+Rahul&dates=20251025T040000Z/20251025T070000Z&details=Acara+Resepsi+Pernikahan+Priya+dan+Rahul&location=Gedung+Serbaguna+Cempaka,+Jl.+Cempaka+No.+45,+Jakarta+Selatan" target="_blank" class="w-full py-3 rounded-xl border border-primary/50 text-primary hover:bg-primary/10 transition-colors font-body-md font-bold tracking-widest text-xs uppercase text-center flex items-center justify-center gap-2">
+                      <span class="material-symbols-outlined text-[18px]">calendar_add_on</span>
+                      Tambahkan ke Kalender
+                    </a>
                     <a href="https://www.google.com/maps/search/?api=1&query=Gedung+Serbaguna+Cempaka,+Jl.+Cempaka+No.+45,+Jakarta+Selatan" target="_blank" class="w-full py-3 rounded-xl bg-primary text-[#131313] hover:bg-[#b8952b] transition-colors font-body-md font-bold tracking-widest text-xs uppercase text-center shadow-[0_0_15px_rgba(212,175,55,0.4)] flex items-center justify-center gap-2">
                       <span class="material-symbols-outlined text-[18px]">map</span>
                       Lihat Lokasi
@@ -242,21 +240,26 @@
                   </div>
                 </div>
               </article>
-                <div class="flex flex-col gap-3 mt-2">
-              <!-- Tombol 1: Add to Calendar -->
-                     <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Resepsi+Pernikahan+Priya+dan+Rahul&dates=20251025T040000Z/20251025T070000Z&details=Acara+Resepsi+Pernikahan+Priya+dan+Rahul&location=Gedung+Serbaguna+Cempaka,+Jl.+Cempaka+No.+45,+Jakarta+Selatan" target="_blank" class="w-full py-3 rounded-xl border border-primary/50 text-primary hover:bg-primary/10 transition-colors font-body-md font-bold tracking-widest text-xs uppercase text-center flex items-center justify-center gap-2">
-                      <span class="material-symbols-outlined text-[18px]">calendar_add_on</span>
-                      Tambahkan ke Kalender
-                    </a>
-                </div>
             </div>
+          </section>
+
+          <!-- SECTION 4: GALERI -->
+          <section id="gallery" class="py-20 text-center min-h-[60vh] border-t border-white/5">
+            <h2 class="font-headline-md text-primary mb-4 italic text-3xl">Galeri Kami</h2>
+            <p class="text-on-surface-variant text-sm px-5">Momen-momen indah yang kami abadikan.</p>
+          </section>
+
+          <!-- SECTION 5: HADIAH -->
+          <section id="gift" class="py-20 text-center min-h-[60vh] border-t border-white/5">
+            <h2 class="font-headline-md text-primary mb-4 italic text-3xl">Kirim Hadiah</h2>
+            <p class="text-on-surface-variant text-sm px-5">Bentuk tanda kasih dari Anda.</p>
           </section>
 
           <div class="h-28"></div>
         </main>
 
-        <!-- MOBILE NAVBAR (Otomatis Hilang di PC) -->
-        <nav class="absolute bottom-0 w-full z-50 pb-safe bg-[#111111] border-t border-white/5 shadow-[0_-10px_30px_rgba(0,0,0,0.8)] lg:hidden">
+        <!-- MOBILE NAVBAR (Fixed di Bawah Layar Container) -->
+        <nav class="fixed bottom-0 w-full max-w-[390px] z-50 pb-safe bg-[#111111]/95 backdrop-blur-md border-t border-white/5 shadow-[0_-10px_30px_rgba(0,0,0,0.9)] lg:hidden">
           <div class="flex justify-around items-center h-[76px] px-1">
             <a class="nav-link flex flex-col items-center gap-1 transition-all w-[60px]" href="#home">
               <span class="material-symbols-outlined nav-icon text-[26px]">home</span>
