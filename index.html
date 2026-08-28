@@ -79,8 +79,33 @@
     <!-- BAGIAN KANAN: KONTAINER MOBILE-FIRST -->
     <div class="w-full lg:w-[450px] h-full flex justify-center items-center lg:bg-[#1a1a1a] relative lg:border-l lg:border-primary/20 bg-pattern-floral shadow-[-20px_0_50px_rgba(0,0,0,0.5)] z-20">
       
-      <!-- MOBILE CONTAINER -->
-      <div id="mobile-container" class="w-full h-full max-w-[390px] min-w-[360px] bg-surface relative overflow-x-hidden overflow-y-auto lg:h-[844px] lg:max-h-[95vh] lg:rounded-[40px] lg:shadow-2xl lg:border lg:border-primary/30 custom-scrollbar scroll-smooth">
+      <!-- ========================================== -->
+        <!-- MOBILE NAVBAR (Tetap Menempel di Bawah)    -->
+        <!-- ========================================== -->
+        <nav class="fixed bottom-0 w-full max-w-[390px] z-50 pb-safe bg-[#111111]/95 backdrop-blur-md border-t border-white/5 shadow-[0_-10px_30px_rgba(0,0,0,0.9)] lg:hidden">
+          <div class="flex justify-around items-center h-[76px] px-1">
+            <a class="nav-link flex flex-col items-center gap-1 transition-all w-[60px]" href="#home">
+              <span class="material-symbols-outlined nav-icon text-[26px]">home</span>
+              <span class="font-body-md text-[12px] tracking-wide mt-1">Home</span>
+            </a>
+            <a class="nav-link flex flex-col items-center gap-1 transition-all w-[60px]" href="#profile">
+              <span class="material-symbols-outlined nav-icon text-[26px]">badge</span>
+              <span class="font-body-md text-[12px] tracking-wide mt-1">Profile</span>
+            </a>
+            <a class="nav-link flex flex-col items-center gap-1 transition-all w-[60px]" href="#schedule">
+              <span class="material-symbols-outlined nav-icon text-[26px]">calendar_today</span>
+              <span class="font-body-md text-[12px] tracking-wide mt-1">Alamat</span>
+            </a>
+            <a class="nav-link flex flex-col items-center gap-1 transition-all w-[60px]" href="#gallery">
+              <span class="material-symbols-outlined nav-icon text-[26px]">photo_library</span>
+              <span class="font-body-md text-[12px] tracking-wide mt-1">Gallery</span>
+            </a>
+            <a class="nav-link flex flex-col items-center gap-1 transition-all w-[60px]" href="#gift">
+              <span class="material-symbols-outlined nav-icon text-[26px]">featured_seasonal_and_gifts</span>
+              <span class="font-body-md text-[12px] tracking-wide mt-1">Gift</span>
+            </a>
+          </div>
+        </nav>
         
         <canvas id="particle-canvas" class="absolute top-0 left-0 w-full h-full pointer-events-none z-0 opacity-40"></canvas>
 
