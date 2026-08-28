@@ -79,40 +79,15 @@
     <!-- BAGIAN KANAN: KONTAINER MOBILE-FIRST -->
     <div class="w-full lg:w-[450px] h-full flex justify-center items-center lg:bg-[#1a1a1a] relative lg:border-l lg:border-primary/20 bg-pattern-floral shadow-[-20px_0_50px_rgba(0,0,0,0.5)] z-20">
       
-      <!-- ========================================== -->
-        <!-- MOBILE NAVBAR (Tetap Menempel di Bawah)    -->
-        <!-- ========================================== -->
-        <nav class="fixed bottom-0 w-full max-w-[390px] z-50 pb-safe bg-[#111111]/95 backdrop-blur-md border-t border-white/5 shadow-[0_-10px_30px_rgba(0,0,0,0.9)] lg:hidden">
-          <div class="flex justify-around items-center h-[76px] px-1">
-            <a class="nav-link flex flex-col items-center gap-1 transition-all w-[60px]" href="#home">
-              <span class="material-symbols-outlined nav-icon text-[26px]">home</span>
-              <span class="font-body-md text-[12px] tracking-wide mt-1">Home</span>
-            </a>
-            <a class="nav-link flex flex-col items-center gap-1 transition-all w-[60px]" href="#profile">
-              <span class="material-symbols-outlined nav-icon text-[26px]">badge</span>
-              <span class="font-body-md text-[12px] tracking-wide mt-1">Profile</span>
-            </a>
-            <a class="nav-link flex flex-col items-center gap-1 transition-all w-[60px]" href="#schedule">
-              <span class="material-symbols-outlined nav-icon text-[26px]">calendar_today</span>
-              <span class="font-body-md text-[12px] tracking-wide mt-1">Alamat</span>
-            </a>
-            <a class="nav-link flex flex-col items-center gap-1 transition-all w-[60px]" href="#gallery">
-              <span class="material-symbols-outlined nav-icon text-[26px]">photo_library</span>
-              <span class="font-body-md text-[12px] tracking-wide mt-1">Gallery</span>
-            </a>
-            <a class="nav-link flex flex-col items-center gap-1 transition-all w-[60px]" href="#gift">
-              <span class="material-symbols-outlined nav-icon text-[26px]">featured_seasonal_and_gifts</span>
-              <span class="font-body-md text-[12px] tracking-wide mt-1">Gift</span>
-            </a>
-          </div>
-        </nav>
+      <!-- MOBILE CONTAINER (Diatur agar bisa scroll dengan lancar) -->
+      <div id="mobile-container" class="w-full h-full max-w-[390px] min-w-[360px] bg-surface relative overflow-y-auto overflow-x-hidden lg:h-[844px] lg:max-h-[95vh] lg:rounded-[40px] lg:shadow-2xl lg:border lg:border-primary/30 custom-scrollbar scroll-smooth">
         
         <canvas id="particle-canvas" class="absolute top-0 left-0 w-full h-full pointer-events-none z-0 opacity-40"></canvas>
 
-        <main class="relative z-10 w-full h-full">
+        <main class="relative z-10 w-full pb-28">
           
           <!-- SECTION 1: HOME -->
-          <section id="home" class="min-h-full lg:h-[844px] w-full relative flex flex-col items-center justify-center text-center px-5 overflow-hidden">
+          <section id="home" class="h-screen lg:h-[844px] w-full relative flex flex-col items-center justify-center text-center px-5 overflow-hidden">
             <div class="absolute inset-0 bg-[url('assets/images/pengantin.jpg')] bg-cover bg-center bg-no-repeat opacity-25"></div>
             <div class="absolute inset-0 bg-gradient-to-b from-[#131313]/30 via-[#131313]/70 to-[#131313]"></div>
             
@@ -126,7 +101,7 @@
               </div>
             </div>
 
-            <div class="absolute bottom-28 flex flex-col items-center animate-bounce opacity-80">
+            <div class="absolute bottom-20 flex flex-col items-center animate-bounce opacity-80">
                <span class="font-label-caps text-[10px] text-[#b5b0a1] tracking-widest mb-2">SCROLL DOWN</span>
                <span class="material-symbols-outlined text-primary">keyboard_double_arrow_down</span>
             </div>
@@ -280,9 +255,35 @@
             <p class="text-on-surface-variant text-sm px-5">Bentuk tanda kasih dari Anda.</p>
           </section>
 
-          <div class="h-28"></div>
         </main>
 
+        <!-- ========================================== -->
+        <!-- MOBILE NAVBAR (Menempel di Bawah & Di dalam Container) -->
+        <!-- ========================================== -->
+        <nav class="absolute bottom-0 left-0 w-full z-50 pb-safe bg-[#111111]/95 backdrop-blur-md border-t border-white/5 shadow-[0_-10px_30px_rgba(0,0,0,0.9)] lg:hidden">
+          <div class="flex justify-around items-center h-[76px] px-1">
+            <a class="nav-link flex flex-col items-center gap-1 transition-all w-[60px]" href="#home">
+              <span class="material-symbols-outlined nav-icon text-[26px]">home</span>
+              <span class="font-body-md text-[12px] tracking-wide mt-1">Home</span>
+            </a>
+            <a class="nav-link flex flex-col items-center gap-1 transition-all w-[60px]" href="#profile">
+              <span class="material-symbols-outlined nav-icon text-[26px]">badge</span>
+              <span class="font-body-md text-[12px] tracking-wide mt-1">Profile</span>
+            </a>
+            <a class="nav-link flex flex-col items-center gap-1 transition-all w-[60px]" href="#schedule">
+              <span class="material-symbols-outlined nav-icon text-[26px]">calendar_today</span>
+              <span class="font-body-md text-[12px] tracking-wide mt-1">Alamat</span>
+            </a>
+            <a class="nav-link flex flex-col items-center gap-1 transition-all w-[60px]" href="#gallery">
+              <span class="material-symbols-outlined nav-icon text-[26px]">photo_library</span>
+              <span class="font-body-md text-[12px] tracking-wide mt-1">Gallery</span>
+            </a>
+            <a class="nav-link flex flex-col items-center gap-1 transition-all w-[60px]" href="#gift">
+              <span class="material-symbols-outlined nav-icon text-[26px]">featured_seasonal_and_gifts</span>
+              <span class="font-body-md text-[12px] tracking-wide mt-1">Gift</span>
+            </a>
+          </div>
+        </nav>
 
       </div>
     </div>
