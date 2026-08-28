@@ -1,14 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // 1. Logika Partikel Canvas
     const canvas = document.getElementById('particle-canvas');
     const ctx = canvas.getContext('2d');
     const container = document.getElementById('mobile-container');
     
     let particles = [];
     
-    // Sesuaikan ukuran canvas dengan ukuran container mobile
     function resizeCanvas() {
         canvas.width = container.clientWidth;
-        canvas.height = container.scrollHeight; // Mengambil full tinggi scroll
+        canvas.height = container.scrollHeight; 
     }
   
     class Particle {
@@ -21,11 +21,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         update() {
             this.y -= this.speedY;
-            // Jika partikel keluar batas atas, reset ke bawah layar container
             if (this.y < 0) this.y = canvas.height;
         }
         draw() {
-            // Menggunakan warna D4AF37 yang dikonversi ke RGBA
             ctx.fillStyle = `rgba(212, 175, 55, ${this.alpha})`;
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
@@ -35,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
     function init() {
         resizeCanvas();
-        particles = []; // Bersihkan jika me-resize
+        particles = []; 
         for (let i = 0; i < 60; i++) {
             particles.push(new Particle());
         }
@@ -52,8 +50,28 @@ document.addEventListener("DOMContentLoaded", () => {
   
     init();
     animate();
-  
-    // Listen resize event dari window, namun kita set ukuran canvas dari container
     window.addEventListener('resize', init);
-    // Jika user scroll dan container membesar dynamically, Anda bisa memanggil resizeCanvas()
+
+    // ==========================================
+    // 2. Logika Scroll untuk Menu PC
+    // ==========================================
+    const pcNavLinks = document.querySelectorAll('.pc-nav a');
+    
+    pcNavLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault(); // Mencegah lompatan default
+            
+            // Ambil ID tujuan (contoh: #profile)
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                // Scroll container mobile ke elemen tersebut secara halus
+                container.scrollTo({
+                    top: targetElement.offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
 });
