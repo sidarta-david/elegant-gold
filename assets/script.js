@@ -1,7 +1,33 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // 1. Logika Partikel Canvas Latar Belakang
     const canvas = document.getElementById('particle-canvas');
     const ctx = canvas.getContext('2d');
     const container = document.getElementById('mobile-container');
+    const section = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".nav-link");
+    
+    window.addEventListener("scroll", () => {
+    let currentSectionId = "";
+
+    // Memeriksa section mana yang sedang terlihat di layar
+        section.forEach((section) => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+
+        // Jika posisi scroll sudah memasuki area section
+            if (pageYOffset >= sectionTop - sectionHeight / 3) {
+            currentSectionId = section.getAttribute("id");
+            }
+        });
+
+    // Memperbarui class 'active' pada tombol navigasi
+    navLinks.forEach((link) => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === `#${currentSectionId}`) {
+        link.classList.add("active");
+        }
+    });
+    });
     
     let particles = [];
     
@@ -51,6 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
     animate();
     window.addEventListener('resize', init);
 
+    // 2. Logika Smooth Scroll Saat Menu Diklik
     const allNavLinks = document.querySelectorAll('.nav-link');
     
     allNavLinks.forEach(link => {
@@ -68,39 +95,72 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    // 3. Logika Intersection Observer untuk Menu Aktif & Animasi Muncul
     const sections = document.querySelectorAll('main > section');
     
-    const observerOptions = {
+    const navObserverOptions = {
         root: container,
         rootMargin: '-20% 0px -60% 0px', 
         threshold: 0
     };
 
-    const observer = new IntersectionObserver((entries) => {
+    const navObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const currentId = entry.target.getAttribute('id');
                 updateActiveNav(currentId);
             }
         });
-    }, observerOptions);
+    }, navObserverOptions);
 
-    sections.forEach(section => observer.observe(section));
+    section.forEach(section => navObserver.observe(section));
 
     function updateActiveNav(activeId) {
         allNavLinks.forEach(link => {
             const icon = link.querySelector('.nav-icon');
             const targetId = link.getAttribute('href').substring(1);
+            const isPcExpand = link.classList.contains('pc-expand-link');
 
             if (targetId === activeId) {
-                link.classList.add('text-primary');
-                link.classList.remove('text-[#8c8577]');
-                if(icon) icon.style.fontVariationSettings = "'FILL' 1";
+                // Ketika Section Aktif
+                if (isPcExpand) {
+                    link.classList.add('active-pc');
+                } else {
+                    link.classList.add('text-primary');
+                    link.classList.remove('text-[#8c8577]');
+                }
+                if (icon) icon.style.fontVariationSettings = "'FILL' 1";
             } else {
-                link.classList.remove('text-primary');
-                link.classList.add('text-[#8c8577]');
-                if(icon) icon.style.fontVariationSettings = "'FILL' 0";
+                // Ketika Section Tidak Aktif
+                if (isPcExpand) {
+                    link.classList.remove('active-pc');
+                } else {
+                    link.classList.remove('text-primary');
+                    link.classList.add('text-[#8c8577]');
+                }
+                if (icon) icon.style.fontVariationSettings = "'FILL' 0";
             }
         });
     }
+
+    // 4. Observer untuk Animasi Masuk (Fade-up) Elemen Konten
+    const animObserverOptions = {
+        root: container,
+        rootMargin: '0px 0px -10% 0px', 
+        threshold: 0.1
+    };
+
+    const animObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target); 
+            }
+        });
+    }, animObserverOptions);
+
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    animatedElements.forEach(el => animObserver.observe(el));
+
 });
+

@@ -5,17 +5,20 @@
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
   <title>Undangan Pernikahan</title>
   
-  <!-- Fonts -->
+  <!-- ========================================== -->
+  <!-- ANOTASI: IMPORT FONT & MATERIAL SYMBOLS    -->
+  <!-- ========================================== -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
-  <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
   
   <!-- CSS External -->
   <link href="style.css" rel="stylesheet">
 
-  <!-- Tailwind CSS & Config -->
+  <!-- ========================================== -->
+  <!-- ANOTASI: KONFIGURASI TAILWIND CSS          -->
+  <!-- ========================================== -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { 
@@ -24,7 +27,7 @@
         extend: { 
           colors: { 
             "surface": "#131313", 
-            "primary": "#d4af37", /* Emas Mewah */
+            "primary": "#d4af37", /* Warna Emas Utama (Elegant Gold) */
             "on-surface": "#e4e2e1", 
             "on-surface-variant": "#d0c5af", 
             "surface-container": "#1f2020",
@@ -43,57 +46,92 @@
 </head>
 <body class="font-body-md text-body-md bg-[#131313] text-on-surface overflow-hidden">
 
-  <!-- WRAPPER UTAMA (Versi PC & Mobile) -->
+  <!-- ========================================== -->
+  <!-- ANOTASI: WRAPPER UTAMA (PC & MOBILE)       -->
+  <!-- ========================================== -->
   <div class="desktop-wrapper flex w-full h-screen">
     
-    <!-- BAGIAN KIRI: HANYA TAMPIL DI PC (DESKTOP) -->
+    <!-- ========================================== -->
+    <!-- ANOTASI: BAGIAN KIRI (DESKTOP / PC VIEW)   -->
+    <!-- ========================================== -->
     <div class="hidden lg:flex flex-1 relative bg-black items-center justify-center flex-col overflow-hidden">
-      <!-- Background PC -->
       <div class="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] to-black z-0"></div>
       <div class="absolute inset-0 z-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20"></div>
       
-      <!-- Teks & Elemen PC -->
-      <div class="z-10 text-center">
+      <div class="z-10 text-center animate-on-scroll">
         <h1 class="font-display-lg text-primary text-6xl mb-4 italic tracking-wide">Design & Presets</h1>
         <p class="font-body-md text-on-surface-variant tracking-[0.3em] text-sm uppercase">Pernikahan Priya & Rahul</p>
       </div>
 
-      <!-- FLOATING MENU PC -->
-      <nav class="absolute right-8 top-1/2 -translate-y-1/2 z-50 bg-[#161616] rounded-full py-8 px-4 flex flex-col gap-8 shadow-[0_0_35px_rgba(255,255,255,0.08)] border border-white/5">
-        <a href="#home" class="nav-link text-[#8c8577] hover:scale-110 hover:text-primary transition-transform duration-300" title="Home">
-          <span class="material-symbols-outlined nav-icon text-[26px]">home</span>
-        </a>
-        <a href="#profile" class="nav-link text-[#8c8577] hover:scale-110 hover:text-primary transition-transform duration-300" title="Profile">
-          <span class="material-symbols-outlined nav-icon text-[26px]">badge</span>
-        </a>
-        <a href="#schedule" class="nav-link text-[#8c8577] hover:scale-110 hover:text-primary transition-transform duration-300" title="Jadwal & Alamat">
-          <span class="material-symbols-outlined nav-icon text-[26px]">calendar_today</span>
-        </a>
-        <a href="#gallery" class="nav-link text-[#8c8577] hover:scale-110 hover:text-primary transition-transform duration-300" title="Gallery">
-          <span class="material-symbols-outlined nav-icon text-[26px]">photo_library</span>
-        </a>
-        <a href="#gift" class="nav-link text-[#8c8577] hover:scale-110 hover:text-primary transition-transform duration-300" title="Gift">
-          <span class="material-symbols-outlined nav-icon text-[26px]">featured_seasonal_and_gifts</span>
-        </a>
+      <!-- ========================================== -->
+      <!-- ANOTASI: MENU DESKTOP (EXPANDING PILL)     -->
+      <!-- Meniru gaya referensi gambar dengan label teks -->
+      <!-- ========================================== -->
+      <nav class="absolute right-10 top-1/2 -translate-y-1/2 z-50 bg-[#161616]/95 backdrop-blur-md rounded-[40px] py-6 px-3 flex flex-col gap-4 shadow-[0_0_35px_rgba(0,0,0,0.5)] border border-white/5">
+        
+        <!-- Menu 1: Home / Couple -->
+        <li class="nav-item relative group">
+          <a href="#home" class="nav-link pc-expand-link flex items-center h-12 w-12 group-hover:w-32 rounded-full text-[#8c8577] hover:text-[#d4af37] hover:bg-[#d4af37]/10 transition-all duration-[400ms] ease-in-out relative overflow-hidden" title="Home">
+            <span class="material-symbols-outlined nav-icon min-w-[48px] text-center text-[24px] relative z-10">home</span>
+            <span class="menu-label text-xs font-bold uppercase tracking-wider text-[#131313] whitespace-nowrap opacity-0 group-hover:opacity-100 absolute left-12 transition-opacity duration-300" style="color: #d4af37;">Home</span>
+          </a>
+        </li>
+
+
+        <!-- Menu 2: Profile -->
+        <li data-v-profile="#d4af37" class="nav-item relative group">
+          <a href="#profile" class="nav-link pc-expand-link flex items-center h-12 w-12 group-hover:w-32 rounded-full text-[#8c8577] hover:text-[#d4af37] hover:bg-[#d4af37]/10 transition-all duration-[400ms] ease-in-out relative overflow-hidden" title="Profile">
+          <span class="material-symbols-outlined nav-icon min-w-[48px] text-center text-[24px] relative z-10">badge</span>
+          <span class="menu-label text-xs font-bold uppercase tracking-wider text-[#131313] whitespace-nowrap opacity-0   group-hover:opacity-100 absolute left-12 transition-opacity duration-300" style="color: #d4af37;">Profile</span>
+          </a>
+        </li>
+
+      
+        <!-- Menu 3: Schedule / Alamat -->
+        <li data-v-schedule="#d4af37" class="nav-item relative group">
+          <a href="#schedule" class="nav-link pc-expand-link flex items-center h-12 w-12 group-hover:w-32 rounded-full text-[#8c8577] hover:text-[#d4af37] hover:bg-[#d4af37]/10 transition-all duration-[400ms] ease-in-out relative overflow-hidden" title="Jadwal & Alamat">
+          <span class="material-symbols-outlined nav-icon min-w-[48px] text-center text-[24px] relative z-10">calendar_today</span>
+          <span class="menu-label text-xs font-bold uppercase tracking-wider text-[#131313] whitespace-nowrap opacity-0   group-hover:opacity-100 absolute left-12 transition-opacity duration-300" style="color: #d4af37;">Alamat</span>
+          </a>
+        </li>
+
+        <!-- Menu 4: Gallery -->
+        <li data-v-gallery="#d4af37" class="nav-item relative group">
+          <a href="#gallery" class="nav-link pc-expand-link flex items-center h-12 w-12 group-hover:w-32 rounded-full text-[#8c8577] hover:text-[#d4af37] hover:bg-[#d4af37]/10 transition-all duration-[400ms] ease-in-out relative overflow-hidden" title="Gallery">
+            <span class="material-symbols-outlined nav-icon min-w-[48px] text-center text-[24px] relative z-10">photo_library</span>
+            <span class="menu-label text-xs font-bold uppercase tracking-wider text-[#131313] whitespace-nowrap opacity-0   group-hover:opacity-100 absolute left-12 transition-opacity duration-300" style="color: #d4af37;">Gallery</span>
+          </a>
+        </li>
+
+        <!-- Menu 5: Gift -->
+        <li data-v-gift="#d4af37" class="nav-item relative group">
+          <a href="#gift" class="nav-link pc-expand-link flex items-center h-12 w-12 group-hover:w-32 rounded-full text-[#8c8577] hover:text-[#d4af37] hover:bg-[#d4af37]/10 transition-all duration-[400ms] ease-in-out relative overflow-hidden" title="Gift">
+            <span class="material-symbols-outlined nav-icon min-w-[48px] text-center text-[24px] relative z-10">featured_seasonal_and_gifts</span>
+            <span class="menu-label text-xs font-bold uppercase tracking-wider text-[#131313] whitespace-nowrap opacity-0   group-hover:opacity-100 absolute left-12 transition-opacity duration-300" style="color: #d4af37;">Gift</span>
+          </a>
+        </li>
+
       </nav>
     </div>
 
-    <!-- BAGIAN KANAN: KONTAINER MOBILE-FIRST -->
+    <!-- ========================================== -->
+    <!-- ANOTASI: BAGIAN KANAN (MOBILE CONTAINER)   -->
+    <!-- ========================================== -->
     <div class="w-full lg:w-[450px] h-full flex justify-center items-center lg:bg-[#1a1a1a] relative lg:border-l lg:border-primary/20 bg-pattern-floral shadow-[-20px_0_50px_rgba(0,0,0,0.5)] z-20">
       
-      <!-- MOBILE CONTAINER -->
-      <div id="mobile-container" class="w-full h-full max-w-[390px] min-w-[360px] bg-surface relative overflow-x-hidden overflow-y-auto lg:h-[844px] lg:max-h-[95vh] lg:rounded-[40px] lg:shadow-2xl lg:border lg:border-primary/30 custom-scrollbar scroll-smooth">
+      <!-- Kontainer Utama Scrollable -->
+      <div id="mobile-container" class="w-full h-full max-w-[390px] min-w-[360px] bg-surface relative overflow-y-auto overflow-x-hidden lg:h-[844px] lg:max-h-[95vh] lg:rounded-[40px] lg:shadow-2xl lg:border lg:border-primary/30 custom-scrollbar scroll-smooth">
         
         <canvas id="particle-canvas" class="absolute top-0 left-0 w-full h-full pointer-events-none z-0 opacity-40"></canvas>
 
-        <main class="relative z-10 w-full h-full">
+        <main class="relative z-10 w-full pb-20">
           
           <!-- SECTION 1: HOME -->
-          <section id="home" class="min-h-full lg:h-[844px] w-full relative flex flex-col items-center justify-center text-center px-5 overflow-hidden">
+          <section id="home" class="min-h-screen lg:h-[844px] w-full relative flex flex-col items-center justify-center text-center px-5 overflow-hidden">
             <div class="absolute inset-0 bg-[url('assets/images/pengantin.jpg')] bg-cover bg-center bg-no-repeat opacity-25"></div>
             <div class="absolute inset-0 bg-gradient-to-b from-[#131313]/30 via-[#131313]/70 to-[#131313]"></div>
             
-            <div class="relative z-10 w-full">
+            <div class="relative z-10 w-full animate-on-scroll">
               <span class="font-label-caps tracking-[0.3em] text-primary mb-4 block text-xs">THE WEDDING OF</span>
               <h1 class="font-display-lg text-primary text-[52px] mb-6 italic drop-shadow-lg leading-tight">Priya <br><span class="text-3xl">&</span><br> Rahul</h1>
               <p class="font-body-md text-on-surface-variant max-w-[280px] mx-auto text-sm">Dengan memohon rahmat Tuhan, kami mengundang Anda untuk merayakan cinta kami.</p>
@@ -103,23 +141,22 @@
               </div>
             </div>
 
-            <div class="absolute bottom-28 flex flex-col items-center animate-bounce opacity-80">
+            <a href="#profile" class="absolute bottom-20 flex flex-col items-center animate-bounce opacity-80 hover:opacity-100 transition-opacity">
                <span class="font-label-caps text-[10px] text-[#b5b0a1] tracking-widest mb-2">SCROLL DOWN</span>
                <span class="material-symbols-outlined text-primary">keyboard_double_arrow_down</span>
-            </div>
+            </a>
           </section>
 
           <!-- SECTION 2: PROFIL -->
           <section id="profile" class="flex flex-col items-center px-5 py-16 text-center relative z-10 bg-gradient-to-b from-[#131313] to-surface">
-            <div class="flex items-center justify-between w-full mb-10 px-2">
-              <span class="font-headline-sm text-primary tracking-widest uppercase text-lg">Profile</span>
-              <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-[0_0_10px_rgba(212,175,55,0.3)]">
-                <span class="material-symbols-outlined text-[#131313] text-[18px]">favorite</span>
-              </div>
+            
+            <div class="w-full max-w-[340px] mb-12 animate-on-scroll">
+              <h2 class="font-headline-md text-3xl text-primary mb-2 text-center italic">Sang Mempelai</h2>
+              <p class="text-on-surface-variant text-sm text-center px-5">Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan.</p>
             </div>
 
             <!-- Wanita -->
-            <div class="relative w-[280px] h-[350px] mb-8 group perspective-[1000px]">
+            <div class="relative w-[280px] h-[350px] mb-8 group perspective-[1000px] animate-on-scroll">
               <div class="absolute inset-0 bg-primary/10 rounded-full blur-2xl transform -translate-y-4"></div>
               <div class="w-full h-full rounded-[40px] overflow-hidden shadow-xl p-[2px] bg-gradient-to-br from-primary/50 via-transparent to-primary/10">
                 <div class="w-full h-full bg-surface-container rounded-[38px] overflow-hidden relative">
@@ -127,24 +164,34 @@
                   <div class="absolute inset-0 bg-gradient-to-t from-[#131313] via-transparent to-transparent opacity-80"></div>
                 </div>
               </div>
-              <div class="absolute -bottom-6 -right-6 w-16 h-16 rounded-full bg-[#131313] border border-primary/50 flex items-center justify-center shadow-[0_0_20px_rgba(212,175,55,0.3)] z-20">
-                <span class="font-display-lg text-primary text-3xl leading-none italic">P</span>
+            </div>
+            
+            <div class="animate-on-scroll">
+              <h2 class="font-headline-md text-3xl text-white mb-2">Priya Sharma, S.E.</h2>
+              <p class="font-body-md text-primary font-bold text-xs tracking-widest uppercase mb-4">Mempelai Wanita</p>
+              <p class="font-body-md text-on-surface-variant max-w-[300px] mx-auto mb-4 leading-relaxed text-sm">
+                Putri Pertama dari pasangan <br> <strong>Bpk. Amit Sharma & Ibu Neha Sharma</strong>.
+              </p>
+              <p class="font-body-md text-[#b5b0a1] max-w-[300px] mx-auto mb-6 text-sm italic opacity-80">
+                "Seorang akuntan profesional yang penuh dedikasi, memiliki hobi melukis, dan selalu membawa kehangatan di tengah keluarga."
+              </p>
+              
+              <!-- Ikon Sosmed -->
+              <div class="flex justify-center gap-5 mb-10">
+                <a href="#" class="text-[#8c8577] hover:text-primary transition-colors"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+                <a href="#" class="text-[#8c8577] hover:text-primary transition-colors"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg></a>
+                <a href="#" class="text-[#8c8577] hover:text-primary transition-colors"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93v7.2c0 1.96-.5 3.94-1.72 5.43-1.22 1.5-3 2.5-4.99 2.72-2.13.25-4.38-.2-6.1-1.47-1.7-1.28-2.77-3.32-2.88-5.46-.11-2.12.75-4.24 2.29-5.69 1.49-1.4 3.53-2.07 5.56-1.89.02 1.45.02 2.91.03 4.36-1.07-.1-2.16.14-3.03.73-.85.59-1.4 1.58-1.45 2.62-.05 1.05.34 2.1 1.02 2.87.67.76 1.65 1.22 2.68 1.25 1.05.04 2.1-.28 2.89-.92.79-.65 1.27-1.61 1.34-2.65v-17.2z"/></svg></a>
               </div>
             </div>
-            <h2 class="font-headline-md text-3xl text-white mb-3">Priya Sharma</h2>
-            <p class="font-body-md text-on-surface-variant max-w-[300px] mx-auto mb-10 leading-relaxed text-sm">
-              Putri pertama yang selalu membawa kehangatan dan keceriaan di setiap langkahnya.
-            </p>
 
-            <!-- Divider -->
-            <div class="w-full flex justify-center items-center py-6 px-5 gap-4">
+            <div class="w-full flex justify-center items-center py-6 px-5 gap-4 animate-on-scroll">
               <div class="h-[1px] flex-1 bg-gradient-to-r from-transparent to-primary/30"></div>
               <span class="material-symbols-outlined text-primary/50 text-xl animate-pulse">favorite</span>
               <div class="h-[1px] flex-1 bg-gradient-to-l from-transparent to-primary/30"></div>
             </div>
 
             <!-- Pria -->
-            <div class="relative w-[280px] h-[350px] mb-8 mt-10 group perspective-[1000px]">
+            <div class="relative w-[280px] h-[350px] mb-8 mt-10 group perspective-[1000px] animate-on-scroll">
               <div class="absolute inset-0 bg-primary/10 rounded-full blur-2xl transform -translate-y-4"></div>
               <div class="w-full h-full rounded-[40px] overflow-hidden shadow-xl p-[2px] bg-gradient-to-bl from-primary/50 via-transparent to-primary/10">
                 <div class="w-full h-full bg-surface-container rounded-[38px] overflow-hidden relative">
@@ -152,27 +199,45 @@
                   <div class="absolute inset-0 bg-gradient-to-t from-[#131313] via-transparent to-transparent opacity-80"></div>
                 </div>
               </div>
-              <div class="absolute -top-6 -left-6 w-16 h-16 rounded-full bg-[#131313] border border-primary/50 flex items-center justify-center shadow-[0_0_20px_rgba(212,175,55,0.3)] z-20">
-                <span class="font-display-lg text-primary text-3xl leading-none italic">R</span>
+            </div>
+            
+            <div class="animate-on-scroll">
+              <h2 class="font-headline-md text-3xl text-white mb-2">Rahul Kumar, S.Kom.</h2>
+              <p class="font-body-md text-primary font-bold text-xs tracking-widest uppercase mb-4">Mempelai Pria</p>
+              <p class="font-body-md text-on-surface-variant max-w-[300px] mx-auto mb-4 leading-relaxed text-sm">
+                Putra Bungsu (Ketiga) dari pasangan <br> <strong>Bpk. Vijay Kumar & Ibu Sunita Kumar</strong>.
+              </p>
+              <p class="font-body-md text-[#b5b0a1] max-w-[300px] mx-auto mb-6 text-sm italic opacity-80">
+                "Seorang Senior Developer yang berdedikasi tinggi, senang berolahraga, dan sosok pemimpin penyayang yang selalu bisa diandalkan."
+              </p>
+              
+              <!-- Ikon Sosmed -->
+              <div class="flex justify-center gap-5 mb-4">
+                <a href="#" class="text-[#8c8577] hover:text-primary transition-colors"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+                <a href="#" class="text-[#8c8577] hover:text-primary transition-colors"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg></a>
+                <a href="#" class="text-[#8c8577] hover:text-primary transition-colors"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93v7.2c0 1.96-.5 3.94-1.72 5.43-1.22 1.5-3 2.5-4.99 2.72-2.13.25-4.38-.2-6.1-1.47-1.7-1.28-2.77-3.32-2.88-5.46-.11-2.12.75-4.24 2.29-5.69 1.49-1.4 3.53-2.07 5.56-1.89.02 1.45.02 2.91.03 4.36-1.07-.1-2.16.14-3.03.73-.85.59-1.4 1.58-1.45 2.62-.05 1.05.34 2.1 1.02 2.87.67.76 1.65 1.22 2.68 1.25 1.05.04 2.1-.28 2.89-.92.79-.65 1.27-1.61 1.34-2.65v-17.2z"/></svg></a>
               </div>
             </div>
-            <h2 class="font-headline-md text-3xl text-white mb-3">Rahul Kumar</h2>
-            <p class="font-body-md text-on-surface-variant max-w-[300px] mx-auto mb-8 leading-relaxed text-sm">
-              Putra berdedikasi tinggi yang akan menjadi tiang kokoh untuk masa depan bersama.
-            </p>
           </section>
 
-          <!-- SECTION 3: JADWAL & LOKASI (ALAMAT) -->
+          <!-- ========================================== -->
+          <!-- SECTION 3: JADWAL & LOKASI                 -->
+          <!-- ========================================== -->
           <section id="schedule" class="flex flex-col items-center px-5 py-20 w-full border-t border-white/5">
             <div class="w-full max-w-[340px]">
-              <h2 class="font-headline-md text-3xl text-primary mb-2 text-center italic">Jadwal Acara</h2>
-              <p class="text-on-surface-variant text-sm text-center mb-8 px-5">Detail waktu dan alamat acara pernikahan kami.</p>
+              <div class="animate-on-scroll">
+                <h2 class="font-headline-md text-3xl text-primary mb-2 text-center italic">Jadwal Acara</h2>
+                <p class="text-on-surface-variant text-sm text-center mb-10 px-5">Detail waktu dan alamat acara pernikahan kami.</p>
+              </div>
 
               <!-- CARD: AKAD NIKAH -->
-              <article class="schedule-card bg-[#1a1a1a] rounded-[24px] p-6 mb-8 border border-primary/20 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+              <article class="schedule-card bg-[#1a1a1a] rounded-[24px] p-6 mb-8 border border-primary/20 shadow-[0_10px_30px_rgba(0,0,0,0.5)] animate-on-scroll">
                 <div class="flex items-center gap-3 mb-5 border-b border-white/5 pb-4">
-                  <span class="material-symbols-outlined text-primary text-2xl">edit_document</span>
-                  <h3 class="font-headline-sm text-white text-xl tracking-wide">Akad Nikah</h3>
+                  <svg class="w-7 h-7 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="12" r="4"></circle>
+                    <circle cx="15" cy="12" r="4"></circle>
+                  </svg>
+                  <h3 class="font-headline-sm text-white text-xl tracking-wide mt-1">Akad Nikah</h3>
                 </div>
                 
                 <div class="flex flex-col gap-4 text-body-md text-[#b5b0a1] text-sm">
@@ -189,24 +254,23 @@
                     <p class="leading-relaxed">Masjid Al-Ikhlas, Jl. Melati No. 12, Jakarta Selatan</p>
                   </div>
 
-                  <!-- Frame Peta Google Maps (Akad) -->
                   <div class="w-full h-36 mt-2 rounded-xl overflow-hidden border border-white/10 opacity-80 hover:opacity-100 transition-opacity">
                     <iframe src="https://maps.google.com/maps?q=Masjid%20Al-Ikhlas,%20Jakarta%20Selatan&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                   </div>
 
-                  <!-- Tombol Aksi Akad -->
                   <div class="flex flex-col gap-3 mt-2">
-                    <!-- Tombol 1: Google Maps -->
+                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Akad+Nikah+Priya+dan+Rahul&dates=20251025T010000Z/20251025T030000Z&details=Acara+Akad+Nikah+Priya+dan+Rahul&location=Masjid+Al-Ikhlas,+Jl.+Melati+No.+12,+Jakarta+Selatan" target="_blank" class="w-full py-3 rounded-xl border border-primary/50 text-primary hover:bg-primary/10 transition-colors font-body-md font-bold tracking-widest text-xs uppercase text-center flex items-center justify-center gap-2">
+                      <span class="material-symbols-outlined text-[18px]">calendar_add_on</span> Tambahkan ke Kalender
+                    </a>
                     <a href="https://www.google.com/maps/search/?api=1&query=Masjid+Al-Ikhlas,+Jl.+Melati+No.+12,+Jakarta+Selatan" target="_blank" class="w-full py-3 rounded-xl border border-primary text-primary hover:bg-primary hover:text-[#131313] transition-colors font-body-md font-bold tracking-widest text-xs uppercase text-center flex items-center justify-center gap-2">
-                      <span class="material-symbols-outlined text-[18px]">map</span>
-                      Lihat Lokasi
+                      <span class="material-symbols-outlined text-[18px]">map</span> Lihat Lokasi
                     </a>
                   </div>
                 </div>
               </article>
 
               <!-- CARD: RESEPSI -->
-              <article class="schedule-card bg-[#1a1a1a] rounded-[24px] p-6 mb-6 border border-primary/20 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+              <article class="schedule-card bg-[#1a1a1a] rounded-[24px] p-6 mb-6 border border-primary/20 shadow-[0_10px_30px_rgba(0,0,0,0.5)] animate-on-scroll">
                 <div class="flex items-center gap-3 mb-5 border-b border-white/5 pb-4">
                   <span class="material-symbols-outlined text-primary text-2xl">favorite</span>
                   <h3 class="font-headline-sm text-white text-xl tracking-wide">Resepsi</h3>
@@ -226,35 +290,63 @@
                     <p class="leading-relaxed">Gedung Serbaguna Cempaka, Jl. Cempaka No. 45, Jakarta Selatan</p>
                   </div>
 
-                  <!-- Frame Peta Google Maps (Resepsi) -->
                   <div class="w-full h-36 mt-2 rounded-xl overflow-hidden border border-white/10 opacity-80 hover:opacity-100 transition-opacity">
                     <iframe src="https://maps.google.com/maps?q=Gedung%20Serbaguna%20Cempaka,%20Jakarta%20Selatan&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                   </div>
 
-                  <!-- Tombol Aksi Resepsi -->
                   <div class="flex flex-col gap-3 mt-2">
-                     
-                    <!-- Tombol 2: Google Maps (Filled Emas) -->
+                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Resepsi+Pernikahan+Priya+dan+Rahul&dates=20251025T040000Z/20251025T070000Z&details=Acara+Resepsi+Pernikahan+Priya+dan+Rahul&location=Gedung+Serbaguna+Cempaka,+Jl.+Cempaka+No.+45,+Jakarta+Selatan" target="_blank" class="w-full py-3 rounded-xl border border-primary/50 text-primary hover:bg-primary/10 transition-colors font-body-md font-bold tracking-widest text-xs uppercase text-center flex items-center justify-center gap-2">
+                      <span class="material-symbols-outlined text-[18px]">calendar_add_on</span> Tambahkan ke Kalender
+                    </a>
                     <a href="https://www.google.com/maps/search/?api=1&query=Gedung+Serbaguna+Cempaka,+Jl.+Cempaka+No.+45,+Jakarta+Selatan" target="_blank" class="w-full py-3 rounded-xl bg-primary text-[#131313] hover:bg-[#b8952b] transition-colors font-body-md font-bold tracking-widest text-xs uppercase text-center shadow-[0_0_15px_rgba(212,175,55,0.4)] flex items-center justify-center gap-2">
-                      <span class="material-symbols-outlined text-[18px]">map</span>
-                      Lihat Lokasi
+                      <span class="material-symbols-outlined text-[18px]">map</span> Lihat Lokasi
                     </a>
                   </div>
                 </div>
               </article>
-                <div class="flex flex-col gap-3 mt-2">
-              <!-- Tombol 1: Add to Calendar -->
-                     <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Resepsi+Pernikahan+Priya+dan+Rahul&dates=20251025T040000Z/20251025T070000Z&details=Acara+Resepsi+Pernikahan+Priya+dan+Rahul&location=Gedung+Serbaguna+Cempaka,+Jl.+Cempaka+No.+45,+Jakarta+Selatan" target="_blank" class="w-full py-3 rounded-xl border border-primary/50 text-primary hover:bg-primary/10 transition-colors font-body-md font-bold tracking-widest text-xs uppercase text-center flex items-center justify-center gap-2">
-                      <span class="material-symbols-outlined text-[18px]">calendar_add_on</span>
-                      Tambahkan ke Kalender
-                    </a>
-                </div>
             </div>
           </section>
 
-          <div class="h-28"></div>
         </main>
 
+        <!-- ========================================== -->
+        <!-- ANOTASI: MOBILE NAVBAR (Fixed di Bawah)    -->
+        <!-- ========================================== -->
+        <nav class="fixed bottom-0 left-0 w-full max-w-[390px] z-50 pb-safe bg-[#111111]/95 backdrop-blur-md border-t border-white/5 shadow-[0_-10px_30px_rgba(0,0,0,0.9)] lg:hidden">
+          <div class="flex justify-around items-center h-[76px] px-1">
+            <li class="nav-item relative group">
+              <a href="#home" class="nav-link flex flex-col items-center gap-1 transition-all w-[60px] text-[#8c8577] hover:text-[#d4af37]" onclick="moveTo('home')" hover-text="#d4af37" title="Home">
+                <span class="material-symbols-outlined nav-icon text-[26px]">home</span>
+                <span class="font-body-md text-[12px] tracking-wide mt-1">Home</span>
+              </a>
+            </li> 
+
+            <li class="nav-item relative group">
+              <a href="#profile" class="nav-link flex flex-col items-center gap-1 transition-all w-[60px]" onclick="moveTo('profile')" hover-text="#d4af37" title="Profile">
+                <span class="material-symbols-outlined nav-icon text-[26px]">badge</span>
+                <span class="font-body-md text-[12px] tracking-wide mt-1">Profile</span>
+              </a>
+            </li> 
+            <li class="nav-item relative group">
+              <a href="#schedule" class="nav-link flex flex-col items-center gap-1 transition-all w-[60px]" onclick="moveTo('schedule')" hover-text="#d4af37" title="Alamat">
+                <span class="material-symbols-outlined nav-icon text-[26px]">calendar_today</span>
+                <span class="font-body-md text-[12px] tracking-wide mt-1">Alamat</span>
+              </a>
+            </li> 
+            <li class="nav-item relative group">
+              <a href="#gallery" class="nav-link flex flex-col items-center gap-1 transition-all w-[60px]" onclick="moveTo('gallery')" hover-text="#d4af37" title="Gallery">
+                <span class="material-symbols-outlined nav-icon text-[26px]">photo_library</span>
+                <span class="font-body-md text-[12px] tracking-wide mt-1">Gallery</span>
+              </a>
+            </li> 
+            <li class="nav-item relative group">
+              <a href="#gift" class="nav-link flex flex-col items-center gap-1 transition-all w-[60px]" onclick="moveTo('gift')" hover-text="#d4af37" title="Gift">
+                <span class="material-symbols-outlined nav-icon text-[26px]">featured_seasonal_and_gifts</span>
+                <span class="font-body-md text-[12px] tracking-wide mt-1">Gift</span>
+              </a>
+            </li> 
+          </div>
+        </nav>
 
       </div>
     </div>
