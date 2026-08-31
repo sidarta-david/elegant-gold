@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
   
   <!-- CSS External -->
-  <link href="style.css" rel="stylesheet">
+  <link href="assets/style/style.css" rel="stylesheet">
 
   <!-- ========================================== -->
   <!-- ANOTASI: KONFIGURASI TAILWIND CSS          -->
@@ -56,9 +56,8 @@
     <!-- ========================================== -->
     <div class="hidden lg:flex flex-1 relative bg-black items-center justify-center flex-col overflow-hidden">
       <div class="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] to-black z-0"></div>
-      <div class="absolute inset-0 z-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20"></div>
-      
-      <div class="z-10 text-center animate-on-scroll">
+      <div class="absolute inset-0 z-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 animate-on-scroll animate_fadein animate_fadeout"></div>
+      <div class="z-10 absolute left-10 text-left animate_animate-on-scroll">
         <h1 class="font-display-lg text-primary text-6xl mb-4 italic tracking-wide">Design & Presets</h1>
         <p class="font-body-md text-on-surface-variant tracking-[0.3em] text-sm uppercase">Pernikahan Priya & Rahul</p>
       </div>
@@ -67,47 +66,48 @@
       <!-- ANOTASI: MENU DESKTOP (EXPANDING PILL)     -->
       <!-- Meniru gaya referensi gambar dengan label teks -->
       <!-- ========================================== -->
+      <!-- ========================================== -->
+      <!-- ANOTASI: MENU DESKTOP (EXPANDING PILL)     -->
+      <!-- ========================================== -->
       <nav class="absolute right-10 top-1/2 -translate-y-1/2 z-50 bg-[#161616]/95 backdrop-blur-md rounded-[40px] py-6 px-3 flex flex-col gap-4 shadow-[0_0_35px_rgba(0,0,0,0.5)] border border-white/5">
         
-        <!-- Menu 1: Home / Couple -->
-        <li class="nav-item relative group">
-          <a href="#home" class="nav-link pc-expand-link flex items-center h-12 w-12 group-hover:w-32 rounded-full text-[#8c8577] hover:text-[#d4af37] hover:bg-[#d4af37]/10 transition-all duration-[400ms] ease-in-out relative overflow-hidden" title="Home">
+        <!-- Menu 1: Home -->
+        <li class="nav-item relative group list-none">
+          <a href="#home" onclick="moveTo('home')" class="nav-link pc-expand-link flex items-center h-12 w-12 group-hover:w-32 rounded-full text-[#8c8577] hover:text-[#d4af37] hover:bg-[#d4af37]/10 transition-all duration-[400ms] ease-in-out relative overflow-hidden" title="Home">
             <span class="material-symbols-outlined nav-icon min-w-[48px] text-center text-[24px] relative z-10">home</span>
-            <span class="menu-label text-xs font-bold uppercase tracking-wider text-[#131313] whitespace-nowrap opacity-0 group-hover:opacity-100 absolute left-12 transition-opacity duration-300" style="color: #d4af37;">Home</span>
+            <span class="menu-label text-[#d4af37] text-xs font-bold uppercase tracking-wider whitespace-nowrap opacity-0 group-hover:opacity-100 absolute left-12 transition-opacity duration-300">Home</span>
           </a>
         </li>
-
 
         <!-- Menu 2: Profile -->
-        <li data-v-profile="#d4af37" class="nav-item relative group">
-          <a href="#profile" class="nav-link pc-expand-link flex items-center h-12 w-12 group-hover:w-32 rounded-full text-[#8c8577] hover:text-[#d4af37] hover:bg-[#d4af37]/10 transition-all duration-[400ms] ease-in-out relative overflow-hidden" title="Profile">
-          <span class="material-symbols-outlined nav-icon min-w-[48px] text-center text-[24px] relative z-10">badge</span>
-          <span class="menu-label text-xs font-bold uppercase tracking-wider text-[#131313] whitespace-nowrap opacity-0   group-hover:opacity-100 absolute left-12 transition-opacity duration-300" style="color: #d4af37;">Profile</span>
+        <li class="nav-item relative group list-none">
+          <a href="#profile" onclick="moveTo('profile')" class="nav-link pc-expand-link flex items-center h-12 w-12 group-hover:w-32 rounded-full text-[#8c8577] hover:text-[#d4af37] hover:bg-[#d4af37]/10 transition-all duration-[400ms] ease-in-out relative overflow-hidden" title="Profile">
+            <span class="material-symbols-outlined nav-icon min-w-[48px] text-center text-[24px] relative z-10">badge</span>
+            <span class="menu-label text-[#d4af37] text-xs font-bold uppercase tracking-wider whitespace-nowrap opacity-0 group-hover:opacity-100 absolute left-12 transition-opacity duration-300">Profile</span>
           </a>
         </li>
-
       
         <!-- Menu 3: Schedule / Alamat -->
-        <li data-v-schedule="#d4af37" class="nav-item relative group">
-          <a href="#schedule" class="nav-link pc-expand-link flex items-center h-12 w-12 group-hover:w-32 rounded-full text-[#8c8577] hover:text-[#d4af37] hover:bg-[#d4af37]/10 transition-all duration-[400ms] ease-in-out relative overflow-hidden" title="Jadwal & Alamat">
-          <span class="material-symbols-outlined nav-icon min-w-[48px] text-center text-[24px] relative z-10">calendar_today</span>
-          <span class="menu-label text-xs font-bold uppercase tracking-wider text-[#131313] whitespace-nowrap opacity-0   group-hover:opacity-100 absolute left-12 transition-opacity duration-300" style="color: #d4af37;">Alamat</span>
+        <li class="nav-item relative group list-none">
+          <a href="#schedule" onclick="moveTo('schedule')" class="nav-link pc-expand-link flex items-center h-12 w-12 group-hover:w-32 rounded-full text-[#8c8577] hover:text-[#d4af37] hover:bg-[#d4af37]/10 transition-all duration-[400ms] ease-in-out relative overflow-hidden" title="Alamat">
+            <span class="material-symbols-outlined nav-icon min-w-[48px] text-center text-[24px] relative z-10">calendar_today</span>
+            <span class="menu-label text-[#d4af37] text-xs font-bold uppercase tracking-wider whitespace-nowrap opacity-0 group-hover:opacity-100 absolute left-12 transition-opacity duration-300">Alamat</span>
           </a>
         </li>
 
         <!-- Menu 4: Gallery -->
-        <li data-v-gallery="#d4af37" class="nav-item relative group">
-          <a href="#gallery" class="nav-link pc-expand-link flex items-center h-12 w-12 group-hover:w-32 rounded-full text-[#8c8577] hover:text-[#d4af37] hover:bg-[#d4af37]/10 transition-all duration-[400ms] ease-in-out relative overflow-hidden" title="Gallery">
+        <li class="nav-item relative group list-none">
+          <a href="#gallery" onclick="moveTo('gallery')" class="nav-link pc-expand-link flex items-center h-12 w-12 group-hover:w-32 rounded-full text-[#8c8577] hover:text-[#d4af37] hover:bg-[#d4af37]/10 transition-all duration-[400ms] ease-in-out relative overflow-hidden" title="Gallery">
             <span class="material-symbols-outlined nav-icon min-w-[48px] text-center text-[24px] relative z-10">photo_library</span>
-            <span class="menu-label text-xs font-bold uppercase tracking-wider text-[#131313] whitespace-nowrap opacity-0   group-hover:opacity-100 absolute left-12 transition-opacity duration-300" style="color: #d4af37;">Gallery</span>
+            <span class="menu-label text-[#d4af37] text-xs font-bold uppercase tracking-wider whitespace-nowrap opacity-0 group-hover:opacity-100 absolute left-12 transition-opacity duration-300">Gallery</span>
           </a>
         </li>
 
         <!-- Menu 5: Gift -->
-        <li data-v-gift="#d4af37" class="nav-item relative group">
-          <a href="#gift" class="nav-link pc-expand-link flex items-center h-12 w-12 group-hover:w-32 rounded-full text-[#8c8577] hover:text-[#d4af37] hover:bg-[#d4af37]/10 transition-all duration-[400ms] ease-in-out relative overflow-hidden" title="Gift">
+        <li class="nav-item relative group list-none">
+          <a href="#gift" onclick="moveTo('gift')" class="nav-link pc-expand-link flex items-center h-12 w-12 group-hover:w-32 rounded-full text-[#8c8577] hover:text-[#d4af37] hover:bg-[#d4af37]/10 transition-all duration-[400ms] ease-in-out relative overflow-hidden" title="Gift">
             <span class="material-symbols-outlined nav-icon min-w-[48px] text-center text-[24px] relative z-10">featured_seasonal_and_gifts</span>
-            <span class="menu-label text-xs font-bold uppercase tracking-wider text-[#131313] whitespace-nowrap opacity-0   group-hover:opacity-100 absolute left-12 transition-opacity duration-300" style="color: #d4af37;">Gift</span>
+            <span class="menu-label text-[#d4af37] text-xs font-bold uppercase tracking-wider whitespace-nowrap opacity-0 group-hover:opacity-100 absolute left-12 transition-opacity duration-300">Gift</span>
           </a>
         </li>
 
@@ -322,25 +322,25 @@
             </li> 
 
             <li class="nav-item relative group">
-              <a href="#profile" class="nav-link flex flex-col items-center gap-1 transition-all w-[60px]" onclick="moveTo('profile')" hover-text="#d4af37" title="Profile">
+              <a href="#profile" class="nav-link flex flex-col items-center gap-1 transition-all w-[60px] text-[#8c8577] hover:text-[#d4af37]" onclick="moveTo('profile')" onclick="moveTo('profile')" hover-text="#d4af37" title="Profile">
                 <span class="material-symbols-outlined nav-icon text-[26px]">badge</span>
                 <span class="font-body-md text-[12px] tracking-wide mt-1">Profile</span>
               </a>
             </li> 
             <li class="nav-item relative group">
-              <a href="#schedule" class="nav-link flex flex-col items-center gap-1 transition-all w-[60px]" onclick="moveTo('schedule')" hover-text="#d4af37" title="Alamat">
+              <a href="#schedule" class="nav-link flex flex-col items-center gap-1 transition-all w-[60px] text-[#8c8577] hover:text-[#d4af37]" onclick="moveTo('schedule')" onclick="moveTo('schedule')" hover-text="#d4af37" title="Alamat">
                 <span class="material-symbols-outlined nav-icon text-[26px]">calendar_today</span>
                 <span class="font-body-md text-[12px] tracking-wide mt-1">Alamat</span>
               </a>
             </li> 
             <li class="nav-item relative group">
-              <a href="#gallery" class="nav-link flex flex-col items-center gap-1 transition-all w-[60px]" onclick="moveTo('gallery')" hover-text="#d4af37" title="Gallery">
+              <a href="#gallery" class="nav-link flex flex-col items-center gap-1 transition-all w-[60px] text-[#8c8577] hover:text-[#d4af37]" onclick="moveTo('gallery')" hover-text="#d4af37" title="Gallery">
                 <span class="material-symbols-outlined nav-icon text-[26px]">photo_library</span>
                 <span class="font-body-md text-[12px] tracking-wide mt-1">Gallery</span>
               </a>
             </li> 
             <li class="nav-item relative group">
-              <a href="#gift" class="nav-link flex flex-col items-center gap-1 transition-all w-[60px]" onclick="moveTo('gift')" hover-text="#d4af37" title="Gift">
+              <a href="#gift" class="nav-link flex flex-col items-center gap-1 transition-all w-[60px] text-[#8c8577] hover:text-[#d4af37]" onclick="moveTo('gift')" hover-text="#d4af37" title="Gift">
                 <span class="material-symbols-outlined nav-icon text-[26px]">featured_seasonal_and_gifts</span>
                 <span class="font-body-md text-[12px] tracking-wide mt-1">Gift</span>
               </a>
@@ -352,6 +352,6 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="assets/script/script.js"></script>
 </body>
 </html>
