@@ -33,6 +33,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const fireflyCanvas = document.getElementById('firefly-canvas');
     const fireflyCtx = fireflyCanvas ? fireflyCanvas.getContext('2d') : null;
 
+    // Canvas Cover / Pembuka (Kunang-kunang Tambahan)
+    const coverFireflyCanvas = document.getElementById('cover-firefly-canvas');
+    const coverFireflyCtx = coverFireflyCanvas ? coverFireflyCanvas.getContext('2d') : null;
+
     // ==========================================
     // 2. LOGIKA ANIMASI BINTANG BERGERAK (MOBILE)
     // ==========================================
@@ -110,26 +114,35 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==========================================
-    // 3. LOGIKA ANIMASI KUNANG-KUNANG (DESKTOP)
+    // 3. LOGIKA ANIMASI KUNANG-KUNANG (FLEXIBLE)
     // ==========================================
-    let fireflies = [];
+    let firefliesDesktop = [];
+    let firefliesCover = [];
 
     function resizeFireflyCanvas() {
-        if (!fireflyCanvas) return;
-        const parent = fireflyCanvas.parentElement;
-        fireflyCanvas.width = parent.clientWidth;
-        fireflyCanvas.height = parent.clientHeight;
+        if (fireflyCanvas) {
+            const parent = fireflyCanvas.parentElement;
+            fireflyCanvas.width = parent.clientWidth;
+            fireflyCanvas.height = parent.clientHeight;
+        }
+        if (coverFireflyCanvas) {
+            coverFireflyCanvas.width = window.innerWidth;
+            coverFireflyCanvas.height = window.innerHeight;
+        }
     }
 
+    // Kelas Firefly sekarang fleksibel dan bisa menerima target Canvas yang berbeda
     class Firefly {
-        constructor() {
+        constructor(targetCanvas, targetCtx) {
+            this.canvas = targetCanvas;
+            this.ctx = targetCtx;
             this.reset();
-            this.y = Math.random() * fireflyCanvas.height; 
+            this.y = Math.random() * this.canvas.height; 
         }
         
         reset() {
-            this.x = Math.random() * fireflyCanvas.width;
-            this.y = fireflyCanvas.height + 10; 
+            this.x = Math.random() * this.canvas.width;
+            this.y = this.canvas.height + 10; 
             
             this.size = Math.random() * 4 + 1; 
             this.speedX = (Math.random() - 0.5) * 0.3;
@@ -144,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
             this.x += this.speedX;
             this.y += this.speedY;
 
-            this.x += Math.sin(this.y * 0.02) * 0.3;
+            this.x += Math.sin(this.y * 0.02) * 0.3; // Gerakan meliuk-liuk
 
             this.alpha += this.alphaSpeed;
             if (this.alpha > this.baseAlpha + 0.3 || this.alpha < this.baseAlpha - 0.2) {
@@ -160,37 +173,61 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         
         draw() {
-            fireflyCtx.beginPath();
-            fireflyCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            fireflyCtx.fillStyle = `rgba(212, 175, 55, ${this.alpha})`;
+            this.ctx.beginPath();
+            this.ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            this.ctx.fillStyle = `rgba(212, 175, 55, ${this.alpha})`;
             
-            fireflyCtx.shadowBlur = this.size * 4; 
-            fireflyCtx.shadowColor = "rgba(212, 175, 55, 0.8)";
+            this.ctx.shadowBlur = this.size * 4; 
+            this.ctx.shadowColor = "rgba(212, 175, 55, 0.8)";
             
-            fireflyCtx.fill();
-            fireflyCtx.shadowBlur = 0; 
+            this.ctx.fill();
+            this.ctx.shadowBlur = 0; 
         }
     }
 
     function initFireflies() {
-        if (!fireflyCanvas || !fireflyCtx) return;
         resizeFireflyCanvas();
-        fireflies = [];
-        for (let i = 0; i < 45; i++) { 
-            fireflies.push(new Firefly());
+        
+        // Buat Kunang-kunang untuk Desktop Kiri
+        if (fireflyCanvas && fireflyCtx) {
+            firefliesDesktop = [];
+            for (let i = 0; i < 45; i++) { 
+                firefliesDesktop.push(new Firefly(fireflyCanvas, fireflyCtx));
+            }
+        }
+
+        // Buat Kunang-kunang untuk Cover Depan (Lebih banyak karena full screen)
+        if (coverFireflyCanvas && coverFireflyCtx) {
+            firefliesCover = [];
+            for (let i = 0; i < 60; i++) { 
+                firefliesCover.push(new Firefly(coverFireflyCanvas, coverFireflyCtx));
+            }
         }
     }
 
     function animateFireflies() {
-        if (!fireflyCtx || !fireflyCanvas) return;
-        fireflyCtx.clearRect(0, 0, fireflyCanvas.width, fireflyCanvas.height);
+        // Animasi Desktop Kiri
+        if (fireflyCtx && fireflyCanvas) {
+            fireflyCtx.clearRect(0, 0, fireflyCanvas.width, fireflyCanvas.height);
+            firefliesDesktop.forEach(f => {
+                f.update();
+                f.draw();
+            });
+        }
+
+        // Animasi Cover Depan
+        if (coverFireflyCtx && coverFireflyCanvas) {
+            coverFireflyCtx.clearRect(0, 0, coverFireflyCanvas.width, coverFireflyCanvas.height);
+            firefliesCover.forEach(f => {
+                f.update();
+                f.draw();
+            });
+        }
         
-        fireflies.forEach(f => {
-            f.update();
-            f.draw();
-        });
-        
-        requestAnimationFrame(animateFireflies);
+        // Loop selama ada salah satu canvas yang aktif
+        if (fireflyCtx || coverFireflyCtx) {
+            requestAnimationFrame(animateFireflies);
+        }
     }
 
     // ==========================================
@@ -202,7 +239,7 @@ document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener('resize', initParticles);
     }
 
-    if (fireflyCanvas && fireflyCtx) {
+    if ((fireflyCanvas && fireflyCtx) || (coverFireflyCanvas && coverFireflyCtx)) {
         initFireflies();
         animateFireflies();
         window.addEventListener('resize', initFireflies);
