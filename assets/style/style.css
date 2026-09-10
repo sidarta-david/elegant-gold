@@ -76,23 +76,19 @@ html, body {
 /* ========================================== */
 /* 5. PENGUNCI MENU DESKTOP / PC (AKTIF)      */
 /* ========================================== */
-/* (Catatan: Efek Hover sudah ditangani oleh Tailwind di HTML, 
-   CSS ini hanya untuk MENGUNCI tampilan saat diklik/aktif) */
-
 .pc-expand-link.active-menu {
-  width: 8rem !important; /* Setara w-32 di Tailwind (Memanjang) */
-  background-color: rgba(212, 175, 55, 0.1) !important; /* Background Emas Transparan */
-  color: #d4af37 !important; /* Warna Ikon Utama */
+  width: 8rem !important; 
+  background-color: rgba(212, 175, 55, 0.1) !important; 
+  color: #d4af37 !important; 
 }
 
-/* Menjaga teks label menu PC tetap muncul dan berwarna emas saat layar aktif */
 .pc-expand-link.active-menu .menu-label {
   opacity: 1 !important;
   color: #d4af37 !important; 
 }
 
 /* ========================================== */
-/* ANOTASI: ANIMASI BERGERAK / EXPAND MENU PC */
+/* ANIMASI BERGERAK / EXPAND MENU PC          */
 /* ========================================== */
 .pc-expand-link {
   transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
@@ -100,16 +96,97 @@ html, body {
               color 0.4s ease;
 }
 
-/* Saat menu aktif (terkunci atau diklik), pill akan melebar dengan mulus */
 .pc-expand-link.active-menu {
-  width: 8rem !important; /* Lebar pill saat aktif (setara w-32) */
+  width: 8rem !important; 
   background-color: rgba(212, 175, 55, 0.1) !important; 
   color: #d4af37 !important;
 }
 
-/* Memunculkan teks label secara perlahan saat pill bergerak melebar */
 .pc-expand-link.active-menu .menu-label {
   opacity: 1 !important;
   color: #d4af37 !important;
-  transition: opacity 0.3s ease 0.1s; /* Ada sedikit jeda agar rapi */
+  transition: opacity 0.3s ease 0.1s; 
+}
+
+/* ========================================== */
+/* 6. ANIMASI CSS COVER AMPLOP 3D             */
+/* ========================================== */
+
+body.scroll-locked {
+  overflow: hidden !important;
+  height: 100dvh !important;
+}
+
+#welcome-cover {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 9999;
+  will-change: transform, opacity;
+  transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.2s ease-in-out;
+}
+#welcome-cover.cover-opened {
+  transform: translateY(-100vh);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* --------------------------------- */
+/* STRUKTUR AMPLOP 3D (ENVELOPE CSS) */
+/* --------------------------------- */
+.env-wrapper {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  perspective: 1200px;
+  margin: 0 auto;
+}
+.env-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+}
+.env-letter {
+  position: absolute;
+  top: 15px; left: 15px; right: 15px; bottom: 10px;
+  z-index: 20;
+  transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.6s; 
+}
+.env-pocket {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 100%, 0 100%);
+  z-index: 30;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.env-flap {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 120px;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top;
+  transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 40;
+}
+.env-seal {
+  position: absolute;
+  top: 120px; 
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  z-index: 50;
+  transition: opacity 0.8s ease;
+  cursor: pointer;
+}
+
+.is-opening .env-flap {
+  transform: rotateX(180deg);
+  z-index: 10;
+}
+.is-opening .env-letter {
+  transform: translateY(-80px); 
+}
+.is-opening .env-seal {
+  opacity: 0;
+  transform: translate(-50%, -50%); 
+  pointer-events: none;
 }

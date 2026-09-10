@@ -1,3 +1,21 @@
+/* ========================================== */
+/* LOGIKA COVER & ANIMASI BUKA AMPLOP         */
+/* ========================================== */
+function openInvitation() {
+    document.getElementById('envelope-wrapper').classList.add('is-opening');
+    document.getElementById('cover-hint-1').style.opacity = '0';
+    document.getElementById('cover-hint-2').style.opacity = '0';
+    
+    // Delay 2.5 detik sesuai waktu animasi CSS
+    setTimeout(() => {
+        document.getElementById('welcome-cover').classList.add('cover-opened');
+        document.body.classList.remove('scroll-locked');
+    }, 2500); 
+}
+
+/* ========================================== */
+/* LOGIKA UTAMA (Berjalan setelah HTML dimuat)*/
+/* ========================================== */
 document.addEventListener("DOMContentLoaded", () => {
     
     // ==========================================
