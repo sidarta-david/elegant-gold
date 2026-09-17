@@ -6,32 +6,33 @@ html, body {
   padding: 0;
   width: 100%;
   height: 100%;
-  background-color: #131313;
-  overflow: hidden;
+  background-color: #131313; /* Warna latar belakang gelap utama */
+  overflow: hidden; /* Mencegah scroll pada body utama karena scroll terjadi di dalam container */
 }
 
-/* Area Aman Layar HP (Notch / Home Indicator) */
+/* Area Aman Layar HP (Notch / Home Indicator pada iPhone/Android modern) */
 .pb-safe { padding-bottom: env(safe-area-inset-bottom, 16px); }
 .pt-safe { padding-top: env(safe-area-inset-top, 16px); }
 
-/* Kustomisasi Scrollbar (Berwarna Gold Transparan) */
+/* Kustomisasi Scrollbar (Berwarna Gold Transparan) agar antarmuka lebih elegan */
 .custom-scrollbar::-webkit-scrollbar {
-  width: 5px;
+  width: 5px; /* Lebar scrollbar yang tipis */
 }
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
+  background: transparent; /* Latar belakang scrollbar transparan */
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(212, 175, 55, 0.4);
-  border-radius: 10px;
+  background-color: rgba(212, 175, 55, 0.4); /* Warna primer (emas) dengan transparansi */
+  border-radius: 10px; /* Sudut scrollbar membulat */
 }
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(212, 175, 55, 0.8);
+  background-color: rgba(212, 175, 55, 0.8); /* Warna lebih terang saat disorot kursor */
 }
 
 /* ========================================== */
 /* 2. BACKGROUND & ANIMASI KONTEN             */
 /* ========================================== */
+/* Pola latar belakang dotted/floral untuk kontainer mobile */
 .bg-pattern-floral {
   background-image: radial-gradient(#d4af37 0.5px, transparent 0.5px), radial-gradient(#d4af37 0.5px, #1a1a1a 0.5px);
   background-size: 20px 20px;
@@ -39,27 +40,27 @@ html, body {
   opacity: 0.9;
 }
 
-/* Animasi Elemen Muncul Saat Di-Scroll (Fade Up) */
+/* Animasi Elemen Muncul Saat Di-Scroll (Efek Fade Up) */
 .animate-on-scroll {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 1s ease-out, transform 1s ease-out;
+  opacity: 0; /* Tersembunyi secara default */
+  transform: translateY(30px); /* Bergeser ke bawah sedikit */
+  transition: opacity 1s ease-out, transform 1s ease-out; /* Transisi halus saat kelas ditambahkan */
 }
+/* Kelas ini ditambahkan oleh IntersectionObserver di JavaScript saat elemen masuk layar */
 .animate-on-scroll.is-visible {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1; 
+  transform: translateY(0); 
 }
 
 /* ========================================== */
 /* 3. MENU NAVIGASI (GLOBAL)                  */
 /* ========================================== */
-
-/* Transisi Halus pada Icon (Warna & Perubahan Bentuk) */
+/* Transisi Halus pada Icon (Warna & Perubahan Bentuk FILL) */
 .nav-icon {
   transition: font-variation-settings 0.3s ease-in-out, color 0.3s ease;
 }
 
-/* Mengubah gaya Material Icon (Outline menjadi Solid/Fill) saat menu aktif */
+/* Mengubah gaya Material Icon (Outline menjadi Solid/Fill) saat menu berstatus aktif */
 .nav-link.active-menu .nav-icon {
   font-variation-settings: 'FILL' 1;
 }
@@ -67,8 +68,7 @@ html, body {
 /* ========================================== */
 /* 4. PENGUNCI MENU MOBILE (AKTIF)            */
 /* ========================================== */
-
-/* Memastikan warna ikon mobile menjadi Emas saat layarnya aktif */
+/* Memastikan warna ikon mobile menjadi Emas saat bagian halamannya sedang dilihat */
 .nav-link:not(.pc-expand-link).active-menu {
   color: #d4af37 !important; 
 }
@@ -76,12 +76,14 @@ html, body {
 /* ========================================== */
 /* 5. PENGUNCI MENU DESKTOP / PC (AKTIF)      */
 /* ========================================== */
+/* Gaya khusus untuk menu samping di tampilan layar besar (Desktop) */
 .pc-expand-link.active-menu {
   width: 8rem !important; 
   background-color: rgba(212, 175, 55, 0.1) !important; 
   color: #d4af37 !important; 
 }
 
+/* Memunculkan teks label menu di Desktop saat aktif */
 .pc-expand-link.active-menu .menu-label {
   opacity: 1 !important;
   color: #d4af37 !important; 
@@ -96,48 +98,43 @@ html, body {
               color 0.4s ease;
 }
 
-.pc-expand-link.active-menu {
-  width: 8rem !important; 
-  background-color: rgba(212, 175, 55, 0.1) !important; 
-  color: #d4af37 !important;
-}
-
 .pc-expand-link.active-menu .menu-label {
-  opacity: 1 !important;
-  color: #d4af37 !important;
-  transition: opacity 0.3s ease 0.1s; 
+  transition: opacity 0.3s ease 0.1s; /* Memberikan jeda kecil (delay) agar transisi terlihat alami */
 }
 
 /* ========================================== */
 /* 6. ANIMASI CSS COVER AMPLOP 3D             */
 /* ========================================== */
-
+/* Mengunci scroll sistem utama saat amplop belum dibuka */
 body.scroll-locked {
   overflow: hidden !important;
   height: 100dvh !important;
 }
 
+/* Kontainer utama halaman sampul/cover */
 #welcome-cover {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
   z-index: 9999;
-  will-change: transform, opacity;
+  will-change: transform, opacity; /* Optimasi render browser */
   transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.2s ease-in-out;
 }
+
+/* Kelas yang memicu sampul ditarik ke atas menghilang (ditambahkan via JS) */
 #welcome-cover.cover-opened {
   transform: translateY(-100vh);
   opacity: 0;
-  pointer-events: none;
+  pointer-events: none; /* Menonaktifkan klik agar tidak menghalangi konten di bawahnya */
 }
 
 /* --------------------------------- */
-/* STRUKTUR AMPLOP 3D (ENVELOPE CSS) */
+/* 7. STRUKTUR AMPLOP 3D (ENVELOPE CSS) */
 /* --------------------------------- */
 .env-wrapper {
   position: relative;
   width: 300px;
   height: 200px;
-  perspective: 1200px;
+  perspective: 1200px; /* Memberikan efek kedalaman 3D */
   margin: 0 auto;
 }
 .env-back {
@@ -145,12 +142,14 @@ body.scroll-locked {
   inset: 0;
   border-radius: 8px;
 }
+/* Kertas surat di dalam amplop */
 .env-letter {
   position: absolute;
   top: 15px; left: 15px; right: 15px; bottom: 10px;
   z-index: 20;
-  transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.6s; 
+  transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.6s; /* Delay 0.6s menunggu tutup amplop terbuka */
 }
+/* Bagian bawah/kantong amplop */
 .env-pocket {
   position: absolute;
   inset: 0;
@@ -159,15 +158,17 @@ body.scroll-locked {
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 }
+/* Penutup atas amplop */
 .env-flap {
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 120px;
   clip-path: polygon(0 0, 100% 0, 50% 100%);
-  transform-origin: top;
+  transform-origin: top; /* Animasi lipatan dari engsel atas */
   transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 40;
 }
+/* Tombol segel hati */
 .env-seal {
   position: absolute;
   top: 120px; 
@@ -178,15 +179,40 @@ body.scroll-locked {
   cursor: pointer;
 }
 
+/* --- State Animasi Saat Tombol Segel Diklik --- */
 .is-opening .env-flap {
-  transform: rotateX(180deg);
-  z-index: 10;
+  transform: rotateX(180deg); /* Membuka lipatan ke atas */
+  z-index: 10; /* Berpindah ke belakang kertas surat */
 }
 .is-opening .env-letter {
-  transform: translateY(-80px); 
+  transform: translateY(-80px); /* Menarik kertas surat ke atas */
 }
 .is-opening .env-seal {
-  opacity: 0;
+  opacity: 0; /* Menghilangkan segel */
   transform: translate(-50%, -50%); 
   pointer-events: none;
+}
+
+/* ========================================== */
+/* 8. ANIMASI OUR STORY (TIMELINE KHUSUS)     */
+/* ========================================== */
+
+/* Animasi 1: Garis Timeline Merambat ke Bawah */
+.animate-on-scroll.timeline-track {
+  opacity: 1; /* Mengabaikan opacity bawaan animate-on-scroll */
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.animate-on-scroll.timeline-track.is-visible {
+  transform: scaleY(1);
+}
+
+/* Animasi 2: Item Timeline Masuk dari Kiri ke Kanan */
+.animate-on-scroll.timeline-item {
+  transform: translateX(-40px); /* Mengabaikan translateY bawaan */
+  transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.animate-on-scroll.timeline-item.is-visible {
+  transform: translateX(0);
 }
