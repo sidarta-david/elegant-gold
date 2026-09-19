@@ -19,6 +19,41 @@ function openInvitation() {
 }
 
 /* ========================================== */
+/* LOGIKA FOTO FULL SCREEN (LIGHTBOX)         */
+/* ========================================== */
+function openLightbox(imageSrc) {
+    const modal = document.getElementById('lightbox-modal');
+    const modalImg = document.getElementById('lightbox-img');
+    
+    modalImg.src = imageSrc;
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    
+    // Memberi jeda kecil agar transisi opacity CSS berjalan mulus
+    setTimeout(() => {
+        modal.classList.remove('opacity-0');
+        modalImg.classList.remove('scale-95');
+        modalImg.classList.add('scale-100');
+    }, 10);
+}
+
+function closeLightbox() {
+    const modal = document.getElementById('lightbox-modal');
+    const modalImg = document.getElementById('lightbox-img');
+    
+    modal.classList.add('opacity-0');
+    modalImg.classList.remove('scale-100');
+    modalImg.classList.add('scale-95');
+    
+    // Menunggu transisi CSS selesai sebelum menyembunyikan display-nya
+    setTimeout(() => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        modalImg.src = ''; 
+    }, 300);
+}
+
+/* ========================================== */
 /* LOGIKA UTAMA (Berjalan setelah HTML dimuat)*/
 /* ========================================== */
 document.addEventListener("DOMContentLoaded", () => {
@@ -364,13 +399,18 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
     // 8. LOGIKA COUNTDOWN TIMER (RESEPSI)
     // ==========================================
-    // Tetapkan tenggat waktu acara pernikahan (25 Okt 2025, 11:00 WIB)
-    const targetDate = new Date('2025-10-25T11:00:00').getTime();
     
-    // Utilitas untuk menyisipkan angka nol (0) di depan angka tunggal (contoh: 09, 08)
+    // --- PENGATURAN WAKTU ACARA (UBAH DISINI) ---
+    const HARI_TANGGAL = "2025-10-25"; // Format: YYYY-MM-DD (Tahun-Bulan-Tanggal)
+    const JAM_ACARA    = "11:00:00";   // Format: HH:MM:SS (Jam:Menit:Detik 24 Jam)
+    // --------------------------------------------
+
+    // Menggabungkan string konfigurasi dan mendapatkan nilai milidetik (timestamp)
+    const targetDate = new Date(`${HARI_TANGGAL}T${JAM_ACARA}`).getTime();
+    
+    // Utilitas untuk menyisipkan angka nol (0) di depan angka tunggal
     const padZero = (num) => num < 10 ? `0${num}` : num;
     
-    // Interval yang dijalankan per 1 detik (1000ms)
     const timerInterval = setInterval(() => {
         const now = new Date().getTime();
         const diff = targetDate - now;
@@ -380,27 +420,26 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // Logika saat batas waktu telah terlewati
         if (diff <= 0) {
-            clearInterval(timerInterval); // Bersihkan memori interval
+            clearInterval(timerInterval);
             
-            // Sembunyikan blok angka, munculkan teks keterangan acara dimulai
+            // Sembunyikan blok angka, munculkan teks acara dimulai
             if (wrapper) wrapper.classList.add('hidden');
             if (finishedText) finishedText.classList.remove('hidden');
             return;
         }
 
-        // Kalkulasi matematis konversi milidetik ke hari, jam, menit, detik
+        // Kalkulasi waktu
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
         const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-        // Binding/penyisipan data dari hasil kalkulasi ke dalam DOM HTML
+        // Binding HTML
         const elDays = document.getElementById('cd-days');
         const elHours = document.getElementById('cd-hours');
         const elMins = document.getElementById('cd-minutes');
         const elSecs = document.getElementById('cd-seconds');
 
-        // Pastikan elemen eksis sebelum mengubah innerText
         if(elDays) elDays.innerText = padZero(days);
         if(elHours) elHours.innerText = padZero(hours);
         if(elMins) elMins.innerText = padZero(minutes);
