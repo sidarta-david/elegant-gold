@@ -14,14 +14,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   
-  <!-- ========================================== -->
-  <!-- CSS EXTERNAL                               -->
-  <!-- ========================================== -->
   <link href="assets/style/style.css" rel="stylesheet">
 
-  <!-- ========================================== -->
-  <!-- KONFIGURASI TAILWIND CSS                   -->
-  <!-- ========================================== -->
+  <!-- KONFIGURASI TAILWIND CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { 
@@ -56,63 +51,40 @@
   <div id="welcome-cover" class="bg-[#131313] flex flex-col items-center justify-center">
     <div class="absolute inset-0 z-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-30"></div>
     <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-[#131313] z-0"></div>
-    
-    <!-- Canvas Kunang-Kunang di Cover -->
     <canvas id="cover-firefly-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
     
     <div class="relative z-10 text-center flex flex-col items-center w-full overflow-hidden">
-      
-      <!-- Judul Luar -->
       <div class="mb-10 text-center animate-on-scroll">
         <span class="font-label-caps tracking-[0.4em] text-[#b5b0a1] text-xs uppercase block mb-3">The Wedding Of</span>
         <h1 class="font-display-lg text-primary text-5xl italic drop-shadow-lg leading-tight">Priya & Rahul</h1>
       </div>
 
-      <!-- Container Animasi Amplop -->
       <div id="envelope-wrapper" class="env-wrapper drop-shadow-2xl">
         <div class="env-back bg-[#111] border border-primary/20"></div>
-        
-        <!-- Kertas Surat -->
         <div class="env-letter bg-surface rounded-md border border-primary/30 shadow-2xl flex flex-col items-center justify-center text-center">
            <span class="font-label-caps tracking-[0.3em] text-[#b5b0a1] text-[10px] uppercase block mb-2">Pernikahan</span>
            <h1 class="font-display-lg text-primary text-3xl italic drop-shadow-lg leading-tight">Priya & Rahul</h1>
            <span class="font-label-caps tracking-[0.2em] text-[#b5b0a1] text-[10px] uppercase block mt-2">25 . 10 . 2025</span>
         </div>
-
-        <!-- Kantong Amplop -->
         <div class="env-pocket bg-[#161616] border-x border-b border-primary/20">
           <div class="absolute inset-0 bg-gradient-to-tr from-black/60 to-transparent"></div>
         </div>
-
-        <!-- Tutup Amplop -->
         <div class="env-flap bg-[#181818] border-b border-primary/20">
           <div class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent"></div>
         </div>
-
-        <!-- Segel Hati -->
         <button onclick="openInvitation()" class="env-seal w-14 h-14 bg-primary rounded-full flex items-center justify-center text-[#131313] shadow-[0_0_20px_rgba(212,175,55,0.6)] hover:bg-[#b8952b] transition-colors">
           <span class="material-symbols-outlined text-[24px]">favorite</span>
         </button>
       </div>
 
-      <p id="cover-hint-1" class="font-body-md text-on-surface-variant text-sm mt-12 max-w-[280px] z-10 opacity-80 transition-opacity duration-500">
-        Kepada Yth.<br>Bapak/Ibu/Saudara/i di tempat
-      </p>
-      <p id="cover-hint-2" class="font-body-md text-primary text-xs mt-4 z-10 uppercase tracking-widest animate-pulse transition-opacity duration-500">
-        Klik Segel Hati Untuk Membuka
-      </p>
-
+      <p id="cover-hint-1" class="font-body-md text-on-surface-variant text-sm mt-12 max-w-[280px] z-10 opacity-80 transition-opacity duration-500">Kepada Yth.<br>Bapak/Ibu/Saudara/i di tempat</p>
+      <p id="cover-hint-2" class="font-body-md text-primary text-xs mt-4 z-10 uppercase tracking-widest animate-pulse transition-opacity duration-500">Klik Segel Hati Untuk Membuka</p>
     </div>
   </div>
 
-  <!-- ========================================== -->
-  <!-- WRAPPER UTAMA (PC & MOBILE)                -->
-  <!-- ========================================== -->
   <div class="desktop-wrapper flex w-full h-screen">
     
-    <!-- ========================================== -->
-    <!-- BAGIAN KIRI (DESKTOP)                      -->
-    <!-- ========================================== -->
+    <!-- DESKTOP KIRI -->
     <div class="hidden lg:flex flex-1 relative bg-black items-center justify-center flex-col overflow-hidden">
       <div class="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] to-black z-0"></div>
       <div class="absolute inset-0 z-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 animate-on-scroll animate_fadein animate_fadeout"></div>
@@ -123,7 +95,7 @@
         <p class="font-body-md text-on-surface-variant tracking-[0.3em] text-sm uppercase">25 . 10 . 2025</p>
       </div>
 
-      <!-- MENU DESKTOP -->
+      <!-- NAVIGASI DESKTOP -->
       <nav class="absolute right-10 top-1/2 -translate-y-1/2 z-50 bg-[#161616]/95 backdrop-blur-md rounded-[40px] py-6 px-3 flex flex-col gap-4 shadow-[0_0_35px_rgba(0,0,0,0.5)] border border-white/5">
         <li class="nav-item relative group list-none">
           <a href="#home" onclick="moveTo('home')" class="nav-link pc-expand-link flex items-center h-12 w-12 group-hover:w-32 rounded-full text-[#8c8577] hover:text-[#d4af37] hover:bg-[#d4af37]/10 transition-all duration-[400ms] ease-in-out relative overflow-hidden" title="Home">
@@ -143,6 +115,15 @@
             <span class="menu-label text-[#d4af37] text-xs font-bold uppercase tracking-wider whitespace-nowrap opacity-0 group-hover:opacity-100 absolute left-12 transition-opacity duration-300">Alamat</span>
           </a>
         </li>
+        
+        <!-- [ANOTASI 1]: Menu Desktop "Our Story" mengarah ke "#countdown-section" -->
+        <li class="nav-item relative group list-none">
+          <a href="#countdown-section" onclick="moveTo('countdown-section')" class="nav-link pc-expand-link flex items-center h-12 w-12 group-hover:w-32 rounded-full text-[#8c8577] hover:text-[#d4af37] hover:bg-[#d4af37]/10 transition-all duration-[400ms] ease-in-out relative overflow-hidden" title="Our Story">
+            <span class="material-symbols-outlined nav-icon min-w-[48px] text-center text-[24px] relative z-10">history_edu</span>
+            <span class="menu-label text-[#d4af37] text-xs font-bold uppercase tracking-wider whitespace-nowrap opacity-0 group-hover:opacity-100 absolute left-12 transition-opacity duration-300">Our Story</span>
+          </a>
+        </li>
+
         <li class="nav-item relative group list-none">
           <a href="#gallery" onclick="moveTo('gallery')" class="nav-link pc-expand-link flex items-center h-12 w-12 group-hover:w-32 rounded-full text-[#8c8577] hover:text-[#d4af37] hover:bg-[#d4af37]/10 transition-all duration-[400ms] ease-in-out relative overflow-hidden" title="Gallery">
             <span class="material-symbols-outlined nav-icon min-w-[48px] text-center text-[24px] relative z-10">photo_library</span>
@@ -158,13 +139,9 @@
       </nav>
     </div>
 
-    <!-- ========================================== -->
-    <!-- BAGIAN KANAN (MOBILE CONTAINER)            -->
-    <!-- ========================================== -->
+    <!-- MOBILE KANAN (CONTAINER UTAMA) -->
     <div class="w-full lg:w-[450px] h-full flex justify-center items-center lg:bg-[#1a1a1a] relative lg:border-l lg:border-primary/20 bg-pattern-floral shadow-[-20px_0_50px_rgba(0,0,0,0.5)] z-20">
-      
       <div id="mobile-container" class="w-full h-full max-w-[390px] min-w-[360px] bg-surface relative overflow-y-auto overflow-x-hidden lg:h-[844px] lg:max-h-[95vh] lg:rounded-[40px] lg:shadow-2xl lg:border lg:border-primary/30 custom-scrollbar scroll-smooth">
-        
         <canvas id="particle-canvas" class="absolute top-0 left-0 w-full h-full pointer-events-none z-0 opacity-40"></canvas>
 
         <main class="relative z-10 w-full pb-20">
@@ -178,7 +155,6 @@
               <span class="font-label-caps tracking-[0.3em] text-primary mb-4 block text-xs">THE WEDDING OF</span>
               <h1 class="font-display-lg text-primary text-[52px] mb-6 italic drop-shadow-lg leading-tight">Priya <br><span class="text-3xl">&</span><br> Rahul</h1>
               <p class="font-body-md text-on-surface-variant max-w-[280px] mx-auto text-sm">Dengan memohon rahmat Tuhan, kami mengundang Anda untuk merayakan cinta kami.</p>
-              
               <div class="mt-8 border-t border-b border-primary/30 py-4 mx-auto w-3/4">
                  <span class="font-headline-sm text-white text-xl tracking-widest block">25 . 10 . 2025</span>
               </div>
@@ -192,13 +168,11 @@
 
           <!-- SECTION PROFIL -->
           <section id="profile" class="flex flex-col items-center px-5 py-16 text-center relative z-10 bg-gradient-to-b from-[#131313] to-surface">
-            
             <div class="w-full max-w-[340px] mb-12 animate-on-scroll">
               <h2 class="font-headline-md text-3xl text-primary mb-2 text-center italic">Sang Mempelai</h2>
               <p class="text-on-surface-variant text-sm text-center px-5">Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan.</p>
             </div>
 
-            <!-- Wanita -->
             <div class="relative w-[280px] h-[350px] mb-8 group perspective-[1000px] animate-on-scroll">
               <div class="absolute inset-0 bg-primary/10 rounded-full blur-2xl transform -translate-y-4"></div>
               <div class="w-full h-full rounded-[40px] overflow-hidden shadow-xl p-[2px] bg-gradient-to-br from-primary/50 via-transparent to-primary/10">
@@ -215,21 +189,6 @@
               <p class="font-body-md text-on-surface-variant max-w-[300px] mx-auto mb-4 leading-relaxed text-sm">
                 Putri Pertama dari pasangan <br> <strong>Bpk. Amit Sharma & Ibu Neha Sharma</strong>.
               </p>
-              <p class="font-body-md text-[#b5b0a1] max-w-[300px] mx-auto mb-6 text-sm italic opacity-80">
-                "Seorang akuntan profesional yang penuh dedikasi, memiliki hobi melukis, dan selalu membawa kehangatan di tengah keluarga."
-              </p>
-              
-              <div class="flex justify-center gap-6 mb-10">
-                <a href="#" target="_blank" rel="noopener noreferrer" class="text-[#8c8577] hover:text-primary transition-colors text-xl">
-                  <i class="fab fa-facebook-f" aria-hidden="true"></i>
-                </a>
-                <a href="#" target="_blank" rel="noopener noreferrer" class="text-[#8c8577] hover:text-primary transition-colors text-xl">
-                  <i class="fab fa-x-twitter" aria-hidden="true"></i>
-                </a>
-                <a href="#" target="_blank" rel="noopener noreferrer" class="text-[#8c8577] hover:text-primary transition-colors text-xl">
-                  <i class="fab fa-instagram" aria-hidden="true"></i>
-                </a>
-              </div>
             </div>
 
             <div class="w-full flex justify-center items-center py-6 px-5 gap-4 animate-on-scroll">
@@ -238,7 +197,6 @@
               <div class="h-[1px] flex-1 bg-gradient-to-l from-transparent to-primary/30"></div>
             </div>
 
-            <!-- Pria -->
             <div class="relative w-[280px] h-[350px] mb-8 mt-10 group perspective-[1000px] animate-on-scroll">
               <div class="absolute inset-0 bg-primary/10 rounded-full blur-2xl transform -translate-y-4"></div>
               <div class="w-full h-full rounded-[40px] overflow-hidden shadow-xl p-[2px] bg-gradient-to-bl from-primary/50 via-transparent to-primary/10">
@@ -255,21 +213,6 @@
               <p class="font-body-md text-on-surface-variant max-w-[300px] mx-auto mb-4 leading-relaxed text-sm">
                 Putra Bungsu (Ketiga) dari pasangan <br> <strong>Bpk. Vijay Kumar & Ibu Sunita Kumar</strong>.
               </p>
-              <p class="font-body-md text-[#b5b0a1] max-w-[300px] mx-auto mb-6 text-sm italic opacity-80">
-                "Seorang Senior Developer yang berdedikasi tinggi, senang berolahraga, dan sosok pemimpin penyayang yang selalu bisa diandalkan."
-              </p>
-              
-              <div class="flex justify-center gap-6 mb-4">
-                <a href="#" target="_blank" rel="noopener noreferrer" class="text-[#8c8577] hover:text-primary transition-colors text-xl">
-                  <i class="fab fa-facebook-f" aria-hidden="true"></i>
-                </a>
-                <a href="#" target="_blank" rel="noopener noreferrer" class="text-[#8c8577] hover:text-primary transition-colors text-xl">
-                  <i class="fab fa-x-twitter" aria-hidden="true"></i>
-                </a>
-                <a href="#" target="_blank" rel="noopener noreferrer" class="text-[#8c8577] hover:text-primary transition-colors text-xl">
-                  <i class="fab fa-instagram" aria-hidden="true"></i>
-                </a>
-              </div>
             </div>
           </section>
 
@@ -285,30 +228,17 @@
               <article class="schedule-card bg-[#1a1a1a] rounded-[24px] p-6 mb-8 border border-primary/20 shadow-[0_10px_30px_rgba(0,0,0,0.5)] animate-on-scroll">
                 <div class="flex items-center gap-3 mb-5 border-b border-white/5 pb-4">
                   <svg class="w-7 h-7 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="9" cy="12" r="4"></circle>
-                    <circle cx="15" cy="12" r="4"></circle>
+                    <circle cx="9" cy="12" r="4"></circle><circle cx="15" cy="12" r="4"></circle>
                   </svg>
                   <h3 class="font-headline-sm text-white text-xl tracking-wide mt-1">Akad Nikah</h3>
                 </div>
-                
                 <div class="flex flex-col gap-4 text-body-md text-[#b5b0a1] text-sm">
-                  <div class="flex items-start gap-3">
-                    <span class="material-symbols-outlined text-primary text-[20px] mt-0.5">calendar_today</span>
-                    <p>Sabtu, 25 Oktober 2025</p>
-                  </div>
-                  <div class="flex items-start gap-3">
-                    <span class="material-symbols-outlined text-primary text-[20px] mt-0.5">schedule</span>
-                    <p>Pukul 08:00 - 10:00 WIB</p>
-                  </div>
-                  <div class="flex items-start gap-3">
-                    <span class="material-symbols-outlined text-primary text-[20px] mt-0.5">location_on</span>
-                    <p class="leading-relaxed">Masjid Al-Ikhlas, Jl. Melati No. 12, Jakarta Selatan</p>
-                  </div>
-
+                  <div class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-[20px] mt-0.5">calendar_today</span><p>Sabtu, 25 Oktober 2025</p></div>
+                  <div class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-[20px] mt-0.5">schedule</span><p>Pukul 08:00 - 10:00 WIB</p></div>
+                  <div class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-[20px] mt-0.5">location_on</span><p class="leading-relaxed">Masjid Al-Ikhlas, Jl. Melati No. 12, Jakarta Selatan</p></div>
                   <div class="w-full h-36 mt-2 rounded-xl overflow-hidden border border-white/10 opacity-80 hover:opacity-100 transition-opacity">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.8199767311144!2d106.84201827499926!3d-6.2873788615409465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f272762d33a5%3A0xed8fce4828077e80!2sAl-ikhlas!5e0!3m2!1sid!2sid!4v1788429018355!5m2!1sid!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                   </div>
-
                   <div class="flex flex-col gap-3 mt-2">
                     <a href="https://maps.app.goo.gl/85xdrFVL472atpav9" target="_blank" rel="noopener noreferrer" class="w-full py-3 rounded-xl bg-primary text-[#131313] hover:bg-[#b8952b] transition-colors font-body-md font-bold tracking-widest text-xs uppercase text-center shadow-[0_0_15px_rgba(212,175,55,0.4)] flex items-center justify-center gap-2">
                       <span class="material-symbols-outlined text-[18px]">map</span> Lihat Lokasi
@@ -323,25 +253,13 @@
                   <span class="material-symbols-outlined text-primary text-2xl">favorite</span>
                   <h3 class="font-headline-sm text-white text-xl tracking-wide">Resepsi</h3>
                 </div>
-                
                 <div class="flex flex-col gap-4 text-body-md text-[#b5b0a1] text-sm">
-                  <div class="flex items-start gap-3">
-                    <span class="material-symbols-outlined text-primary text-[20px] mt-0.5">calendar_today</span>
-                    <p>Sabtu, 25 Oktober 2025</p>
-                  </div>
-                  <div class="flex items-start gap-3">
-                    <span class="material-symbols-outlined text-primary text-[20px] mt-0.5">schedule</span>
-                    <p>Pukul 11:00 - 14:00 WIB</p>
-                  </div>
-                  <div class="flex items-start gap-3">
-                    <span class="material-symbols-outlined text-primary text-[20px] mt-0.5">location_on</span>
-                    <p class="leading-relaxed">Gedung Serbaguna Cempaka, Jl. Cempaka No. 45, Jakarta Selatan</p>
-                  </div>
-
+                  <div class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-[20px] mt-0.5">calendar_today</span><p>Sabtu, 25 Oktober 2025</p></div>
+                  <div class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-[20px] mt-0.5">schedule</span><p>Pukul 11:00 - 14:00 WIB</p></div>
+                  <div class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-[20px] mt-0.5">location_on</span><p class="leading-relaxed">Gedung Serbaguna Cempaka, Jl. Cempaka No. 45, Jakarta Selatan</p></div>
                   <div class="w-full h-36 mt-2 rounded-xl overflow-hidden border border-white/10 opacity-80 hover:opacity-100 transition-opacity">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.6489238451745!2d106.86464287499783!3d-6.1777285605345025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f4ff08a15ccf%3A0xe4649a3d34cbc941!2sPertamina%20Meeting%20Hall!5e0!3m2!1sen!2sus!4v1788429379237!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                   </div>
-
                   <div class="flex flex-col gap-3 mt-2">
                     <a href="https://maps.app.goo.gl/b27wR1M4gh682hK56" target="_blank" rel="noopener noreferrer" class="w-full py-3 rounded-xl bg-primary text-[#131313] hover:bg-[#b8952b] transition-colors font-body-md font-bold tracking-widest text-xs uppercase text-center shadow-[0_0_15px_rgba(212,175,55,0.4)] flex items-center justify-center gap-2">
                       <span class="material-symbols-outlined text-[18px]">map</span> Lihat Lokasi
@@ -349,11 +267,40 @@
                   </div>
                 </div>
               </article>
+            </div>
+          </section>
 
-              <div class="mt-4">
-                 <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Resepsi+Pernikahan+Priya+dan+Rahul&dates=20251025T040000Z/20251025T070000Z&details=Acara+Resepsi+Pernikahan+Priya+dan+Rahul&location=Gedung+Serbaguna+Cempaka,+Jl.+Cempaka+No.+45,+Jakarta+Selatan" target="_blank" rel="noopener noreferrer" class="w-full py-3 rounded-xl border border-primary/50 text-primary hover:bg-primary/10 transition-colors font-body-md font-bold tracking-widest text-xs uppercase text-center flex items-center justify-center gap-2">
-                   <span class="material-symbols-outlined text-[18px]">calendar_add_on</span> Tambahkan ke Kalender
-                 </a>
+          <!-- ========================================== -->
+          <!-- [ANOTASI 2]: SECTION COUNTDOWN TIMER DIPINDAH KE SINI -->
+          <!-- ========================================== -->
+          <section id="countdown-section" class="flex flex-col items-center px-5 py-24 w-full border-t border-white/5 relative z-10 bg-[#131313]">
+            <div class="w-full max-w-[340px] text-center animate-on-scroll">
+              <span class="material-symbols-outlined text-primary text-4xl mb-2">hourglass_empty</span>
+              <h2 class="font-headline-md text-3xl text-white mb-2 italic">Menuju Hari Bahagia</h2>
+              <p class="text-on-surface-variant text-sm mb-10">Hitung mundur menanti acara resepsi kami.</p>
+              
+              <div id="countdown-wrapper" class="flex justify-center gap-3">
+                <div class="flex flex-col items-center">
+                  <div class="w-[70px] h-[75px] bg-[#1a1a1a] border border-primary/30 rounded-2xl flex items-center justify-center shadow-[0_5px_15px_rgba(212,175,55,0.15)] mb-3"><span id="cd-days" class="font-display-lg text-3xl text-primary">00</span></div>
+                  <span class="text-[10px] uppercase tracking-widest text-[#b5b0a1] font-bold">Hari</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <div class="w-[70px] h-[75px] bg-[#1a1a1a] border border-primary/30 rounded-2xl flex items-center justify-center shadow-[0_5px_15px_rgba(212,175,55,0.15)] mb-3"><span id="cd-hours" class="font-display-lg text-3xl text-primary">00</span></div>
+                  <span class="text-[10px] uppercase tracking-widest text-[#b5b0a1] font-bold">Jam</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <div class="w-[70px] h-[75px] bg-[#1a1a1a] border border-primary/30 rounded-2xl flex items-center justify-center shadow-[0_5px_15px_rgba(212,175,55,0.15)] mb-3"><span id="cd-minutes" class="font-display-lg text-3xl text-primary">00</span></div>
+                  <span class="text-[10px] uppercase tracking-widest text-[#b5b0a1] font-bold">Menit</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <div class="w-[70px] h-[75px] bg-[#1a1a1a] border border-primary/30 rounded-2xl flex items-center justify-center shadow-[0_5px_15px_rgba(212,175,55,0.15)] mb-3"><span id="cd-seconds" class="font-display-lg text-3xl text-primary">00</span></div>
+                  <span class="text-[10px] uppercase tracking-widest text-[#b5b0a1] font-bold">Detik</span>
+                </div>
+              </div>
+              
+              <div id="countdown-finished" class="hidden mt-4 p-6 bg-primary/10 border border-primary/30 rounded-2xl shadow-[0_0_20px_rgba(212,175,55,0.2)]">
+                 <h3 class="font-headline-sm text-primary text-2xl italic tracking-wide">Pernikahan Telah Dimulai</h3>
+                 <p class="text-on-surface-variant text-xs mt-3 leading-relaxed">Terima kasih atas doa restu dan kehadiran Anda di hari bahagia kami.</p>
               </div>
             </div>
           </section>
@@ -363,25 +310,19 @@
           <!-- ========================================== -->
           <section id="story" class="flex flex-col items-center px-5 py-20 w-full border-t border-white/5 relative z-10 bg-gradient-to-b from-[#131313] to-surface-container/30">
             <div class="w-full max-w-[340px]">
-              
               <div class="animate-on-scroll">
                 <h2 class="font-headline-md text-3xl text-primary mb-2 text-center italic">Our Story</h2>
                 <p class="text-on-surface-variant text-sm text-center mb-12 px-2">Perjalanan kisah cinta kami dari awal pertemuan hingga mengikat janji suci.</p>
               </div>
 
-              <!-- TIMELINE WRAPPER -->
               <div class="relative ml-4 md:mx-auto">
-                
-                <!-- GARIS TIMELINE -->
                 <div class="absolute -left-[2px] top-2 bottom-0 w-[2px] bg-gradient-to-b from-primary via-primary/50 to-transparent animate-on-scroll timeline-track z-0"></div>
                 
                 <!-- 1. Perkenalan -->
                 <div class="timeline-item animate-on-scroll mb-10 relative pl-6 text-left group z-10" style="transition-delay: 0.1s;">
                   <div class="absolute w-5 h-5 bg-surface border-[3px] border-[#3b5998] rounded-full -left-[11px] top-1 transition-transform group-hover:scale-125 z-10"></div>
                   <div class="bg-[#3b5998] text-white font-bold text-xs tracking-widest px-4 py-1.5 rounded-r-full inline-block mb-4 shadow-lg -ml-6 pl-8 relative z-0">31 Januari 2021</div>
-                  
                   <div class="bg-surface-container rounded-2xl p-4 border border-white/5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] flex flex-col items-center text-center transition-transform hover:-translate-y-1 duration-300">
-                    <!-- object-top DIHAPUS: Kembali ke settingan awal -->
                     <img src="assets/images/Our Story Perkenalan.jpg" onclick="openLightbox(this.src)" alt="Perkenalan" class="w-full h-40 object-cover rounded-xl mb-4 shadow-md brightness-90 group-hover:brightness-100 transition-all cursor-pointer">
                     <h3 class="font-headline-sm text-primary text-xl mb-1">*Kenalan*</h3>
                     <p class="text-on-surface-variant text-xs leading-relaxed opacity-90">Dibawah pohon cemara taman cempaka menjadi saksi kami dipertemukan.</p>
@@ -392,9 +333,7 @@
                 <div class="timeline-item animate-on-scroll mb-10 relative pl-6 text-left group z-10" style="transition-delay: 0.3s;">
                   <div class="absolute w-5 h-5 bg-surface border-[3px] border-[#d4af37] rounded-full -left-[11px] top-1 transition-transform group-hover:scale-125 z-10"></div>
                   <div class="bg-[#d4af37] text-[#131313] font-bold text-xs tracking-widest px-4 py-1.5 rounded-r-full inline-block mb-4 shadow-lg -ml-6 pl-8 relative z-0">31 Maret 2021</div>
-                  
                   <div class="bg-surface-container rounded-2xl p-4 border border-white/5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] flex flex-col items-center text-center transition-transform hover:-translate-y-1 duration-300">
-                    <!-- object-top DIHAPUS: Kembali ke settingan awal -->
                     <img src="assets/images/Our Story Kencan Pertama.jpg" onclick="openLightbox(this.src)" alt="Kencan Pertama" class="w-full h-40 object-cover rounded-xl mb-4 shadow-md brightness-90 group-hover:brightness-100 transition-all cursor-pointer">
                     <h3 class="font-headline-sm text-primary text-xl mb-1">*Kencan Pertama*</h3>
                     <p class="text-on-surface-variant text-xs leading-relaxed opacity-90">Canda tawa dan cerita mengalir begitu saja di sudut kafe kota, perlahan menyatukan rasa di hati kami.</p>
@@ -405,9 +344,7 @@
                 <div class="timeline-item animate-on-scroll mb-10 relative pl-6 text-left group z-10" style="transition-delay: 0.5s;">
                   <div class="absolute w-5 h-5 bg-surface border-[3px] border-[#e11d48] rounded-full -left-[11px] top-1 transition-transform group-hover:scale-125 z-10"></div>
                   <div class="bg-[#e11d48] text-white font-bold text-xs tracking-widest px-4 py-1.5 rounded-r-full inline-block mb-4 shadow-lg -ml-6 pl-8 relative z-0">21 Desember 2021</div>
-                  
                   <div class="bg-surface-container rounded-2xl p-4 border border-white/5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] flex flex-col items-center text-center transition-transform hover:-translate-y-1 duration-300">
-                    <!-- object-top DIHAPUS: Kembali ke settingan awal -->
                     <img src="assets/images/Our Story Pertunangan.jpg" onclick="openLightbox(this.src)" alt="Pertunangan" class="w-full h-40 object-cover rounded-xl mb-4 shadow-md brightness-90 group-hover:brightness-100 transition-all cursor-pointer">
                     <h3 class="font-headline-sm text-primary text-xl mb-1">*Tunangan*</h3>
                     <p class="text-on-surface-variant text-xs leading-relaxed opacity-90">Banyaknya persamaan di antara kami menyakinkan niat untuk melangkah ke jenjang yang lebih serius.</p>
@@ -418,10 +355,8 @@
                 <div class="timeline-item animate-on-scroll relative pl-6 text-left group z-10" style="transition-delay: 0.7s;">
                   <div class="absolute w-5 h-5 bg-surface border-[3px] border-primary rounded-full -left-[11px] top-1 transition-transform group-hover:scale-125 z-10"></div>
                   <div class="bg-primary text-[#131313] font-bold text-xs tracking-widest px-4 py-1.5 rounded-r-full inline-block mb-4 shadow-[0_0_15px_rgba(212,175,55,0.3)] -ml-6 pl-8 relative z-0">25 Oktober 2025</div>
-                  
                   <div class="bg-surface-container rounded-2xl p-4 border border-primary/20 shadow-[0_10px_30px_rgba(212,175,55,0.1)] flex flex-col items-center text-center relative overflow-hidden transition-transform hover:-translate-y-1 duration-300">
                     <div class="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent pointer-events-none"></div>
-                    <!-- object-top DIPERTAHANKAN: Fokus potongan dari kepala ke badan -->
                     <img src="assets/images/Our Story Pernikahan.jpg" onclick="openLightbox(this.src)" alt="Pernikahan" class="w-full h-40 object-cover object-top rounded-xl mb-4 shadow-md brightness-90 group-hover:brightness-100 transition-all relative z-10 cursor-pointer">
                     <h3 class="font-headline-sm text-primary text-xl mb-1 relative z-10">*Pernikahan*</h3>
                     <p class="text-on-surface-variant text-xs leading-relaxed opacity-90 relative z-10">Melangkah bersama mengikat janji suci di hadapan Sang Pencipta untuk menua bersama selamanya.</p>
@@ -433,76 +368,61 @@
           </section>
 
           <!-- ========================================== -->
-          <!-- SECTION COUNTDOWN TIMER                      -->
+          <!-- SECTION GALERI (VIDEO & SLIDESHOW)         -->
           <!-- ========================================== -->
-          <section id="countdown-section" class="flex flex-col items-center px-5 py-24 w-full border-t border-white/5 relative z-10 bg-[#131313]">
-            <div class="w-full max-w-[340px] text-center animate-on-scroll">
-              <span class="material-symbols-outlined text-primary text-4xl mb-2">hourglass_empty</span>
-              <h2 class="font-headline-md text-3xl text-white mb-2 italic">Menuju Hari Bahagia</h2>
-              <p class="text-on-surface-variant text-sm mb-10">Hitung mundur menanti acara resepsi kami.</p>
-              
-              <!-- Wrapper Kotak Waktu -->
-              <div id="countdown-wrapper" class="flex justify-center gap-3">
-                <div class="flex flex-col items-center">
-                  <div class="w-[70px] h-[75px] bg-[#1a1a1a] border border-primary/30 rounded-2xl flex items-center justify-center shadow-[0_5px_15px_rgba(212,175,55,0.15)] mb-3">
-                    <span id="cd-days" class="font-display-lg text-3xl text-primary">00</span>
-                  </div>
-                  <span class="text-[10px] uppercase tracking-widest text-[#b5b0a1] font-bold">Hari</span>
-                </div>
-                
-                <div class="flex flex-col items-center">
-                  <div class="w-[70px] h-[75px] bg-[#1a1a1a] border border-primary/30 rounded-2xl flex items-center justify-center shadow-[0_5px_15px_rgba(212,175,55,0.15)] mb-3">
-                    <span id="cd-hours" class="font-display-lg text-3xl text-primary">00</span>
-                  </div>
-                  <span class="text-[10px] uppercase tracking-widest text-[#b5b0a1] font-bold">Jam</span>
-                </div>
-                
-                <div class="flex flex-col items-center">
-                  <div class="w-[70px] h-[75px] bg-[#1a1a1a] border border-primary/30 rounded-2xl flex items-center justify-center shadow-[0_5px_15px_rgba(212,175,55,0.15)] mb-3">
-                    <span id="cd-minutes" class="font-display-lg text-3xl text-primary">00</span>
-                  </div>
-                  <span class="text-[10px] uppercase tracking-widest text-[#b5b0a1] font-bold">Menit</span>
-                </div>
-                
-                <div class="flex flex-col items-center">
-                  <div class="w-[70px] h-[75px] bg-[#1a1a1a] border border-primary/30 rounded-2xl flex items-center justify-center shadow-[0_5px_15px_rgba(212,175,55,0.15)] mb-3">
-                    <span id="cd-seconds" class="font-display-lg text-3xl text-primary">00</span>
-                  </div>
-                  <span class="text-[10px] uppercase tracking-widest text-[#b5b0a1] font-bold">Detik</span>
-                </div>
-              </div>
-              
-              <!-- Pesan Setelah Waktu Habis (Hidden secara default) -->
-              <div id="countdown-finished" class="hidden mt-4 p-6 bg-primary/10 border border-primary/30 rounded-2xl shadow-[0_0_20px_rgba(212,175,55,0.2)]">
-                 <h3 class="font-headline-sm text-primary text-2xl italic tracking-wide">Pernikahan Telah Dimulai</h3>
-                 <p class="text-on-surface-variant text-xs mt-3 leading-relaxed">Terima kasih atas doa restu dan kehadiran Anda di hari bahagia kami.</p>
-              </div>
-
-            </div>
-          </section>
-
-          <!-- SECTION GALERI -->
           <section id="gallery" class="flex flex-col items-center px-5 py-20 w-full border-t border-white/5">
             <div class="w-full max-w-[340px]">
+              
               <div class="animate-on-scroll">
                 <h2 class="font-headline-md text-3xl text-primary mb-2 text-center italic">Galeri Kami</h2>
-                <p class="text-on-surface-variant text-sm text-center mb-10 px-5">Momen-momen indah yang kami abadikan.</p>
+                <p class="text-on-surface-variant text-sm text-center mb-8 px-5">Momen-momen indah yang kami abadikan.</p>
               </div>
 
-              <div class="grid grid-cols-2 gap-4 animate-on-scroll">
-                <div class="w-full h-32 bg-surface-container rounded-2xl border border-white/5 overflow-hidden">
-                   <span class="w-full h-full flex items-center justify-center text-on-surface-variant/30 text-xs">Foto 1</span>
-                </div>
-                <div class="w-full h-32 bg-surface-container rounded-2xl border border-white/5 overflow-hidden">
-                   <span class="w-full h-full flex items-center justify-center text-on-surface-variant/30 text-xs">Foto 2</span>
-                </div>
-                <div class="w-full h-32 bg-surface-container rounded-2xl border border-white/5 overflow-hidden">
-                   <span class="w-full h-full flex items-center justify-center text-on-surface-variant/30 text-xs">Foto 3</span>
-                </div>
-                <div class="w-full h-32 bg-surface-container rounded-2xl border border-white/5 overflow-hidden">
-                   <span class="w-full h-full flex items-center justify-center text-on-surface-variant/30 text-xs">Foto 4</span>
+              <!-- KOTAK VIDEO YOUTUBE -->
+              <div class="animate-on-scroll mb-10 w-full bg-surface-container rounded-2xl border border-white/5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] overflow-hidden">
+                <!-- 
+                  UBAH LINK SRC DI BAWAH INI:
+                  Pastikan formatnya adalah "https://www.youtube.com/embed/ID_VIDEO"
+                -->
+                <div class="aspect-video w-full relative">
+                  <iframe 
+                    class="absolute top-0 left-0 w-full h-full"
+                    src="https://www.youtube.com/embed/azgjMFLA1YU?si=XNCOfdXIj9Wac-MU" 
+                    title="Video Prewedding Priya & Rahul" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                  </iframe>
                 </div>
               </div>
+
+              <!-- SLIDESHOW GALERI FOTO -->
+              <div class="relative w-full animate-on-scroll mb-8" id="gallery-slideshow">
+                <div class="overflow-hidden rounded-2xl border border-white/5 relative group bg-surface-container h-80 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+                   <!-- Foto Slide -->
+                   <img src="assets/images/Gallery-1.jpg" loading="lazy" onclick="openLightbox(this.src)" alt="Galeri 1" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100 slide-img cursor-zoom-in">
+                   <img src="assets/images/Gallery-2.jpg" loading="lazy" onclick="openLightbox(this.src)" alt="Galeri 2" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0 slide-img cursor-zoom-in">
+                   <img src="assets/images/Gallery-3.jpg" loading="lazy" onclick="openLightbox(this.src)" alt="Galeri 3" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0 slide-img cursor-zoom-in">
+                   <img src="assets/images/Gallery-4.jpg" loading="lazy" onclick="openLightbox(this.src)" alt="Galeri 4" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0 slide-img cursor-zoom-in">
+                   <img src="assets/images/Gallery-5.jpg" loading="lazy" onclick="openLightbox(this.src)" alt="Galeri 5" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0 slide-img cursor-zoom-in">
+                   <img src="assets/images/Gallery-6.jpg" loading="lazy" onclick="openLightbox(this.src)" alt="Galeri 6" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0 slide-img cursor-zoom-in">
+                   <img src="assets/images/Gallery-7.jpg" loading="lazy" onclick="openLightbox(this.src)" alt="Galeri 7" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0 slide-img cursor-zoom-in">
+                   <img src="assets/images/Gallery-8.jpg" loading="lazy" onclick="openLightbox(this.src)" alt="Galeri 8" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0 slide-img cursor-zoom-in">
+                   
+                   <!-- Indikator Dots -->
+                   <div class="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5 z-10 flex-wrap px-4">
+                      <span class="w-2 h-2 rounded-full bg-primary transition-all duration-300 slide-dot"></span>
+                      <span class="w-2 h-2 rounded-full bg-white/30 transition-all duration-300 slide-dot"></span>
+                      <span class="w-2 h-2 rounded-full bg-white/30 transition-all duration-300 slide-dot"></span>
+                      <span class="w-2 h-2 rounded-full bg-white/30 transition-all duration-300 slide-dot"></span>
+                      <span class="w-2 h-2 rounded-full bg-white/30 transition-all duration-300 slide-dot"></span>
+                      <span class="w-2 h-2 rounded-full bg-white/30 transition-all duration-300 slide-dot"></span>
+                      <span class="w-2 h-2 rounded-full bg-white/30 transition-all duration-300 slide-dot"></span>
+                      <span class="w-2 h-2 rounded-full bg-white/30 transition-all duration-300 slide-dot"></span>
+                   </div>
+                </div>
+              </div>
+              
             </div>
           </section>
 
@@ -547,37 +467,46 @@
 
         </main>
 
-        <!-- MENU MOBILE NAVBAR -->
+        <!-- NAVIGASI MOBILE BAWAH -->
         <nav class="fixed bottom-0 left-0 w-full max-w-[390px] z-50 pb-safe bg-[#111111]/95 backdrop-blur-md border-t border-white/5 shadow-[0_-10px_30px_rgba(0,0,0,0.9)] lg:hidden">
           <div class="flex justify-around items-center h-[76px] px-1">
-            <li class="nav-item relative group">
-              <a href="#home" class="nav-link flex flex-col items-center gap-1 transition-all w-[60px] text-[#8c8577] hover:text-[#d4af37]" onclick="moveTo('home')" hover-text="#d4af37" title="Home">
+            <li class="nav-item relative group list-none flex-1 flex justify-center">
+              <a href="#home" class="nav-link flex flex-col items-center gap-1 transition-all text-[#8c8577] hover:text-[#d4af37]" onclick="moveTo('home')" title="Home">
                 <span class="material-symbols-outlined nav-icon text-[26px]">home</span>
-                <span class="font-body-md text-[12px] tracking-wide mt-1">Home</span>
+                <span class="font-body-md text-[10px] tracking-wide mt-1">Home</span>
               </a>
             </li> 
-            <li class="nav-item relative group">
-              <a href="#profile" class="nav-link flex flex-col items-center gap-1 transition-all w-[60px] text-[#8c8577] hover:text-[#d4af37]" onclick="moveTo('profile')" hover-text="#d4af37" title="Profile">
+            <li class="nav-item relative group list-none flex-1 flex justify-center">
+              <a href="#profile" class="nav-link flex flex-col items-center gap-1 transition-all text-[#8c8577] hover:text-[#d4af37]" onclick="moveTo('profile')" title="Profile">
                 <span class="material-symbols-outlined nav-icon text-[26px]">badge</span>
-                <span class="font-body-md text-[12px] tracking-wide mt-1">Profile</span>
+                <span class="font-body-md text-[10px] tracking-wide mt-1">Profile</span>
               </a>
             </li> 
-            <li class="nav-item relative group">
-              <a href="#schedule" class="nav-link flex flex-col items-center gap-1 transition-all w-[60px] text-[#8c8577] hover:text-[#d4af37]" onclick="moveTo('schedule')" hover-text="#d4af37" title="Alamat">
+            <li class="nav-item relative group list-none flex-1 flex justify-center">
+              <a href="#schedule" class="nav-link flex flex-col items-center gap-1 transition-all text-[#8c8577] hover:text-[#d4af37]" onclick="moveTo('schedule')" title="Alamat">
                 <span class="material-symbols-outlined nav-icon text-[26px]">calendar_today</span>
-                <span class="font-body-md text-[12px] tracking-wide mt-1">Alamat</span>
+                <span class="font-body-md text-[10px] tracking-wide mt-1">Alamat</span>
               </a>
             </li> 
-            <li class="nav-item relative group">
-              <a href="#gallery" class="nav-link flex flex-col items-center gap-1 transition-all w-[60px] text-[#8c8577] hover:text-[#d4af37]" onclick="moveTo('gallery')" hover-text="#d4af37" title="Gallery">
+            
+            <!-- [ANOTASI 1]: Menu Mobile "Our Story" mengarah ke "#countdown-section" -->
+            <li class="nav-item relative group list-none flex-1 flex justify-center">
+              <a href="#countdown-section" class="nav-link flex flex-col items-center gap-1 transition-all text-[#8c8577] hover:text-[#d4af37]" onclick="moveTo('countdown-section')" title="Our Story">
+                <span class="material-symbols-outlined nav-icon text-[26px]">history_edu</span>
+                <span class="font-body-md text-[10px] tracking-wide mt-1">Our Story</span>
+              </a>
+            </li> 
+
+            <li class="nav-item relative group list-none flex-1 flex justify-center">
+              <a href="#gallery" class="nav-link flex flex-col items-center gap-1 transition-all text-[#8c8577] hover:text-[#d4af37]" onclick="moveTo('gallery')" title="Gallery">
                 <span class="material-symbols-outlined nav-icon text-[26px]">photo_library</span>
-                <span class="font-body-md text-[12px] tracking-wide mt-1">Gallery</span>
+                <span class="font-body-md text-[10px] tracking-wide mt-1">Gallery</span>
               </a>
             </li> 
-            <li class="nav-item relative group">
-              <a href="#gift" class="nav-link flex flex-col items-center gap-1 transition-all w-[60px] text-[#8c8577] hover:text-[#d4af37]" onclick="moveTo('gift')" hover-text="#d4af37" title="Gift">
+            <li class="nav-item relative group list-none flex-1 flex justify-center">
+              <a href="#gift" class="nav-link flex flex-col items-center gap-1 transition-all text-[#8c8577] hover:text-[#d4af37]" onclick="moveTo('gift')" title="Gift">
                 <span class="material-symbols-outlined nav-icon text-[26px]">featured_seasonal_and_gifts</span>
-                <span class="font-body-md text-[12px] tracking-wide mt-1">Gift</span>
+                <span class="font-body-md text-[10px] tracking-wide mt-1">Gift</span>
               </a>
             </li> 
           </div>
@@ -590,14 +519,47 @@
   <script src="assets/script/script.js"></script>
 </body>
 
-<!-- ========================================== -->
-  <!-- LIGHTBOX MODAL (FOTO FULL SCREEN)          -->
   <!-- ========================================== -->
-  <div id="lightbox-modal" class="fixed inset-0 z-[99999] bg-black/95 hidden flex-col items-center justify-center opacity-0 transition-opacity duration-300 cursor-zoom-out" onclick="closeLightbox()">
-    <button class="absolute top-6 right-6 text-white hover:text-primary transition-colors z-50">
-      <span class="material-symbols-outlined text-4xl">close</span>
-    </button>
-    <img id="lightbox-img" src="" alt="Fullscreen" class="max-w-[95%] max-h-[90%] object-contain rounded-xl shadow-2xl transform scale-95 transition-transform duration-300">
-  </div>
+  <!-- LIGHTBOX MODAL (FOTO FULL SCREEN BERGAYA GALLERY) -->
+  <!-- ========================================== -->
+  <div id="lightbox-modal" class="fixed inset-0 z-[99999] bg-black/95 hidden flex-col items-center justify-center opacity-0 transition-opacity duration-300">
+    
+    <!-- Bagian Atas (Header Lightbox) -->
+    <div class="absolute top-0 left-0 right-0 p-4 flex justify-between items-center z-50 bg-gradient-to-b from-black/70 to-transparent">
+        <!-- Counter Foto (Kiri) -->
+        <div class="text-white font-body-md text-sm tracking-widest pl-2">
+            <span id="lightbox-counter">1 / 8</span>
+        </div>
+        
+        <!-- Action Tools (Kanan) -->
+        <div class="flex items-center gap-4 pr-2">
+            <button class="text-white/80 hover:text-white transition-colors" onclick="zoomInLightbox()">
+                <span class="material-symbols-outlined text-2xl">zoom_in</span>
+            </button>
+            <button class="text-white/80 hover:text-white transition-colors" onclick="playSlideshow()">
+                <span class="material-symbols-outlined text-2xl" id="lightbox-play-icon">play_arrow</span>
+            </button>
+            <button class="text-white/80 hover:text-white transition-colors" onclick="toggleFullscreen()">
+                <span class="material-symbols-outlined text-2xl">fullscreen</span>
+            </button>
+            <button class="text-white/80 hover:text-white transition-colors" onclick="closeLightbox({target: {innerText: 'close'}})">
+                <span class="material-symbols-outlined text-3xl">close</span>
+            </button>
+        </div>
+    </div>
 
-</html>
+    <!-- Tombol Navigasi Kiri (Prev) -->
+    <button class="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors z-50 p-2" onclick="prevLightboxImage(event)">
+        <span class="material-symbols-outlined text-4xl md:text-5xl">chevron_left</span>
+    </button>
+    
+    <!-- Tombol Navigasi Kanan (Next) -->
+    <button class="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors z-50 p-2" onclick="nextLightboxImage(event)">
+        <span class="material-symbols-outlined text-4xl md:text-5xl">chevron_right</span>
+    </button>
+
+    <!-- Kontainer Gambar -->
+    <div class="w-full h-full flex items-center justify-center p-4 md:p-12 cursor-zoom-out" onclick="closeLightbox(event)" id="lightbox-bg-area">
+        <img id="lightbox-img" src="" alt="Fullscreen" class="max-w-full max-h-full object-contain shadow-[0_0_50px_rgba(0,0,0,0.8)] transform scale-95 transition-all duration-300">
+    </div>
+  </div>
