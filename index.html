@@ -46,6 +46,18 @@
 <body class="font-body-md text-body-md bg-[#131313] text-on-surface overflow-hidden scroll-locked">
 
   <!-- ========================================== -->
+  <!-- TOMBOL MUSIK MELAYANG                      -->
+  <!-- ========================================== -->
+  <div id="music-container" class="fixed top-6 right-6 lg:right-10 z-[99999] transition-opacity duration-1000 opacity-0 pointer-events-none">
+    <audio id="bg-music" loop preload="auto">
+      <source src="assets/sounds/lagu-background.mp3" type="audio/mpeg">
+    </audio>
+    <button onclick="toggleMusic()" class="w-12 h-12 bg-[#1a1a1a]/80 backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center text-white shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:bg-primary/20 transition-colors">
+      <span id="music-icon" class="material-symbols-outlined text-[24px]">volume_off</span>
+    </button>
+  </div>
+
+  <!-- ========================================== -->
   <!-- COVER OVERLAY (AMPLOP 3D CSS)              -->
   <!-- ========================================== -->
   <div id="welcome-cover" class="bg-[#131313] flex flex-col items-center justify-center">
@@ -115,15 +127,12 @@
             <span class="menu-label text-[#d4af37] text-xs font-bold uppercase tracking-wider whitespace-nowrap opacity-0 group-hover:opacity-100 absolute left-12 transition-opacity duration-300">Alamat</span>
           </a>
         </li>
-        
-        <!-- [ANOTASI 1]: Menu Desktop "Our Story" mengarah ke "#countdown-section" -->
         <li class="nav-item relative group list-none">
-          <a href="#countdown-section" onclick="moveTo('countdown-section')" class="nav-link pc-expand-link flex items-center h-12 w-12 group-hover:w-32 rounded-full text-[#8c8577] hover:text-[#d4af37] hover:bg-[#d4af37]/10 transition-all duration-[400ms] ease-in-out relative overflow-hidden" title="Our Story">
+          <a href="#story" onclick="moveTo('story')" class="nav-link pc-expand-link flex items-center h-12 w-12 group-hover:w-32 rounded-full text-[#8c8577] hover:text-[#d4af37] hover:bg-[#d4af37]/10 transition-all duration-[400ms] ease-in-out relative overflow-hidden" title="Our Story">
             <span class="material-symbols-outlined nav-icon min-w-[48px] text-center text-[24px] relative z-10">history_edu</span>
             <span class="menu-label text-[#d4af37] text-xs font-bold uppercase tracking-wider whitespace-nowrap opacity-0 group-hover:opacity-100 absolute left-12 transition-opacity duration-300">Our Story</span>
           </a>
         </li>
-
         <li class="nav-item relative group list-none">
           <a href="#gallery" onclick="moveTo('gallery')" class="nav-link pc-expand-link flex items-center h-12 w-12 group-hover:w-32 rounded-full text-[#8c8577] hover:text-[#d4af37] hover:bg-[#d4af37]/10 transition-all duration-[400ms] ease-in-out relative overflow-hidden" title="Gallery">
             <span class="material-symbols-outlined nav-icon min-w-[48px] text-center text-[24px] relative z-10">photo_library</span>
@@ -271,7 +280,7 @@
           </section>
 
           <!-- ========================================== -->
-          <!-- [ANOTASI 2]: SECTION COUNTDOWN TIMER DIPINDAH KE SINI -->
+          <!-- SECTION COUNTDOWN TIMER                    -->
           <!-- ========================================== -->
           <section id="countdown-section" class="flex flex-col items-center px-5 py-24 w-full border-t border-white/5 relative z-10 bg-[#131313]">
             <div class="w-full max-w-[340px] text-center animate-on-scroll">
@@ -302,6 +311,27 @@
                  <h3 class="font-headline-sm text-primary text-2xl italic tracking-wide">Pernikahan Telah Dimulai</h3>
                  <p class="text-on-surface-variant text-xs mt-3 leading-relaxed">Terima kasih atas doa restu dan kehadiran Anda di hari bahagia kami.</p>
               </div>
+            </div>
+          </section>
+
+          <!-- ========================================== -->
+          <!-- SECTION LIVE STREAMING                     -->
+          <!-- ========================================== -->
+          <section id="live-streaming" class="flex flex-col items-center px-5 py-20 w-full border-t border-white/5 relative z-10 bg-surface">
+            <div class="w-full max-w-[340px]">
+              
+              <div class="animate-on-scroll">
+                <span class="material-symbols-outlined text-primary text-4xl mb-2 flex justify-center">cell_tower</span>
+                <h2 class="font-headline-md text-3xl text-primary mb-2 text-center italic">Live Streaming</h2>
+                <p class="text-on-surface-variant text-sm text-center mb-8 px-2">Bagi keluarga dan kerabat yang belum berkesempatan hadir, Anda dapat menyaksikan momen bahagia kami secara virtual.</p>
+              </div>
+              
+              <div class="animate-on-scroll flex justify-center mt-4">
+                  <a href="https://www.youtube.com/channel/UCYOURCHANNELID" target="_blank" rel="noopener noreferrer" class="py-3 px-6 rounded-xl bg-red-600 text-white hover:bg-red-700 transition-colors font-body-md font-bold tracking-widest text-xs uppercase shadow-lg flex items-center justify-center gap-2">
+                    <span class="material-symbols-outlined text-[18px]">smart_display</span> Live Streaming
+                  </a>
+              </div>
+
             </div>
           </section>
 
@@ -380,10 +410,6 @@
 
               <!-- KOTAK VIDEO YOUTUBE -->
               <div class="animate-on-scroll mb-10 w-full bg-surface-container rounded-2xl border border-white/5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] overflow-hidden">
-                <!-- 
-                  UBAH LINK SRC DI BAWAH INI:
-                  Pastikan formatnya adalah "https://www.youtube.com/embed/ID_VIDEO"
-                -->
                 <div class="aspect-video w-full relative">
                     <iframe 
                       class="absolute top-0 left-0 w-full h-full"
@@ -489,9 +515,8 @@
               </a>
             </li> 
             
-            <!-- [ANOTASI 1]: Menu Mobile "Our Story" mengarah ke "#countdown-section" -->
             <li class="nav-item relative group list-none flex-1 flex justify-center">
-              <a href="#countdown-section" class="nav-link flex flex-col items-center gap-1 transition-all text-[#8c8577] hover:text-[#d4af37]" onclick="moveTo('countdown-section')" title="Our Story">
+              <a href="#story" class="nav-link flex flex-col items-center gap-1 transition-all text-[#8c8577] hover:text-[#d4af37]" onclick="moveTo('story')" title="Our Story">
                 <span class="material-symbols-outlined nav-icon text-[26px]">history_edu</span>
                 <span class="font-body-md text-[10px] tracking-wide mt-1">Our Story</span>
               </a>
@@ -563,3 +588,4 @@
         <img id="lightbox-img" src="" alt="Fullscreen" class="max-w-full max-h-full object-contain shadow-[0_0_50px_rgba(0,0,0,0.8)] transform scale-95 transition-all duration-300">
     </div>
   </div>
+</html>

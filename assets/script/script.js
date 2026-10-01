@@ -1,5 +1,26 @@
 /* ========================================== */
-/* 1. LOGIKA COVER & ANIMASI BUKA AMPLOP      */
+/* 1. LOGIKA BACKGROUND MUSIC (AUTOPLAY/MUTE) */
+/* ========================================== */
+let isMusicPlaying = false;
+
+function toggleMusic() {
+    const bgMusic = document.getElementById('bg-music');
+    const musicIcon = document.getElementById('music-icon');
+    
+    if (isMusicPlaying) {
+        bgMusic.pause();
+        musicIcon.innerText = 'volume_off'; // Icon speaker mati saat pause
+        musicIcon.classList.remove('spin-icon'); // Matikan putaran
+    } else {
+        bgMusic.play();
+        musicIcon.innerText = 'music_note'; // PERBAIKAN: Menggunakan icon nada musik saat play
+        musicIcon.classList.add('spin-icon'); // Nyalakan putaran
+    }
+    isMusicPlaying = !isMusicPlaying;
+}
+
+/* ========================================== */
+/* 2. LOGIKA COVER & ANIMASI BUKA AMPLOP      */
 /* ========================================== */
 function openInvitation() {
     document.getElementById('envelope-wrapper').classList.add('is-opening');
@@ -9,13 +30,37 @@ function openInvitation() {
     setTimeout(() => {
         document.getElementById('welcome-cover').classList.add('cover-opened');
         document.body.classList.remove('scroll-locked');
+        
+        // Memunculkan tombol Music Player perlahan
+        const musicContainer = document.getElementById('music-container');
+        if(musicContainer) {
+            musicContainer.classList.remove('opacity-0', 'pointer-events-none');
+        }
+        
+        // Memutar musik secara otomatis begitu masuk ke konten utama
+        const bgMusic = document.getElementById('bg-music');
+        const musicIcon = document.getElementById('music-icon');
+        
+        if(bgMusic) {
+            bgMusic.volume = 1.0;
+            bgMusic.play().then(() => {
+                isMusicPlaying = true;
+                musicIcon.innerText = 'music_note'; // PERBAIKAN: Menggunakan icon nada musik saat autoplay berhasil
+                musicIcon.classList.add('spin-icon');
+            }).catch(err => {
+                console.log("Autoplay dicegah oleh browser atau audio belum siap dimuat:", err);
+                isMusicPlaying = false;
+                musicIcon.innerText = 'volume_off'; 
+                musicIcon.classList.remove('spin-icon');
+            });
+        }
     }, 2500); 
 }
 
+
 /* ========================================== */
-/* 2. LOGIKA FOTO FULL SCREEN (LIGHTBOX)      */
+/* 3. LOGIKA FOTO FULL SCREEN (LIGHTBOX)      */
 /* ========================================== */
-// Mendata semua gambar yang bisa di-klik ke lightbox
 const galleryImages = [
     "assets/images/Gallery-1.jpg",
     "assets/images/Gallery-2.jpg",
@@ -32,12 +77,9 @@ let lightboxZoomLevel = 1;
 let lightboxSlideshowInterval;
 
 function openLightbox(imageSrc) {
-    // Memotong URL browser yang panjang untuk mengambil nama filenya saja (misal: "Gallery-2.jpg")
     const fileName = decodeURIComponent(imageSrc).split('/').pop(); 
-    
-    // Cari indeks gambar berdasarkan nama file yang presisi
     let index = galleryImages.findIndex(src => src.includes(fileName));
-    if(index === -1) index = 0; // Default jika tidak ditemukan
+    if(index === -1) index = 0; 
     
     currentLightboxIndex = index;
     updateLightboxContent();
@@ -59,25 +101,22 @@ function updateLightboxContent() {
     const modalImg = document.getElementById('lightbox-img');
     const counter = document.getElementById('lightbox-counter');
     
-    // Reset Zoom setiap ganti gambar
     lightboxZoomLevel = 1;
     modalImg.style.transform = `scale(${lightboxZoomLevel})`;
     
-    // Transisi Opacity Halus
     modalImg.style.opacity = '0.3';
     setTimeout(() => {
         modalImg.src = galleryImages[currentLightboxIndex];
         modalImg.style.opacity = '1';
     }, 150);
 
-    // Update Counter (ex: 1 / 8)
     if(counter) {
         counter.innerText = `${currentLightboxIndex + 1} / ${galleryImages.length}`;
     }
 }
 
 function nextLightboxImage(e) {
-    if(e) e.stopPropagation(); // Mencegah klik menembus ke latar belakang penutup
+    if(e) e.stopPropagation(); 
     currentLightboxIndex = (currentLightboxIndex + 1) % galleryImages.length;
     updateLightboxContent();
 }
@@ -89,7 +128,6 @@ function prevLightboxImage(e) {
 }
 
 function closeLightbox(e) {
-    // Hanya tutup jika yang diklik adalah area latar belakang luar gambar atau ikon close
     if (e && e.target.id !== 'lightbox-bg-area' && e.target.innerText !== 'close') {
         return;
     }
@@ -101,7 +139,6 @@ function closeLightbox(e) {
     modalImg.classList.remove('scale-100');
     modalImg.classList.add('scale-95');
     
-    // Matikan slideshow otomatis jika sedang menyala saat ditutup
     clearInterval(lightboxSlideshowInterval);
     document.getElementById('lightbox-play-icon').innerText = 'play_arrow';
     
@@ -111,18 +148,17 @@ function closeLightbox(e) {
     }, 300);
 }
 
-// Fitur Tambahan Top Bar
 function zoomInLightbox() {
     const modalImg = document.getElementById('lightbox-img');
     lightboxZoomLevel += 0.2;
-    if (lightboxZoomLevel > 2.2) lightboxZoomLevel = 1; // Reset zoom jika terlalu besar
+    if (lightboxZoomLevel > 2.2) lightboxZoomLevel = 1; 
     modalImg.style.transform = `scale(${lightboxZoomLevel})`;
 }
 
 function toggleFullscreen() {
     if (!document.fullscreenElement) {
         document.getElementById('lightbox-modal').requestFullscreen().catch(err => {
-            console.log(`Error attempting to enable full-screen mode: ${err.message}`);
+            console.log(`Error: ${err.message}`);
         });
     } else {
         document.exitFullscreen();
@@ -135,14 +171,13 @@ function playSlideshow() {
         playIcon.innerText = 'pause';
         lightboxSlideshowInterval = setInterval(() => {
             nextLightboxImage();
-        }, 2500); // Ganti gambar setiap 2.5 detik
+        }, 2500); 
     } else {
         playIcon.innerText = 'play_arrow';
         clearInterval(lightboxSlideshowInterval);
     }
 }
 
-// Navigasi dengan Keyboard (Komputer/Laptop)
 document.addEventListener('keydown', (e) => {
     const modal = document.getElementById('lightbox-modal');
     if (!modal.classList.contains('hidden')) {
@@ -154,7 +189,7 @@ document.addEventListener('keydown', (e) => {
 
 
 /* ========================================== */
-/* 3. LOGIKA UTAMA (Berjalan setelah HTML dimuat)*/
+/* 4. LOGIKA UTAMA (Berjalan setelah HTML dimuat)*/
 /* ========================================== */
 document.addEventListener("DOMContentLoaded", () => {
     
@@ -171,9 +206,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const coverFireflyCanvas = document.getElementById('cover-firefly-canvas');
     const coverFireflyCtx = coverFireflyCanvas ? coverFireflyCanvas.getContext('2d') : null;
 
-    // ==========================================
-    // LOGIKA ANIMASI BINTANG BERGERAK (MOBILE)
-    // ==========================================
     let particles = [];
     
     function resizeCanvas() {
@@ -232,9 +264,6 @@ document.addEventListener("DOMContentLoaded", () => {
         requestAnimationFrame(animateParticles);
     }
 
-    // ==========================================
-    // LOGIKA ANIMASI KUNANG-KUNANG (FLEXIBLE)
-    // ==========================================
     let firefliesDesktop = [];
     let firefliesCover = [];
 
@@ -332,9 +361,6 @@ document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener('resize', initFireflies);
     }
 
-    // ==========================================
-    // LOGIKA SMOOTH SCROLL & DETEKSI MENU AKTIF
-    // ==========================================
     window.moveTo = function(sectionId) {
         const targetElement = document.getElementById(sectionId);
         if (targetElement && container) {
@@ -395,9 +421,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ==========================================
-    // LOGIKA ANIMASI MUNCUL (FADE-UP) KONTEN
-    // ==========================================
     const animObserverOptions = {
         root: container,
         rootMargin: '0px 0px -10% 0px', 
@@ -416,9 +439,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const animatedElements = document.querySelectorAll('.animate-on-scroll');
     animatedElements.forEach(el => animObserver.observe(el));
 
-    // ==========================================
-    // LOGIKA COUNTDOWN TIMER (RESEPSI)
-    // ==========================================
     const HARI_TANGGAL = "2025-10-25"; 
     const JAM_ACARA    = "11:00:00";   
     const targetDate = new Date(`${HARI_TANGGAL}T${JAM_ACARA}`).getTime();
@@ -450,22 +470,17 @@ document.addEventListener("DOMContentLoaded", () => {
         
     }, 1000);
 
-    // ==========================================
-    // LOGIKA SLIDESHOW GALERI FOTO
-    // ==========================================
     const slides = document.querySelectorAll('.slide-img');
     const dots = document.querySelectorAll('.slide-dot');
     let currentSlide = 0;
 
     if (slides.length > 0 && dots.length > 0) {
         
-        // PERBAIKAN: Nonaktifkan fungsi klik pada gambar yang tersembunyi di awal
         slides.forEach((slide, idx) => {
             if(idx !== 0) slide.classList.add('pointer-events-none');
         });
 
         setInterval(() => {
-            // Sembunyikan slide saat ini dan nonaktifkan kliknya
             slides[currentSlide].classList.remove('opacity-100');
             slides[currentSlide].classList.add('opacity-0', 'pointer-events-none');
             if(dots[currentSlide]){
@@ -473,10 +488,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 dots[currentSlide].classList.add('bg-white/30');
             }
             
-            // Pindah ke slide berikutnya
             currentSlide = (currentSlide + 1) % slides.length;
             
-            // Tampilkan slide baru dan aktifkan kembali fungsi kliknya
             slides[currentSlide].classList.remove('opacity-0', 'pointer-events-none');
             slides[currentSlide].classList.add('opacity-100');
             if(dots[currentSlide]){
