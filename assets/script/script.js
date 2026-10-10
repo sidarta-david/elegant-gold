@@ -9,12 +9,12 @@ function toggleMusic() {
     
     if (isMusicPlaying) {
         bgMusic.pause();
-        musicIcon.innerText = 'volume_off'; // Icon speaker mati saat pause
-        musicIcon.classList.remove('spin-icon'); // Matikan putaran
+        musicIcon.innerText = 'volume_off'; 
+        musicIcon.classList.remove('spin-icon'); 
     } else {
         bgMusic.play();
-        musicIcon.innerText = 'music_note'; // PERBAIKAN: Menggunakan icon nada musik saat play
-        musicIcon.classList.add('spin-icon'); // Nyalakan putaran
+        musicIcon.innerText = 'music_note'; 
+        musicIcon.classList.add('spin-icon'); 
     }
     isMusicPlaying = !isMusicPlaying;
 }
@@ -31,13 +31,11 @@ function openInvitation() {
         document.getElementById('welcome-cover').classList.add('cover-opened');
         document.body.classList.remove('scroll-locked');
         
-        // Memunculkan tombol Music Player perlahan
         const musicContainer = document.getElementById('music-container');
         if(musicContainer) {
             musicContainer.classList.remove('opacity-0', 'pointer-events-none');
         }
         
-        // Memutar musik secara otomatis begitu masuk ke konten utama
         const bgMusic = document.getElementById('bg-music');
         const musicIcon = document.getElementById('music-icon');
         
@@ -45,10 +43,10 @@ function openInvitation() {
             bgMusic.volume = 1.0;
             bgMusic.play().then(() => {
                 isMusicPlaying = true;
-                musicIcon.innerText = 'music_note'; // PERBAIKAN: Menggunakan icon nada musik saat autoplay berhasil
+                musicIcon.innerText = 'music_note'; 
                 musicIcon.classList.add('spin-icon');
             }).catch(err => {
-                console.log("Autoplay dicegah oleh browser atau audio belum siap dimuat:", err);
+                console.log("Autoplay dicegah:", err);
                 isMusicPlaying = false;
                 musicIcon.innerText = 'volume_off'; 
                 musicIcon.classList.remove('spin-icon');
@@ -56,7 +54,6 @@ function openInvitation() {
         }
     }, 2500); 
 }
-
 
 /* ========================================== */
 /* 3. LOGIKA FOTO FULL SCREEN (LIGHTBOX)      */
@@ -189,7 +186,7 @@ document.addEventListener('keydown', (e) => {
 
 
 /* ========================================== */
-/* 4. LOGIKA UTAMA (Berjalan setelah HTML dimuat)*/
+/* 4. LOGIKA UTAMA (CANVAS, NAVBAR, SCROLL)   */
 /* ========================================== */
 document.addEventListener("DOMContentLoaded", () => {
     
@@ -216,7 +213,6 @@ document.addEventListener("DOMContentLoaded", () => {
   
     class Particle {
         constructor() { this.reset(); }
-        
         reset() {
             this.x = Math.random() * canvas.width;
             this.y = Math.random() * canvas.height;
@@ -226,19 +222,16 @@ document.addEventListener("DOMContentLoaded", () => {
             this.alpha = Math.random() * 0.7 + 0.2;     
             this.alphaSpeed = Math.random() * 0.02 + 0.005; 
         }
-
         update() {
             this.x += this.speedX;
             this.y += this.speedY;
             this.alpha += this.alphaSpeed;
             if (this.alpha > 1 || this.alpha < 0.2) this.alphaSpeed = -this.alphaSpeed;
-            
             if (this.y < 0 || this.x < 0 || this.x > canvas.width) {
                 this.y = canvas.height;
                 this.x = Math.random() * canvas.width;
             }
         }
-
         draw() {
             ctx.fillStyle = `rgba(212, 175, 55, ${this.alpha})`; 
             ctx.shadowBlur = 8; 
@@ -286,7 +279,6 @@ document.addEventListener("DOMContentLoaded", () => {
             this.reset();
             this.y = Math.random() * this.canvas.height; 
         }
-        
         reset() {
             this.x = Math.random() * this.canvas.width;
             this.y = this.canvas.height + 10; 
@@ -297,23 +289,18 @@ document.addEventListener("DOMContentLoaded", () => {
             this.alpha = this.baseAlpha;
             this.alphaSpeed = (Math.random() * 0.01) + 0.005; 
         }
-        
         update() {
             this.x += this.speedX;
             this.y += this.speedY;
             this.x += Math.sin(this.y * 0.02) * 0.3; 
             this.alpha += this.alphaSpeed;
-            
             if (this.alpha > this.baseAlpha + 0.3 || this.alpha < this.baseAlpha - 0.2) {
                 this.alphaSpeed = -this.alphaSpeed;
             }
-
             if(this.alpha < 0) this.alpha = 0;
             if(this.alpha > 1) this.alpha = 1;
-
             if (this.y < -20) this.reset();
         }
-        
         draw() {
             this.ctx.beginPath();
             this.ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
@@ -354,7 +341,6 @@ document.addEventListener("DOMContentLoaded", () => {
         animateParticles();
         window.addEventListener('resize', initParticles);
     }
-
     if ((fireflyCanvas && fireflyCtx) || (coverFireflyCanvas && coverFireflyCtx)) {
         initFireflies();
         animateFireflies();
@@ -475,11 +461,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentSlide = 0;
 
     if (slides.length > 0 && dots.length > 0) {
-        
         slides.forEach((slide, idx) => {
             if(idx !== 0) slide.classList.add('pointer-events-none');
         });
-
         setInterval(() => {
             slides[currentSlide].classList.remove('opacity-100');
             slides[currentSlide].classList.add('opacity-0', 'pointer-events-none');
@@ -487,7 +471,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 dots[currentSlide].classList.remove('bg-primary');
                 dots[currentSlide].classList.add('bg-white/30');
             }
-            
             currentSlide = (currentSlide + 1) % slides.length;
             
             slides[currentSlide].classList.remove('opacity-0', 'pointer-events-none');
@@ -498,5 +481,130 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }, 3000); 
     }
+});
 
+
+/* ========================================== */
+/* 5. LOGIKA FORM BUKU TAMU & ANIMASI KARTU   */
+/* ========================================== */
+
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwzOtSPn24AJKMRMuRe7QDYHRRQjWBXjFDqJRUiV8VQP3tD1bxYpFHQb-FxuSFGqTg59Q/exec';
+
+const form = document.getElementById('wishes-form');
+const submitBtn = document.getElementById('submit-btn');
+const btnText = document.getElementById('btn-text');
+const btnLoader = document.getElementById('btn-loader');
+const listContainer = document.getElementById('wishes-list');
+const loadingIndicator = document.getElementById('wishes-loading');
+
+if (form) {
+    form.addEventListener('submit', e => {
+        e.preventDefault(); 
+        
+        let formData = new FormData(form);
+        
+        btnText.innerText = "Mengirim...";
+        btnLoader.classList.remove('hidden');
+        submitBtn.disabled = true;
+        submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
+        
+        fetch(SCRIPT_URL, { 
+            method: 'POST', 
+            body: formData,
+            mode: 'no-cors' 
+        })
+        .then(() => {
+            alert("Terima kasih! Pesan dan doa Anda telah berhasil dikirim.");
+            form.reset(); 
+            fetchWishes(); 
+        })
+        .catch(error => {
+            console.error('Error!', error.message);
+            alert('Maaf, terjadi kesalahan pada jaringan. Mohon coba kembali.');
+        })
+        .finally(() => {
+            btnText.innerText = "Kirim Ucapan";
+            btnLoader.classList.add('hidden');
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+        });
+    });
+}
+
+function escapeHTML(str) {
+    if (!str) return '';
+    return str.replace(/[&<>'"]/g, 
+        tag => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            "'": '&#39;',
+            '"': '&quot;'
+        }[tag] || tag)
+    );
+}
+
+// GET API: Membaca (Read) dan Render DOM Kartu Ucapan Interaktif dengan Animasi Pop-In
+function fetchWishes() {
+    if(!listContainer) return;
+    
+    listContainer.classList.add('hidden');
+    loadingIndicator.classList.remove('hidden');
+
+    fetch(SCRIPT_URL)
+        .then(response => response.json())
+        .then(data => {
+            listContainer.innerHTML = ''; 
+            
+            if(Array.isArray(data) && data.length > 0) {
+                data.forEach((row, index) => {
+                    const nama = escapeHTML(row.Nama) || 'Tamu';
+                    const kehadiran = escapeHTML(row.Kehadiran) || '-';
+                    const pesan = escapeHTML(row.Pesan) || '';
+
+                    const isHadir = kehadiran === 'Hadir';
+                    const badgeClass = isHadir 
+                        ? 'bg-[#d4af37]/20 text-primary border-primary/30' 
+                        : 'bg-white/5 text-[#b5b0a1] border-white/10';
+                    
+                    const initial = nama.charAt(0).toUpperCase();
+                    const animationDelay = index < 15 ? `animation-delay: ${index * 120}ms` : '';
+                    
+                    const cardHTML = `
+                    <div class="opacity-0 mb-4 p-4 rounded-[20px] bg-[#161616] border border-white/5 shadow-md relative group hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-[0_10px_25px_rgba(212,175,55,0.15)] transition-all duration-500 ease-out animate-pop-in" style="${animationDelay}">
+                        <div class="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[20px] pointer-events-none"></div>
+                        
+                        <div class="flex justify-between items-start mb-3 relative z-10">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-surface border border-primary/30 flex items-center justify-center text-primary font-display-lg font-bold shadow-[0_0_10px_rgba(212,175,55,0.2)]">
+                                    ${initial}
+                                </div>
+                                <h4 class="font-bold text-white text-[15px] font-body-md capitalize tracking-wide">${nama}</h4>
+                            </div>
+                            <span class="text-[9px] font-bold px-2.5 py-1 rounded-md border ${badgeClass} tracking-widest uppercase shadow-sm mt-1">${kehadiran}</span>
+                        </div>
+                        
+                        <p class="text-on-surface-variant text-xs leading-relaxed font-body-md break-words pl-[52px] relative z-10 italic opacity-90 group-hover:opacity-100 transition-opacity">
+                           "${pesan}"
+                        </p>
+                    </div>
+                    `;
+                    listContainer.insertAdjacentHTML('beforeend', cardHTML);
+                });
+            } else {
+                listContainer.innerHTML = '<p class="text-center text-xs text-on-surface-variant py-4 italic">Belum ada ucapan. Jadilah yang pertama!</p>';
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+            listContainer.innerHTML = '<p class="text-xs text-red-400 text-center py-4">Gagal memuat ucapan. Pastikan koneksi internet stabil.</p>';
+        })
+        .finally(() => {
+            loadingIndicator.classList.add('hidden');
+            listContainer.classList.remove('hidden');
+        });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetchWishes();
 });

@@ -5,9 +5,6 @@
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
   <title>Undangan Pernikahan</title>
   
-  <!-- ========================================== -->
-  <!-- IMPORT FONT, MATERIAL SYMBOLS, & FONTAWESOME -->
-  <!-- ========================================== -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
@@ -16,7 +13,6 @@
   
   <link href="assets/style/style.css" rel="stylesheet">
 
-  <!-- KONFIGURASI TAILWIND CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { 
@@ -45,9 +41,6 @@
 
 <body class="font-body-md text-body-md bg-[#131313] text-on-surface overflow-hidden scroll-locked">
 
-  <!-- ========================================== -->
-  <!-- TOMBOL MUSIK MELAYANG                      -->
-  <!-- ========================================== -->
   <div id="music-container" class="fixed top-6 right-6 lg:right-10 z-[99999] transition-opacity duration-1000 opacity-0 pointer-events-none">
     <audio id="bg-music" loop preload="auto">
       <source src="assets/sounds/lagu-background.mp3" type="audio/mpeg">
@@ -57,9 +50,6 @@
     </button>
   </div>
 
-  <!-- ========================================== -->
-  <!-- COVER OVERLAY (AMPLOP 3D CSS)              -->
-  <!-- ========================================== -->
   <div id="welcome-cover" class="bg-[#131313] flex flex-col items-center justify-center">
     <div class="absolute inset-0 z-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-30"></div>
     <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-[#131313] z-0"></div>
@@ -96,7 +86,6 @@
 
   <div class="desktop-wrapper flex w-full h-screen">
     
-    <!-- DESKTOP KIRI -->
     <div class="hidden lg:flex flex-1 relative bg-black items-center justify-center flex-col overflow-hidden">
       <div class="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] to-black z-0"></div>
       <div class="absolute inset-0 z-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 animate-on-scroll animate_fadein animate_fadeout"></div>
@@ -107,7 +96,6 @@
         <p class="font-body-md text-on-surface-variant tracking-[0.3em] text-sm uppercase">25 . 10 . 2025</p>
       </div>
 
-      <!-- NAVIGASI DESKTOP -->
       <nav class="absolute right-10 top-1/2 -translate-y-1/2 z-50 bg-[#161616]/95 backdrop-blur-md rounded-[40px] py-6 px-3 flex flex-col gap-4 shadow-[0_0_35px_rgba(0,0,0,0.5)] border border-white/5">
         <li class="nav-item relative group list-none">
           <a href="#home" onclick="moveTo('home')" class="nav-link pc-expand-link flex items-center h-12 w-12 group-hover:w-32 rounded-full text-[#8c8577] hover:text-[#d4af37] hover:bg-[#d4af37]/10 transition-all duration-[400ms] ease-in-out relative overflow-hidden" title="Home">
@@ -140,6 +128,12 @@
           </a>
         </li>
         <li class="nav-item relative group list-none">
+          <a href="#wishes" onclick="moveTo('wishes')" class="nav-link pc-expand-link flex items-center h-12 w-12 group-hover:w-32 rounded-full text-[#8c8577] hover:text-[#d4af37] hover:bg-[#d4af37]/10 transition-all duration-[400ms] ease-in-out relative overflow-hidden" title="Ucapan">
+            <span class="material-symbols-outlined nav-icon min-w-[48px] text-center text-[24px] relative z-10">forum</span>
+            <span class="menu-label text-[#d4af37] text-xs font-bold uppercase tracking-wider whitespace-nowrap opacity-0 group-hover:opacity-100 absolute left-12 transition-opacity duration-300">Ucapan</span>
+          </a>
+        </li>
+        <li class="nav-item relative group list-none">
           <a href="#gift" onclick="moveTo('gift')" class="nav-link pc-expand-link flex items-center h-12 w-12 group-hover:w-32 rounded-full text-[#8c8577] hover:text-[#d4af37] hover:bg-[#d4af37]/10 transition-all duration-[400ms] ease-in-out relative overflow-hidden" title="Gift">
             <span class="material-symbols-outlined nav-icon min-w-[48px] text-center text-[24px] relative z-10">featured_seasonal_and_gifts</span>
             <span class="menu-label text-[#d4af37] text-xs font-bold uppercase tracking-wider whitespace-nowrap opacity-0 group-hover:opacity-100 absolute left-12 transition-opacity duration-300">Gift</span>
@@ -148,14 +142,12 @@
       </nav>
     </div>
 
-    <!-- MOBILE KANAN (CONTAINER UTAMA) -->
     <div class="w-full lg:w-[450px] h-full flex justify-center items-center lg:bg-[#1a1a1a] relative lg:border-l lg:border-primary/20 bg-pattern-floral shadow-[-20px_0_50px_rgba(0,0,0,0.5)] z-20">
       <div id="mobile-container" class="w-full h-full max-w-[390px] min-w-[360px] bg-surface relative overflow-y-auto overflow-x-hidden lg:h-[844px] lg:max-h-[95vh] lg:rounded-[40px] lg:shadow-2xl lg:border lg:border-primary/30 custom-scrollbar scroll-smooth">
         <canvas id="particle-canvas" class="absolute top-0 left-0 w-full h-full pointer-events-none z-0 opacity-40"></canvas>
 
         <main class="relative z-10 w-full pb-20">
           
-          <!-- SECTION HOME -->
           <section id="home" class="min-h-screen lg:h-[844px] w-full relative flex flex-col items-center justify-center text-center px-5 overflow-hidden">
             <div class="absolute inset-0 bg-[url('assets/images/pengantin.jpg')] bg-cover bg-center bg-no-repeat opacity-25"></div>
             <div class="absolute inset-0 bg-gradient-to-b from-[#131313]/30 via-[#131313]/70 to-[#131313]"></div>
@@ -168,20 +160,17 @@
                  <span class="font-headline-sm text-white text-xl tracking-widest block">25 . 10 . 2025</span>
               </div>
             </div>
-
             <a href="#profile" class="absolute bottom-32 flex flex-col items-center animate-bounce opacity-80 hover:opacity-100 transition-opacity">
                <span class="font-label-caps text-[10px] text-[#b5b0a1] tracking-widest mb-2">SCROLL DOWN</span>
                <span class="material-symbols-outlined text-primary">keyboard_double_arrow_down</span>
             </a>
           </section>
 
-          <!-- SECTION PROFIL -->
           <section id="profile" class="flex flex-col items-center px-5 py-16 text-center relative z-10 bg-gradient-to-b from-[#131313] to-surface">
             <div class="w-full max-w-[340px] mb-12 animate-on-scroll">
               <h2 class="font-headline-md text-3xl text-primary mb-2 text-center italic">Sang Mempelai</h2>
               <p class="text-on-surface-variant text-sm text-center px-5">Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan.</p>
             </div>
-
             <div class="relative w-[280px] h-[350px] mb-8 group perspective-[1000px] animate-on-scroll">
               <div class="absolute inset-0 bg-primary/10 rounded-full blur-2xl transform -translate-y-4"></div>
               <div class="w-full h-full rounded-[40px] overflow-hidden shadow-xl p-[2px] bg-gradient-to-br from-primary/50 via-transparent to-primary/10">
@@ -191,7 +180,6 @@
                 </div>
               </div>
             </div>
-            
             <div class="animate-on-scroll">
               <h2 class="font-headline-md text-3xl text-white mb-2">Priya Sharma, S.E.</h2>
               <p class="font-body-md text-primary font-bold text-xs tracking-widest uppercase mb-4">Mempelai Wanita</p>
@@ -199,13 +187,11 @@
                 Putri Pertama dari pasangan <br> <strong>Bpk. Amit Sharma & Ibu Neha Sharma</strong>.
               </p>
             </div>
-
             <div class="w-full flex justify-center items-center py-6 px-5 gap-4 animate-on-scroll">
               <div class="h-[1px] flex-1 bg-gradient-to-r from-transparent to-primary/30"></div>
               <span class="material-symbols-outlined text-primary/50 text-xl animate-pulse">favorite</span>
               <div class="h-[1px] flex-1 bg-gradient-to-l from-transparent to-primary/30"></div>
             </div>
-
             <div class="relative w-[280px] h-[350px] mb-8 mt-10 group perspective-[1000px] animate-on-scroll">
               <div class="absolute inset-0 bg-primary/10 rounded-full blur-2xl transform -translate-y-4"></div>
               <div class="w-full h-full rounded-[40px] overflow-hidden shadow-xl p-[2px] bg-gradient-to-bl from-primary/50 via-transparent to-primary/10">
@@ -215,7 +201,6 @@
                 </div>
               </div>
             </div>
-            
             <div class="animate-on-scroll">
               <h2 class="font-headline-md text-3xl text-white mb-2">Rahul Kumar, S.Kom.</h2>
               <p class="font-body-md text-primary font-bold text-xs tracking-widest uppercase mb-4">Mempelai Pria</p>
@@ -225,15 +210,12 @@
             </div>
           </section>
 
-          <!-- SECTION JADWAL -->
           <section id="schedule" class="flex flex-col items-center px-5 py-20 w-full border-t border-white/5 relative z-10 bg-surface">
             <div class="w-full max-w-[340px]">
               <div class="animate-on-scroll">
                 <h2 class="font-headline-md text-3xl text-primary mb-2 text-center italic">Jadwal Acara</h2>
                 <p class="text-on-surface-variant text-sm text-center mb-10 px-5">Detail waktu dan alamat acara pernikahan kami.</p>
               </div>
-
-              <!-- CARD: AKAD NIKAH -->
               <article class="schedule-card bg-[#1a1a1a] rounded-[24px] p-6 mb-8 border border-primary/20 shadow-[0_10px_30px_rgba(0,0,0,0.5)] animate-on-scroll">
                 <div class="flex items-center gap-3 mb-5 border-b border-white/5 pb-4">
                   <svg class="w-7 h-7 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -256,7 +238,6 @@
                 </div>
               </article>
 
-              <!-- CARD: RESEPSI -->
               <article class="schedule-card bg-[#1a1a1a] rounded-[24px] p-6 mb-6 border border-primary/20 shadow-[0_10px_30px_rgba(0,0,0,0.5)] animate-on-scroll">
                 <div class="flex items-center gap-3 mb-5 border-b border-white/5 pb-4">
                   <span class="material-symbols-outlined text-primary text-2xl">favorite</span>
@@ -279,9 +260,6 @@
             </div>
           </section>
 
-          <!-- ========================================== -->
-          <!-- SECTION COUNTDOWN TIMER                    -->
-          <!-- ========================================== -->
           <section id="countdown-section" class="flex flex-col items-center px-5 py-24 w-full border-t border-white/5 relative z-10 bg-[#131313]">
             <div class="w-full max-w-[340px] text-center animate-on-scroll">
               <span class="material-symbols-outlined text-primary text-4xl mb-2">hourglass_empty</span>
@@ -306,7 +284,6 @@
                   <span class="text-[10px] uppercase tracking-widest text-[#b5b0a1] font-bold">Detik</span>
                 </div>
               </div>
-              
               <div id="countdown-finished" class="hidden mt-4 p-6 bg-primary/10 border border-primary/30 rounded-2xl shadow-[0_0_20px_rgba(212,175,55,0.2)]">
                  <h3 class="font-headline-sm text-primary text-2xl italic tracking-wide">Pernikahan Telah Dimulai</h3>
                  <p class="text-on-surface-variant text-xs mt-3 leading-relaxed">Terima kasih atas doa restu dan kehadiran Anda di hari bahagia kami.</p>
@@ -314,32 +291,21 @@
             </div>
           </section>
 
-          <!-- ========================================== -->
-          <!-- SECTION LIVE STREAMING                     -->
-          <!-- ========================================== -->
           <section id="live-streaming" class="flex flex-col items-center px-5 py-20 w-full border-t border-white/5 relative z-10 bg-surface">
             <div class="w-full max-w-[340px]">
-              
               <div class="animate-on-scroll">
-                <!-- PERUBAHAN: Ikon antena menggunakan "sensors" -->
                 <span class="material-symbols-outlined text-primary text-4xl mb-2 flex justify-center">sensors</span>
                 <h2 class="font-headline-md text-3xl text-primary mb-2 text-center italic">Live Streaming</h2>
                 <p class="text-on-surface-variant text-sm text-center mb-8 px-2">Bagi keluarga dan kerabat yang belum berkesempatan hadir, Anda dapat menyaksikan momen bahagia kami secara virtual.</p>
               </div>
-              
               <div class="animate-on-scroll flex justify-center mt-4">
-                  <!-- PERUBAHAN: Link YouTube sudah diperbarui dan ikon diganti menjadi "sensors" untuk mencocokkan desain -->
                   <a href="https://www.youtube.com/live/3o7abhf9EAE?si=YhrTZQZhzlxn91sy" target="_blank" rel="noopener noreferrer" class="py-3 px-6 rounded-xl bg-[#2a2a2a] border border-white/10 text-white hover:bg-white/10 transition-colors font-body-md font-bold text-[15px] shadow-lg flex items-center justify-center gap-3 w-[220px]">
                     <span class="material-symbols-outlined text-[24px]">sensors</span> Live streaming
                   </a>
               </div>
-
             </div>
           </section>
 
-          <!-- ========================================== -->
-          <!-- SECTION OUR STORY                          -->
-          <!-- ========================================== -->
           <section id="story" class="flex flex-col items-center px-5 py-20 w-full border-t border-white/5 relative z-10 bg-gradient-to-b from-[#131313] to-surface-container/30">
             <div class="w-full max-w-[340px]">
               <div class="animate-on-scroll">
@@ -350,7 +316,6 @@
               <div class="relative ml-4 md:mx-auto">
                 <div class="absolute -left-[2px] top-2 bottom-0 w-[2px] bg-gradient-to-b from-primary via-primary/50 to-transparent animate-on-scroll timeline-track z-0"></div>
                 
-                <!-- 1. Perkenalan -->
                 <div class="timeline-item animate-on-scroll mb-10 relative pl-6 text-left group z-10" style="transition-delay: 0.1s;">
                   <div class="absolute w-5 h-5 bg-surface border-[3px] border-[#3b5998] rounded-full -left-[11px] top-1 transition-transform group-hover:scale-125 z-10"></div>
                   <div class="bg-[#3b5998] text-white font-bold text-xs tracking-widest px-4 py-1.5 rounded-r-full inline-block mb-4 shadow-lg -ml-6 pl-8 relative z-0">31 Januari 2021</div>
@@ -361,7 +326,6 @@
                   </div>
                 </div>
 
-                <!-- 2. Kencan Pertama -->
                 <div class="timeline-item animate-on-scroll mb-10 relative pl-6 text-left group z-10" style="transition-delay: 0.3s;">
                   <div class="absolute w-5 h-5 bg-surface border-[3px] border-[#d4af37] rounded-full -left-[11px] top-1 transition-transform group-hover:scale-125 z-10"></div>
                   <div class="bg-[#d4af37] text-[#131313] font-bold text-xs tracking-widest px-4 py-1.5 rounded-r-full inline-block mb-4 shadow-lg -ml-6 pl-8 relative z-0">31 Maret 2021</div>
@@ -372,7 +336,6 @@
                   </div>
                 </div>
 
-                <!-- 3. Pertunangan -->
                 <div class="timeline-item animate-on-scroll mb-10 relative pl-6 text-left group z-10" style="transition-delay: 0.5s;">
                   <div class="absolute w-5 h-5 bg-surface border-[3px] border-[#e11d48] rounded-full -left-[11px] top-1 transition-transform group-hover:scale-125 z-10"></div>
                   <div class="bg-[#e11d48] text-white font-bold text-xs tracking-widest px-4 py-1.5 rounded-r-full inline-block mb-4 shadow-lg -ml-6 pl-8 relative z-0">21 Desember 2021</div>
@@ -383,7 +346,6 @@
                   </div>
                 </div>
 
-                <!-- 4. Pernikahan -->
                 <div class="timeline-item animate-on-scroll relative pl-6 text-left group z-10" style="transition-delay: 0.7s;">
                   <div class="absolute w-5 h-5 bg-surface border-[3px] border-primary rounded-full -left-[11px] top-1 transition-transform group-hover:scale-125 z-10"></div>
                   <div class="bg-primary text-[#131313] font-bold text-xs tracking-widest px-4 py-1.5 rounded-r-full inline-block mb-4 shadow-[0_0_15px_rgba(212,175,55,0.3)] -ml-6 pl-8 relative z-0">25 Oktober 2025</div>
@@ -394,23 +356,17 @@
                     <p class="text-on-surface-variant text-xs leading-relaxed opacity-90 relative z-10">Melangkah bersama mengikat janji suci di hadapan Sang Pencipta untuk menua bersama selamanya.</p>
                   </div>
                 </div>
-
               </div>
             </div>
           </section>
 
-          <!-- ========================================== -->
-          <!-- SECTION GALERI (VIDEO & SLIDESHOW)         -->
-          <!-- ========================================== -->
           <section id="gallery" class="flex flex-col items-center px-5 py-20 w-full border-t border-white/5">
             <div class="w-full max-w-[340px]">
-              
               <div class="animate-on-scroll">
                 <h2 class="font-headline-md text-3xl text-primary mb-2 text-center italic">Galeri Kami</h2>
                 <p class="text-on-surface-variant text-sm text-center mb-8 px-5">Momen-momen indah yang kami abadikan.</p>
               </div>
 
-              <!-- KOTAK VIDEO YOUTUBE -->
               <div class="animate-on-scroll mb-10 w-full bg-surface-container rounded-2xl border border-white/5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] overflow-hidden">
                 <div class="aspect-video w-full relative">
                     <iframe 
@@ -424,10 +380,8 @@
                 </div>
               </div>
 
-              <!-- SLIDESHOW GALERI FOTO -->
               <div class="relative w-full animate-on-scroll mb-8" id="gallery-slideshow">
                 <div class="overflow-hidden rounded-2xl border border-white/5 relative group bg-surface-container h-80 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-                   <!-- Foto Slide -->
                    <img src="assets/images/Gallery-1.jpg" loading="lazy" onclick="openLightbox(this.src)" alt="Galeri 1" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100 slide-img cursor-zoom-in">
                    <img src="assets/images/Gallery-2.jpg" loading="lazy" onclick="openLightbox(this.src)" alt="Galeri 2" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0 slide-img cursor-zoom-in">
                    <img src="assets/images/Gallery-3.jpg" loading="lazy" onclick="openLightbox(this.src)" alt="Galeri 3" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0 slide-img cursor-zoom-in">
@@ -437,7 +391,6 @@
                    <img src="assets/images/Gallery-7.jpg" loading="lazy" onclick="openLightbox(this.src)" alt="Galeri 7" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0 slide-img cursor-zoom-in">
                    <img src="assets/images/Gallery-8.jpg" loading="lazy" onclick="openLightbox(this.src)" alt="Galeri 8" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0 slide-img cursor-zoom-in">
                    
-                   <!-- Indikator Dots -->
                    <div class="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5 z-10 flex-wrap px-4">
                       <span class="w-2 h-2 rounded-full bg-primary transition-all duration-300 slide-dot"></span>
                       <span class="w-2 h-2 rounded-full bg-white/30 transition-all duration-300 slide-dot"></span>
@@ -450,11 +403,62 @@
                    </div>
                 </div>
               </div>
-              
             </div>
           </section>
 
-          <!-- SECTION QUOTE -->
+          <!-- ========================================== -->
+          <!-- SECTION WISHES (KARTU UCAPAN & DOA)        -->
+          <!-- ========================================== -->
+          <section id="wishes" class="flex flex-col items-center px-5 py-20 w-full border-t border-white/5 relative z-10 bg-surface">
+            <div class="w-full max-w-[340px]">
+              
+              <div class="animate-on-scroll">
+                <span class="material-symbols-outlined text-primary text-4xl mb-2 flex justify-center">forum</span>
+                <h2 class="font-headline-md text-3xl text-primary mb-2 text-center italic">Kirim Doa & Ucapan</h2>
+                <p class="text-on-surface-variant text-sm text-center mb-8 px-2">Tuliskan doa dan harapan terbaik Anda untuk kami.</p>
+              </div>
+
+              <!-- FORM UCAPAN -->
+              <!-- Menggunakan atribut name yang sesuai dengan e.parameter Apps Script -->
+              <div class="bg-[#1a1a1a] p-6 rounded-[24px] border border-primary/20 shadow-[0_10px_30px_rgba(0,0,0,0.5)] animate-on-scroll mb-8">
+                <form id="wishes-form" class="flex flex-col gap-4">
+                  <div>
+                    <input type="text" id="wish-name" name="Nama" required placeholder="Nama Anda" class="w-full bg-[#131313] border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/40 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors text-sm font-body-md">
+                  </div>
+                  <div>
+                    <select id="wish-attendance" name="Kehadiran" required class="w-full bg-[#131313] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors text-sm font-body-md appearance-none">
+                        <option value="" disabled selected>Konfirmasi Kehadiran</option>
+                        <option value="Hadir">Hadir</option>
+                        <option value="Tidak Hadir">Tidak Hadir</option>
+                    </select>
+                  </div>
+                  <div>
+                    <textarea id="wish-message" name="Pesan" required rows="3" placeholder="Tulis ucapan dan doa..." class="w-full bg-[#131313] border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/40 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors text-sm font-body-md resize-none"></textarea>
+                  </div>
+                  <button type="submit" id="submit-btn" class="w-full mt-2 py-3 rounded-xl bg-primary text-[#131313] hover:bg-[#b8952b] transition-all font-body-md font-bold tracking-widest text-xs uppercase text-center shadow-[0_0_15px_rgba(212,175,55,0.4)] flex items-center justify-center gap-2">
+                    <span id="btn-text">Kirim Ucapan</span>
+                    <span id="btn-loader" class="hidden material-symbols-outlined animate-spin text-[18px]">progress_activity</span>
+                  </button>
+                </form>
+              </div>
+
+              <!-- DAFTAR UCAPAN (REAL-TIME FEED) -->
+              <div class="bg-[#1a1a1a] rounded-[24px] border border-primary/20 shadow-[0_10px_30px_rgba(0,0,0,0.5)] p-5 animate-on-scroll max-h-[350px] overflow-y-auto custom-scrollbar relative" id="wishes-list-container">
+                  <!-- Loading Indicator -->
+                  <div id="wishes-loading" class="flex flex-col items-center justify-center py-10 opacity-70">
+                      <span class="material-symbols-outlined animate-spin text-primary text-3xl mb-2">autorenew</span>
+                      <p class="text-xs text-on-surface-variant font-body-md">Memuat ucapan...</p>
+                  </div>
+                  
+                  <!-- Container List -->
+                  <div id="wishes-list" class="flex flex-col hidden divide-y divide-white/5">
+                      <!-- List ucapan akan di-render di sini oleh JavaScript -->
+                  </div>
+              </div>
+
+            </div>
+          </section>
+
           <section class="flex flex-col items-center justify-center px-8 py-24 w-full border-t border-white/5 relative overflow-hidden">
             <div class="absolute inset-0 bg-[url('assets/images/pengantin.jpg')] bg-cover bg-center bg-no-repeat"></div>
             <div class="absolute inset-0 bg-[#131313]/85 backdrop-blur-xl"></div>
@@ -468,7 +472,6 @@
             </div>
           </section>
 
-          <!-- SECTION HADIAH -->
           <section id="gift" class="flex flex-col items-center px-5 py-20 w-full border-t border-white/5">
             <div class="w-full max-w-[340px]">
               <div class="animate-on-scroll">
@@ -500,40 +503,48 @@
           <div class="flex justify-around items-center h-[76px] px-1">
             <li class="nav-item relative group list-none flex-1 flex justify-center">
               <a href="#home" class="nav-link flex flex-col items-center gap-1 transition-all text-[#8c8577] hover:text-[#d4af37]" onclick="moveTo('home')" title="Home">
-                <span class="material-symbols-outlined nav-icon text-[26px]">home</span>
-                <span class="font-body-md text-[10px] tracking-wide mt-1">Home</span>
+                <span class="material-symbols-outlined nav-icon text-[24px]">home</span>
+                <span class="font-body-md text-[9px] tracking-wide mt-1">Home</span>
               </a>
             </li> 
             <li class="nav-item relative group list-none flex-1 flex justify-center">
               <a href="#profile" class="nav-link flex flex-col items-center gap-1 transition-all text-[#8c8577] hover:text-[#d4af37]" onclick="moveTo('profile')" title="Profile">
-                <span class="material-symbols-outlined nav-icon text-[26px]">badge</span>
-                <span class="font-body-md text-[10px] tracking-wide mt-1">Profile</span>
+                <span class="material-symbols-outlined nav-icon text-[24px]">badge</span>
+                <span class="font-body-md text-[9px] tracking-wide mt-1">Profile</span>
               </a>
             </li> 
             <li class="nav-item relative group list-none flex-1 flex justify-center">
               <a href="#schedule" class="nav-link flex flex-col items-center gap-1 transition-all text-[#8c8577] hover:text-[#d4af37]" onclick="moveTo('schedule')" title="Alamat">
-                <span class="material-symbols-outlined nav-icon text-[26px]">calendar_today</span>
-                <span class="font-body-md text-[10px] tracking-wide mt-1">Alamat</span>
+                <span class="material-symbols-outlined nav-icon text-[24px]">calendar_today</span>
+                <span class="font-body-md text-[9px] tracking-wide mt-1">Alamat</span>
               </a>
             </li> 
             
             <li class="nav-item relative group list-none flex-1 flex justify-center">
               <a href="#story" class="nav-link flex flex-col items-center gap-1 transition-all text-[#8c8577] hover:text-[#d4af37]" onclick="moveTo('story')" title="Our Story">
-                <span class="material-symbols-outlined nav-icon text-[26px]">history_edu</span>
-                <span class="font-body-md text-[10px] tracking-wide mt-1">Our Story</span>
+                <span class="material-symbols-outlined nav-icon text-[24px]">history_edu</span>
+                <span class="font-body-md text-[9px] tracking-wide mt-1">Story</span>
               </a>
             </li> 
 
             <li class="nav-item relative group list-none flex-1 flex justify-center">
               <a href="#gallery" class="nav-link flex flex-col items-center gap-1 transition-all text-[#8c8577] hover:text-[#d4af37]" onclick="moveTo('gallery')" title="Gallery">
-                <span class="material-symbols-outlined nav-icon text-[26px]">photo_library</span>
-                <span class="font-body-md text-[10px] tracking-wide mt-1">Gallery</span>
+                <span class="material-symbols-outlined nav-icon text-[24px]">photo_library</span>
+                <span class="font-body-md text-[9px] tracking-wide mt-1">Gallery</span>
               </a>
             </li> 
+            <!-- NAVIGASI TAMBAHAN UNTUK MOBILE: UCAPAN -->
+            <li class="nav-item relative group list-none flex-1 flex justify-center">
+              <a href="#wishes" class="nav-link flex flex-col items-center gap-1 transition-all text-[#8c8577] hover:text-[#d4af37]" onclick="moveTo('wishes')" title="Ucapan">
+                <span class="material-symbols-outlined nav-icon text-[24px]">forum</span>
+                <span class="font-body-md text-[9px] tracking-wide mt-1">Ucapan</span>
+              </a>
+            </li> 
+            
             <li class="nav-item relative group list-none flex-1 flex justify-center">
               <a href="#gift" class="nav-link flex flex-col items-center gap-1 transition-all text-[#8c8577] hover:text-[#d4af37]" onclick="moveTo('gift')" title="Gift">
-                <span class="material-symbols-outlined nav-icon text-[26px]">featured_seasonal_and_gifts</span>
-                <span class="font-body-md text-[10px] tracking-wide mt-1">Gift</span>
+                <span class="material-symbols-outlined nav-icon text-[24px]">featured_seasonal_and_gifts</span>
+                <span class="font-body-md text-[9px] tracking-wide mt-1">Gift</span>
               </a>
             </li> 
           </div>
@@ -546,19 +557,11 @@
   <script src="assets/script/script.js"></script>
 </body>
 
-  <!-- ========================================== -->
-  <!-- LIGHTBOX MODAL (FOTO FULL SCREEN BERGAYA GALLERY) -->
-  <!-- ========================================== -->
   <div id="lightbox-modal" class="fixed inset-0 z-[99999] bg-black/95 hidden flex-col items-center justify-center opacity-0 transition-opacity duration-300">
-    
-    <!-- Bagian Atas (Header Lightbox) -->
     <div class="absolute top-0 left-0 right-0 p-4 flex justify-between items-center z-50 bg-gradient-to-b from-black/70 to-transparent">
-        <!-- Counter Foto (Kiri) -->
         <div class="text-white font-body-md text-sm tracking-widest pl-2">
             <span id="lightbox-counter">1 / 8</span>
         </div>
-        
-        <!-- Action Tools (Kanan) -->
         <div class="flex items-center gap-4 pr-2">
             <button class="text-white/80 hover:text-white transition-colors" onclick="zoomInLightbox()">
                 <span class="material-symbols-outlined text-2xl">zoom_in</span>
@@ -574,18 +577,12 @@
             </button>
         </div>
     </div>
-
-    <!-- Tombol Navigasi Kiri (Prev) -->
     <button class="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors z-50 p-2" onclick="prevLightboxImage(event)">
         <span class="material-symbols-outlined text-4xl md:text-5xl">chevron_left</span>
     </button>
-    
-    <!-- Tombol Navigasi Kanan (Next) -->
     <button class="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors z-50 p-2" onclick="nextLightboxImage(event)">
         <span class="material-symbols-outlined text-4xl md:text-5xl">chevron_right</span>
     </button>
-
-    <!-- Kontainer Gambar -->
     <div class="w-full h-full flex items-center justify-center p-4 md:p-12 cursor-zoom-out" onclick="closeLightbox(event)" id="lightbox-bg-area">
         <img id="lightbox-img" src="" alt="Fullscreen" class="max-w-full max-h-full object-contain shadow-[0_0_50px_rgba(0,0,0,0.8)] transform scale-95 transition-all duration-300">
     </div>

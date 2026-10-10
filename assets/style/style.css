@@ -77,7 +77,6 @@ html, body {
   color: #d4af37 !important; 
 }
 
-/* ANIMASI BERGERAK / EXPAND MENU PC */
 .pc-expand-link {
   transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
               background-color 0.4s ease, 
@@ -154,7 +153,6 @@ body.scroll-locked {
   cursor: pointer;
 }
 
-/* State Animasi Saat Tombol Segel Diklik */
 .is-opening .env-flap {
   transform: rotateX(180deg); 
   z-index: 10; 
@@ -190,7 +188,7 @@ body.scroll-locked {
 }
 
 /* ========================================== */
-/* 9. ANIMASI ROTASI MUSIK PLAYER             */
+/* 9. ANIMASI MUSIK & KARTU UCAPAN (POP-IN)   */
 /* ========================================== */
 @keyframes spin-slow {
   from { transform: rotate(0deg); }
@@ -198,4 +196,22 @@ body.scroll-locked {
 }
 .spin-icon {
   animation: spin-slow 4s linear infinite;
+}
+
+@keyframes pop-in {
+  0% { 
+    opacity: 0; 
+    transform: translateY(40px) scale(0.9); 
+  }
+  60% { 
+    opacity: 1; 
+    transform: translateY(-5px) scale(1.02); 
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateY(0) scale(1); 
+  }
+}
+.animate-pop-in {
+  animation: pop-in 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
