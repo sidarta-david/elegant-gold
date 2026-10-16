@@ -481,8 +481,70 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }, 3000); 
     }
+
+    /* ------------------------------------------- */
+    /* LOGIKA TOGGLE AMPLOP DIGITAL (GIFT)         */
+    /* ------------------------------------------- */
+    const toggleGiftBtn = document.getElementById('toggle-gift-btn');
+    const giftContainer = document.getElementById('gift-cards-container');
+    const giftBtnIcon = document.getElementById('gift-btn-icon');
+    const giftBtnText = document.getElementById('gift-btn-text');
+
+    if(toggleGiftBtn && giftContainer) {
+        toggleGiftBtn.addEventListener('click', () => {
+            giftContainer.classList.toggle('is-expanded');
+            
+            if(giftContainer.classList.contains('is-expanded')) {
+                // Expand
+                giftContainer.style.maxHeight = giftContainer.scrollHeight + "px";
+                giftContainer.style.opacity = "1";
+                giftContainer.style.marginTop = "2rem";
+                
+                giftBtnIcon.innerText = "keyboard_arrow_up";
+                giftBtnText.innerText = "Tutup";
+                
+                // Set timeout to adapt to max-height auto dynamically after transition
+                setTimeout(() => {
+                    if(giftContainer.classList.contains('is-expanded')) {
+                        giftContainer.style.maxHeight = "none";
+                    }
+                }, 700);
+
+            } else {
+                // Collapse
+                giftContainer.style.maxHeight = giftContainer.scrollHeight + "px"; 
+                // Trigger reflow
+                giftContainer.offsetHeight; 
+                
+                giftContainer.style.maxHeight = "0";
+                giftContainer.style.opacity = "0";
+                giftContainer.style.marginTop = "0";
+                
+                giftBtnIcon.innerText = "arrow_right_alt";
+                giftBtnText.innerText = "Klik Disini";
+            }
+        });
+    }
 });
 
+/* ========================================== */
+/* FUNGSI COPY TEXT TO CLIPBOARD              */
+/* ========================================== */
+window.copyText = function(elementId, btnElement) {
+    const textToCopy = document.getElementById(elementId).innerText;
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        const originalHtml = btnElement.innerHTML;
+        btnElement.innerHTML = `<span class="material-symbols-outlined text-[16px]">check</span> Tersalin`;
+        btnElement.classList.add('text-primary', 'border-primary/50');
+        
+        setTimeout(() => {
+            btnElement.innerHTML = originalHtml;
+            btnElement.classList.remove('text-primary', 'border-primary/50');
+        }, 2000);
+    }).catch(err => {
+        console.error('Gagal menyalin teks: ', err);
+    });
+};
 
 /* ========================================== */
 /* 5. LOGIKA FORM BUKU TAMU & ANIMASI KARTU   */
