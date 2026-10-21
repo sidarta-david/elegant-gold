@@ -1,5 +1,5 @@
 /* ========================================== */
-/* 1. LOGIKA BACKGROUND MUSIC (AUTOPLAY/MUTE) */
+/* ANOTASI 1: KONTROL MUSIK LATAR (PLAY/PAUSE)*/
 /* ========================================== */
 let isMusicPlaying = false;
 
@@ -20,7 +20,7 @@ function toggleMusic() {
 }
 
 /* ========================================== */
-/* 2. LOGIKA COVER & ANIMASI BUKA AMPLOP      */
+/* ANOTASI 2: PEMBUKAAN AMPLOP & COVER DEPAN  */
 /* ========================================== */
 function openInvitation() {
     document.getElementById('envelope-wrapper').classList.add('is-opening');
@@ -46,7 +46,7 @@ function openInvitation() {
                 musicIcon.innerText = 'music_note'; 
                 musicIcon.classList.add('spin-icon');
             }).catch(err => {
-                console.log("Autoplay dicegah:", err);
+                console.log("Autoplay dicegah browser:", err);
                 isMusicPlaying = false;
                 musicIcon.innerText = 'volume_off'; 
                 musicIcon.classList.remove('spin-icon');
@@ -56,7 +56,7 @@ function openInvitation() {
 }
 
 /* ========================================== */
-/* 3. LOGIKA FOTO FULL SCREEN (LIGHTBOX)      */
+/* ANOTASI 3: MODAL LIGHTBOX FOTO FULLSCREEN  */
 /* ========================================== */
 const galleryImages = [
     "assets/images/Gallery-1.jpg",
@@ -175,6 +175,7 @@ function playSlideshow() {
     }
 }
 
+// Navigasi Tombol Panah Keyboard
 document.addEventListener('keydown', (e) => {
     const modal = document.getElementById('lightbox-modal');
     if (!modal.classList.contains('hidden')) {
@@ -184,9 +185,8 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-
 /* ========================================== */
-/* 4. LOGIKA UTAMA (CANVAS, NAVBAR, SCROLL)   */
+/* ANOTASI 4: EFEK EFEK PARTIKEL KUNANG-KUNANG*/
 /* ========================================== */
 document.addEventListener("DOMContentLoaded", () => {
     
@@ -347,6 +347,9 @@ document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener('resize', initFireflies);
     }
 
+    /* ========================================== */
+    /* ANOTASI 5: OBSERVER NAVIGASI SCROLL AKTIF */
+    /* ========================================== */
     window.moveTo = function(sectionId) {
         const targetElement = document.getElementById(sectionId);
         if (targetElement && container) {
@@ -425,6 +428,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const animatedElements = document.querySelectorAll('.animate-on-scroll');
     animatedElements.forEach(el => animObserver.observe(el));
 
+    /* ========================================== */
+    /* ANOTASI 6: LOGIKA TIMER HITUNG MUNDUR      */
+    /* ========================================== */
     const HARI_TANGGAL = "2025-10-25"; 
     const JAM_ACARA    = "11:00:00";   
     const targetDate = new Date(`${HARI_TANGGAL}T${JAM_ACARA}`).getTime();
@@ -456,6 +462,9 @@ document.addEventListener("DOMContentLoaded", () => {
         
     }, 1000);
 
+    /* ========================================== */
+    /* ANOTASI 7: SLIDESHOW GALERI FOTO OTOMATIS  */
+    /* ========================================== */
     const slides = document.querySelectorAll('.slide-img');
     const dots = document.querySelectorAll('.slide-dot');
     let currentSlide = 0;
@@ -482,9 +491,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 3000); 
     }
 
-    /* ------------------------------------------- */
-    /* LOGIKA TOGGLE AMPLOP DIGITAL (GIFT)         */
-    /* ------------------------------------------- */
+    /* ========================================== */
+    /* ANOTASI 8: ACCORDION BUKA AMPLOP DIGITAL   */
+    /* ========================================== */
     const toggleGiftBtn = document.getElementById('toggle-gift-btn');
     const giftContainer = document.getElementById('gift-cards-container');
     const giftBtnIcon = document.getElementById('gift-btn-icon');
@@ -495,7 +504,6 @@ document.addEventListener("DOMContentLoaded", () => {
             giftContainer.classList.toggle('is-expanded');
             
             if(giftContainer.classList.contains('is-expanded')) {
-                // Expand
                 giftContainer.style.maxHeight = giftContainer.scrollHeight + "px";
                 giftContainer.style.opacity = "1";
                 giftContainer.style.marginTop = "2rem";
@@ -503,7 +511,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 giftBtnIcon.innerText = "keyboard_arrow_up";
                 giftBtnText.innerText = "Tutup";
                 
-                // Set timeout to adapt to max-height auto dynamically after transition
                 setTimeout(() => {
                     if(giftContainer.classList.contains('is-expanded')) {
                         giftContainer.style.maxHeight = "none";
@@ -511,9 +518,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }, 700);
 
             } else {
-                // Collapse
                 giftContainer.style.maxHeight = giftContainer.scrollHeight + "px"; 
-                // Trigger reflow
                 giftContainer.offsetHeight; 
                 
                 giftContainer.style.maxHeight = "0";
@@ -528,7 +533,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* ========================================== */
-/* FUNGSI COPY TEXT TO CLIPBOARD              */
+/* ANOTASI 9: FITUR SALIN TEKS REKENING       */
 /* ========================================== */
 window.copyText = function(elementId, btnElement) {
     const textToCopy = document.getElementById(elementId).innerText;
@@ -547,9 +552,8 @@ window.copyText = function(elementId, btnElement) {
 };
 
 /* ========================================== */
-/* 5. LOGIKA FORM BUKU TAMU & ANIMASI KARTU   */
+/* ANOTASI 10: FORM UCAPAN & GOOGLE SHEETS    */
 /* ========================================== */
-
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwzOtSPn24AJKMRMuRe7QDYHRRQjWBXjFDqJRUiV8VQP3tD1bxYpFHQb-FxuSFGqTg59Q/exec';
 
 const form = document.getElementById('wishes-form');
@@ -606,7 +610,6 @@ function escapeHTML(str) {
     );
 }
 
-// GET API: Membaca (Read) dan Render DOM Kartu Ucapan Interaktif dengan Animasi Pop-In
 function fetchWishes() {
     if(!listContainer) return;
     

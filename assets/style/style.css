@@ -1,5 +1,5 @@
 /* ========================================== */
-/* 1. PENGATURAN DASAR & UTILITAS             */
+/* ANOTASI 1: PENGATURAN DASAR & SCROLLBAR    */
 /* ========================================== */
 html, body {
   margin: 0;
@@ -10,9 +10,11 @@ html, body {
   overflow: hidden; 
 }
 
+/* Area aman tak terpotong notch layar HP */
 .pb-safe { padding-bottom: env(safe-area-inset-bottom, 16px); }
 .pt-safe { padding-top: env(safe-area-inset-top, 16px); }
 
+/* Scrollbar Elegan Kustom Warna Emas */
 .custom-scrollbar::-webkit-scrollbar {
   width: 5px; 
 }
@@ -28,7 +30,7 @@ html, body {
 }
 
 /* ========================================== */
-/* 2. BACKGROUND & ANIMASI KONTEN             */
+/* ANOTASI 2: BACKGROUND & ANIMASI ON-SCROLL  */
 /* ========================================== */
 .bg-pattern-floral {
   background-image: radial-gradient(#d4af37 0.5px, transparent 0.5px), radial-gradient(#d4af37 0.5px, #1a1a1a 0.5px);
@@ -37,6 +39,7 @@ html, body {
   opacity: 0.9;
 }
 
+/* Efek kemunculan elemen saat di-scroll */
 .animate-on-scroll {
   opacity: 0; 
   transform: translateY(30px); 
@@ -48,7 +51,7 @@ html, body {
 }
 
 /* ========================================== */
-/* 3. MENU NAVIGASI (GLOBAL)                  */
+/* ANOTASI 3: NAVIGASI MENU (MOBILE & PC)     */
 /* ========================================== */
 .nav-icon {
   transition: font-variation-settings 0.3s ease-in-out, color 0.3s ease;
@@ -57,16 +60,11 @@ html, body {
   font-variation-settings: 'FILL' 1;
 }
 
-/* ========================================== */
-/* 4. PENGUNCI MENU MOBILE (AKTIF)            */
-/* ========================================== */
 .nav-link:not(.pc-expand-link).active-menu {
   color: #d4af37 !important; 
 }
 
-/* ========================================== */
-/* 5. PENGUNCI MENU DESKTOP / PC (AKTIF)      */
-/* ========================================== */
+/* Kustom Efek Menu Desktop Melebarkan Teks */
 .pc-expand-link.active-menu {
   width: 8rem !important; 
   background-color: rgba(212, 175, 55, 0.1) !important; 
@@ -87,7 +85,7 @@ html, body {
 }
 
 /* ========================================== */
-/* 6. ANIMASI CSS COVER AMPLOP 3D             */
+/* ANOTASI 4: ANIMASI 3D AMPLOP COVER DEPAM   */
 /* ========================================== */
 body.scroll-locked {
   overflow: hidden !important;
@@ -167,7 +165,7 @@ body.scroll-locked {
 }
 
 /* ========================================== */
-/* 8. ANIMASI OUR STORY (TIMELINE KHUSUS)     */
+/* ANOTASI 5: ANIMASI GARIS TIMELINE STORY    */
 /* ========================================== */
 .animate-on-scroll.timeline-track {
   opacity: 1; 
@@ -188,7 +186,7 @@ body.scroll-locked {
 }
 
 /* ========================================== */
-/* 9. ANIMASI MUSIK & KARTU UCAPAN (POP-IN)   */
+/* ANOTASI 6: KEYFRAME ANIMASI MUSIK & UCAPAN */
 /* ========================================== */
 @keyframes spin-slow {
   from { transform: rotate(0deg); }
