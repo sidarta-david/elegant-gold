@@ -431,7 +431,7 @@ document.addEventListener("DOMContentLoaded", () => {
     /* ========================================== */
     /* ANOTASI 6: LOGIKA TIMER HITUNG MUNDUR      */
     /* ========================================== */
-    const HARI_TANGGAL = "2025-10-25"; 
+    const HARI_TANGGAL = "2026-10-25"; 
     const JAM_ACARA    = "11:00:00";   
     const targetDate = new Date(`${HARI_TANGGAL}T${JAM_ACARA}`).getTime();
     const padZero = (num) => num < 10 ? `0${num}` : num;
