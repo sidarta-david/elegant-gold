@@ -1,195 +1,41 @@
 /* ========================================== */
-/* ANOTASI 1: KONTROL MUSIK LATAR (PLAY/PAUSE)*/
-/* ========================================== */
-let isMusicPlaying = false;
-
-function toggleMusic() {
-    const bgMusic = document.getElementById('bg-music');
-    const musicIcon = document.getElementById('music-icon');
-    
-    if (isMusicPlaying) {
-        bgMusic.pause();
-        musicIcon.innerText = 'volume_off'; 
-        musicIcon.classList.remove('spin-icon'); 
-    } else {
-        bgMusic.play();
-        musicIcon.innerText = 'music_note'; 
-        musicIcon.classList.add('spin-icon'); 
-    }
-    isMusicPlaying = !isMusicPlaying;
-}
-
-/* ========================================== */
-/* ANOTASI 2: PEMBUKAAN AMPLOP & COVER DEPAN  */
-/* ========================================== */
-function openInvitation() {
-    document.getElementById('envelope-wrapper').classList.add('is-opening');
-    document.getElementById('cover-hint-1').style.opacity = '0';
-    document.getElementById('cover-hint-2').style.opacity = '0';
-    
-    setTimeout(() => {
-        document.getElementById('welcome-cover').classList.add('cover-opened');
-        document.body.classList.remove('scroll-locked');
-        
-        const musicContainer = document.getElementById('music-container');
-        if(musicContainer) {
-            musicContainer.classList.remove('opacity-0', 'pointer-events-none');
-        }
-        
-        const bgMusic = document.getElementById('bg-music');
-        const musicIcon = document.getElementById('music-icon');
-        
-        if(bgMusic) {
-            bgMusic.volume = 1.0;
-            bgMusic.play().then(() => {
-                isMusicPlaying = true;
-                musicIcon.innerText = 'music_note'; 
-                musicIcon.classList.add('spin-icon');
-            }).catch(err => {
-                console.log("Autoplay dicegah browser:", err);
-                isMusicPlaying = false;
-                musicIcon.innerText = 'volume_off'; 
-                musicIcon.classList.remove('spin-icon');
-            });
-        }
-    }, 2500); 
-}
-
-/* ========================================== */
-/* ANOTASI 3: MODAL LIGHTBOX FOTO FULLSCREEN  */
-/* ========================================== */
-const galleryImages = [
-    "assets/images/Gallery-1.jpg",
-    "assets/images/Gallery-2.jpg",
-    "assets/images/Gallery-3.jpg",
-    "assets/images/Gallery-4.jpg",
-    "assets/images/Gallery-5.jpg",
-    "assets/images/Gallery-6.jpg",
-    "assets/images/Gallery-7.jpg",
-    "assets/images/Gallery-8.jpg"
-];
-
-let currentLightboxIndex = 0;
-let lightboxZoomLevel = 1;
-let lightboxSlideshowInterval;
-
-function openLightbox(imageSrc) {
-    const fileName = decodeURIComponent(imageSrc).split('/').pop(); 
-    let index = galleryImages.findIndex(src => src.includes(fileName));
-    if(index === -1) index = 0; 
-    
-    currentLightboxIndex = index;
-    updateLightboxContent();
-
-    const modal = document.getElementById('lightbox-modal');
-    const modalImg = document.getElementById('lightbox-img');
-    
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-    
-    setTimeout(() => {
-        modal.classList.remove('opacity-0');
-        modalImg.classList.remove('scale-95');
-        modalImg.classList.add('scale-100');
-    }, 10);
-}
-
-function updateLightboxContent() {
-    const modalImg = document.getElementById('lightbox-img');
-    const counter = document.getElementById('lightbox-counter');
-    
-    lightboxZoomLevel = 1;
-    modalImg.style.transform = `scale(${lightboxZoomLevel})`;
-    
-    modalImg.style.opacity = '0.3';
-    setTimeout(() => {
-        modalImg.src = galleryImages[currentLightboxIndex];
-        modalImg.style.opacity = '1';
-    }, 150);
-
-    if(counter) {
-        counter.innerText = `${currentLightboxIndex + 1} / ${galleryImages.length}`;
-    }
-}
-
-function nextLightboxImage(e) {
-    if(e) e.stopPropagation(); 
-    currentLightboxIndex = (currentLightboxIndex + 1) % galleryImages.length;
-    updateLightboxContent();
-}
-
-function prevLightboxImage(e) {
-    if(e) e.stopPropagation();
-    currentLightboxIndex = (currentLightboxIndex - 1 + galleryImages.length) % galleryImages.length;
-    updateLightboxContent();
-}
-
-function closeLightbox(e) {
-    if (e && e.target.id !== 'lightbox-bg-area' && e.target.innerText !== 'close') {
-        return;
-    }
-    
-    const modal = document.getElementById('lightbox-modal');
-    const modalImg = document.getElementById('lightbox-img');
-    
-    modal.classList.add('opacity-0');
-    modalImg.classList.remove('scale-100');
-    modalImg.classList.add('scale-95');
-    
-    clearInterval(lightboxSlideshowInterval);
-    document.getElementById('lightbox-play-icon').innerText = 'play_arrow';
-    
-    setTimeout(() => {
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-    }, 300);
-}
-
-function zoomInLightbox() {
-    const modalImg = document.getElementById('lightbox-img');
-    lightboxZoomLevel += 0.2;
-    if (lightboxZoomLevel > 2.2) lightboxZoomLevel = 1; 
-    modalImg.style.transform = `scale(${lightboxZoomLevel})`;
-}
-
-function toggleFullscreen() {
-    if (!document.fullscreenElement) {
-        document.getElementById('lightbox-modal').requestFullscreen().catch(err => {
-            console.log(`Error: ${err.message}`);
-        });
-    } else {
-        document.exitFullscreen();
-    }
-}
-
-function playSlideshow() {
-    const playIcon = document.getElementById('lightbox-play-icon');
-    if (playIcon.innerText === 'play_arrow') {
-        playIcon.innerText = 'pause';
-        lightboxSlideshowInterval = setInterval(() => {
-            nextLightboxImage();
-        }, 2500); 
-    } else {
-        playIcon.innerText = 'play_arrow';
-        clearInterval(lightboxSlideshowInterval);
-    }
-}
-
-// Navigasi Tombol Panah Keyboard
-document.addEventListener('keydown', (e) => {
-    const modal = document.getElementById('lightbox-modal');
-    if (!modal.classList.contains('hidden')) {
-        if (e.key === 'ArrowRight') nextLightboxImage();
-        if (e.key === 'ArrowLeft') prevLightboxImage();
-        if (e.key === 'Escape') closeLightbox({target: {innerText: 'close'}});
-    }
-});
-
-/* ========================================== */
-/* ANOTASI 4: EFEK EFEK PARTIKEL KUNANG-KUNANG*/
+/* ANOTASI 11: MESIN INJEKSI DATA (DOM HYDRATION) */
 /* ========================================== */
 document.addEventListener("DOMContentLoaded", () => {
+    const config = window.WEDDING_CONFIG;
     
+    // 1. Helper: Mengambil data string terenkapsulasi bersarang
+    const getNestedValue = (obj, path) => {
+        if (!path || !obj) return null;
+        return path.split('.').reduce((acc, part) => {
+            return acc ? acc[part] : null;
+        }, obj);
+    };
+
+    // 2. Logika Template Engine - Menangani pencarian atribut semantik
+    if (config) {
+        document.querySelectorAll('[data-template]').forEach(el => {
+            const path = el.getAttribute('data-template');
+            const val = getNestedValue(config, path);
+            if (val !== null && val !== undefined) el.textContent = val;
+        });
+
+        document.querySelectorAll('[data-template-src]').forEach(el => {
+            const path = el.getAttribute('data-template-src');
+            const val = getNestedValue(config, path);
+            if (val) el.setAttribute('src', val);
+        });
+
+        document.querySelectorAll('[data-template-href]').forEach(el => {
+            const path = el.getAttribute('data-template-href');
+            const val = getNestedValue(config, path);
+            if (val) el.setAttribute('href', val);
+        });
+    }
+
+    /* ========================================== */
+    /* ANOTASI 4: EFEK EFEK PARTIKEL KUNANG-KUNANG*/
+    /* ========================================== */
     const container = document.getElementById('mobile-container');
     const sections = document.querySelectorAll('main > section'); 
     const navLinks = document.querySelectorAll('.nav-link');
@@ -431,9 +277,15 @@ document.addEventListener("DOMContentLoaded", () => {
     /* ========================================== */
     /* ANOTASI 6: LOGIKA TIMER HITUNG MUNDUR      */
     /* ========================================== */
-    const HARI_TANGGAL = "2026-10-25"; 
-    const JAM_ACARA    = "11:00:00";   
-    const targetDate = new Date(`${HARI_TANGGAL}T${JAM_ACARA}`).getTime();
+    let cdDate = "2026-10-25"; 
+    let cdTime = "11:00:00";
+    
+    if (config) {
+        cdDate = getNestedValue(config, 'acara.resepsi.countdownDate') || cdDate;
+        cdTime = getNestedValue(config, 'acara.resepsi.countdownTime') || cdTime;
+    }
+    
+    const targetDate = new Date(`${cdDate}T${cdTime}`).getTime();
     const padZero = (num) => num < 10 ? `0${num}` : num;
     
     const timerInterval = setInterval(() => {
@@ -529,6 +381,191 @@ document.addEventListener("DOMContentLoaded", () => {
                 giftBtnText.innerText = "Klik Disini";
             }
         });
+    }
+});
+
+/* ========================================== */
+/* ANOTASI 1: KONTROL MUSIK LATAR (PLAY/PAUSE)*/
+/* ========================================== */
+let isMusicPlaying = false;
+function toggleMusic() {
+    const bgMusic = document.getElementById('bg-music');
+    const musicIcon = document.getElementById('music-icon');
+    
+    if (isMusicPlaying) {
+        bgMusic.pause();
+        musicIcon.innerText = 'volume_off'; 
+        musicIcon.classList.remove('spin-icon'); 
+    } else {
+        bgMusic.play();
+        musicIcon.innerText = 'music_note'; 
+        musicIcon.classList.add('spin-icon'); 
+    }
+    isMusicPlaying = !isMusicPlaying;
+}
+
+/* ========================================== */
+/* ANOTASI 2: PEMBUKAAN AMPLOP & COVER DEPAN  */
+/* ========================================== */
+function openInvitation() {
+    document.getElementById('envelope-wrapper').classList.add('is-opening');
+    document.getElementById('cover-hint-1').style.opacity = '0';
+    document.getElementById('cover-hint-2').style.opacity = '0';
+    
+    setTimeout(() => {
+        document.getElementById('welcome-cover').classList.add('cover-opened');
+        document.body.classList.remove('scroll-locked');
+        
+        const musicContainer = document.getElementById('music-container');
+        if(musicContainer) {
+            musicContainer.classList.remove('opacity-0', 'pointer-events-none');
+        }
+        
+        const bgMusic = document.getElementById('bg-music');
+        const musicIcon = document.getElementById('music-icon');
+        
+        if(bgMusic) {
+            bgMusic.volume = 1.0;
+            bgMusic.play().then(() => {
+                isMusicPlaying = true;
+                musicIcon.innerText = 'music_note'; 
+                musicIcon.classList.add('spin-icon');
+            }).catch(err => {
+                console.log("Autoplay dicegah browser:", err);
+                isMusicPlaying = false;
+                musicIcon.innerText = 'volume_off'; 
+                musicIcon.classList.remove('spin-icon');
+            });
+        }
+    }, 2500); 
+}
+
+/* ========================================== */
+/* ANOTASI 3: MODAL LIGHTBOX FOTO FULLSCREEN  */
+/* ========================================== */
+const galleryImages = [
+    "assets/images/Gallery-1.jpg",
+    "assets/images/Gallery-2.jpg",
+    "assets/images/Gallery-3.jpg",
+    "assets/images/Gallery-4.jpg",
+    "assets/images/Gallery-5.jpg",
+    "assets/images/Gallery-6.jpg",
+    "assets/images/Gallery-7.jpg",
+    "assets/images/Gallery-8.jpg"
+];
+
+let currentLightboxIndex = 0;
+let lightboxZoomLevel = 1;
+let lightboxSlideshowInterval;
+
+function openLightbox(imageSrc) {
+    const fileName = decodeURIComponent(imageSrc).split('/').pop(); 
+    let index = galleryImages.findIndex(src => src.includes(fileName));
+    if(index === -1) index = 0; 
+    
+    currentLightboxIndex = index;
+    updateLightboxContent();
+
+    const modal = document.getElementById('lightbox-modal');
+    const modalImg = document.getElementById('lightbox-img');
+    
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    
+    setTimeout(() => {
+        modal.classList.remove('opacity-0');
+        modalImg.classList.remove('scale-95');
+        modalImg.classList.add('scale-100');
+    }, 10);
+}
+
+function updateLightboxContent() {
+    const modalImg = document.getElementById('lightbox-img');
+    const counter = document.getElementById('lightbox-counter');
+    
+    lightboxZoomLevel = 1;
+    modalImg.style.transform = `scale(${lightboxZoomLevel})`;
+    
+    modalImg.style.opacity = '0.3';
+    setTimeout(() => {
+        modalImg.src = galleryImages[currentLightboxIndex];
+        modalImg.style.opacity = '1';
+    }, 150);
+
+    if(counter) {
+        counter.innerText = `${currentLightboxIndex + 1} / ${galleryImages.length}`;
+    }
+}
+
+function nextLightboxImage(e) {
+    if(e) e.stopPropagation(); 
+    currentLightboxIndex = (currentLightboxIndex + 1) % galleryImages.length;
+    updateLightboxContent();
+}
+
+function prevLightboxImage(e) {
+    if(e) e.stopPropagation();
+    currentLightboxIndex = (currentLightboxIndex - 1 + galleryImages.length) % galleryImages.length;
+    updateLightboxContent();
+}
+
+function closeLightbox(e) {
+    if (e && e.target.id !== 'lightbox-bg-area' && e.target.innerText !== 'close') {
+        return;
+    }
+    
+    const modal = document.getElementById('lightbox-modal');
+    const modalImg = document.getElementById('lightbox-img');
+    
+    modal.classList.add('opacity-0');
+    modalImg.classList.remove('scale-100');
+    modalImg.classList.add('scale-95');
+    
+    clearInterval(lightboxSlideshowInterval);
+    document.getElementById('lightbox-play-icon').innerText = 'play_arrow';
+    
+    setTimeout(() => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+    }, 300);
+}
+
+function zoomInLightbox() {
+    const modalImg = document.getElementById('lightbox-img');
+    lightboxZoomLevel += 0.2;
+    if (lightboxZoomLevel > 2.2) lightboxZoomLevel = 1; 
+    modalImg.style.transform = `scale(${lightboxZoomLevel})`;
+}
+
+function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+        document.getElementById('lightbox-modal').requestFullscreen().catch(err => {
+            console.log(`Error: ${err.message}`);
+        });
+    } else {
+        document.exitFullscreen();
+    }
+}
+
+function playSlideshow() {
+    const playIcon = document.getElementById('lightbox-play-icon');
+    if (playIcon.innerText === 'play_arrow') {
+        playIcon.innerText = 'pause';
+        lightboxSlideshowInterval = setInterval(() => {
+            nextLightboxImage();
+        }, 2500); 
+    } else {
+        playIcon.innerText = 'play_arrow';
+        clearInterval(lightboxSlideshowInterval);
+    }
+}
+
+document.addEventListener('keydown', (e) => {
+    const modal = document.getElementById('lightbox-modal');
+    if (!modal.classList.contains('hidden')) {
+        if (e.key === 'ArrowRight') nextLightboxImage();
+        if (e.key === 'ArrowLeft') prevLightboxImage();
+        if (e.key === 'Escape') closeLightbox({target: {innerText: 'close'}});
     }
 });
 
