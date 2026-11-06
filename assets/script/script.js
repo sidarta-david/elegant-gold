@@ -1,17 +1,18 @@
-/* ========================================================= */
-/* ANOTASI 1: MESIN INJEKSI DATA & PENGATURAN FITUR MENU     */
-/* ========================================================= */
+/* ================================================================= */
+/* CORE SYSTEM ENGINE LOGIC                                          */
+/* STATUS: DO NOT EDIT (DILARANG MENGUBAH AREA INI)                  */
+/* PETUNJUK: File ini berisi arsitektur logika sistem inti.          */
+/* ================================================================= */
+
 document.addEventListener("DOMContentLoaded", () => {
     const config = window.WEDDING_CONFIG;
     
-    // Helper: Mengambil data bersarang (contoh: 'mempelai.wanita.namaLengkap')
     const getNestedValue = (obj, path) => {
         if (!path || !obj) return null;
         return path.split('.').reduce((acc, part) => acc ? acc[part] : null, obj);
     };
 
     if (config) {
-        // A. Injeksi Teks & URL ke elemen data-template HTML
         document.querySelectorAll('[data-template]').forEach(el => {
             const val = getNestedValue(config, el.getAttribute('data-template'));
             if (val !== null && val !== undefined) el.textContent = val;
@@ -25,11 +26,10 @@ document.addEventListener("DOMContentLoaded", () => {
             if (val) el.setAttribute('href', val);
         });
 
-        // B. Merender Daftar "Our Story" secara dinamis
         const storyContainer = document.getElementById('story-container');
         if (storyContainer && config.ceritaCinta && config.ceritaCinta.length > 0) {
             config.ceritaCinta.forEach((cerita, index) => {
-                const delay = 0.1 + (index * 0.2); // Jeda animasi agar berurutan
+                const delay = 0.1 + (index * 0.2); 
                 const color = cerita.warnaAksen || "#d4af37";
                 const storyHTML = `
                 <div class="timeline-item animate-on-scroll mb-10 relative pl-6 text-left group z-10" style="transition-delay: ${delay}s;">
@@ -45,13 +45,11 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // C. Merender Daftar "Gallery Foto" & Slideshow
         const galleryContainer = document.getElementById('gallery-slideshow-container');
         if (galleryContainer && config.galeri && config.galeri.foto) {
             let imgHTML = '';
             let dotsHTML = '<div class="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5 z-10 flex-wrap px-4">';
             
-            // Perbarui array global lightbox dari config
             window.galleryImages = config.galeri.foto;
 
             config.galeri.foto.forEach((src, idx) => {
@@ -63,10 +61,9 @@ document.addEventListener("DOMContentLoaded", () => {
             dotsHTML += '</div>';
             galleryContainer.innerHTML = imgHTML + dotsHTML;
             
-            initSlideshow(); // Jalankan slideshow setelah gambar disuntikkan ke HTML
+            initSlideshow(); 
         }
 
-        // D. Pengaturan Aktif/Nonaktif Fitur Menu Terotomatisasi (Hide/Show)
         if (config.fitur) {
             const idMapping = {
                 home: 'home', profile: 'profile', schedule: 'schedule', 
@@ -79,11 +76,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 const sectionId = idMapping[key];
                 
                 if (sectionId && !isEnabled) {
-                    // Sembunyikan halaman/section-nya
                     const sectionEl = document.getElementById(sectionId);
                     if (sectionEl) sectionEl.style.display = 'none';
 
-                    // Sembunyikan tombol navigasi menu-nya (Mobile & Desktop)
                     const navLinks = document.querySelectorAll(`a.nav-link[href="#${sectionId}"]`);
                     navLinks.forEach(link => {
                         const liEl = link.closest('li.nav-item');
@@ -94,9 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    /* ========================================================= */
-    /* ANOTASI 2: ANIMASI PARTIKEL & SCROLL LISTENER             */
-    /* ========================================================= */
     const container = document.getElementById('mobile-container');
     const sections = document.querySelectorAll('main > section'); 
     const navLinks = document.querySelectorAll('.nav-link');
@@ -312,9 +304,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelectorAll('.animate-on-scroll').forEach(el => animObserver.observe(el));
 
-    /* ========================================================= */
-    /* ANOTASI 3: PENGATURAN HITUNG MUNDUR (TIMER)               */
-    /* ========================================================= */
     let cdDate = "2026-10-25"; 
     let cdTime = "11:00:00";
     if (config) {
@@ -349,9 +338,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if(elSecs) elSecs.innerText = padZero(Math.floor((diff % (1000 * 60)) / 1000));
     }, 1000);
 
-    /* ========================================================= */
-    /* ANOTASI 4: INITIALISASI SLIDESHOW FOTO OTOMATIS           */
-    /* ========================================================= */
     function initSlideshow() {
         const slides = document.querySelectorAll('.slide-img');
         const dots = document.querySelectorAll('.slide-dot');
@@ -380,9 +366,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    /* ========================================================= */
-    /* ANOTASI 5: ACCORDION AMPLOP DIGITAL                       */
-    /* ========================================================= */
     const toggleGiftBtn = document.getElementById('toggle-gift-btn');
     const giftContainer = document.getElementById('gift-cards-container');
     const giftBtnIcon = document.getElementById('gift-btn-icon');
@@ -413,9 +396,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-/* ========================================================= */
-/* ANOTASI 6: PEMUTAR MUSIK LATAR & PEMBUKAAN AMPLOP         */
-/* ========================================================= */
 let isMusicPlaying = false;
 function toggleMusic() {
     const bgMusic = document.getElementById('bg-music');
@@ -452,11 +432,7 @@ function openInvitation() {
     }, 2500); 
 }
 
-/* ========================================================= */
-/* ANOTASI 7: MODAL LIGHTBOX UNTUK GALERI                    */
-/* ========================================================= */
-window.galleryImages = []; // Variabel array akan diisi otomatis dari konfigurasi HTML DOM Load
-
+window.galleryImages = []; 
 let currentLightboxIndex = 0;
 let lightboxZoomLevel = 1;
 let lightboxSlideshowInterval;
@@ -561,9 +537,6 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-/* ========================================================= */
-/* ANOTASI 8: LOGIKA REKENING (COPY) & GOOGLE SHEETS UCAPAN  */
-/* ========================================================= */
 window.copyText = function(elementId, btnElement) {
     const textToCopy = document.getElementById(elementId).innerText;
     navigator.clipboard.writeText(textToCopy).then(() => {

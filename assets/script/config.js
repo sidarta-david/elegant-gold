@@ -1,20 +1,23 @@
-/* ========================================== */
-/* ANOTASI 1: FILE KONFIGURASI TERSENTRALISASI*/
-/* ========================================== */
-window.WEDDING_CONFIG = {
-    // PENGATURAN FITUR MENU (Ubah ke false untuk menyembunyikan menu & halaman)
+/* ==================================================================== */
+/* WEDDING CONFIGURATION DATA (SINGLE SOURCE OF TRUTH)                  */
+/* STATUS: SAFE TO EDIT (AREA AMAN DATA KLIEN)                          */
+/* PETUNJUK: Perbarui nilai sesuai data pengantin                       */
+/* ==================================================================== */
+
+const WEDDING_CONFIG = {
+    // === EDITABLE: PENGATURAN FITUR MENU ===
     fitur: {
-        home: true,         // 1. Sampul & Beranda
-        profile: true,      // 2. Profil Mempelai
-        schedule: true,     // 3. Jadwal & Lokasi Acara (Alamat)
-        story: true,        // 4. Kisah Cinta (Our Story)
-        gallery: true,      // 5. Galeri Foto & Video
-        gift: true,         // 6. Amplop Digital & Kirim Kado
-        wishes: true,       // 7. Kirim Doa & Ucapan
-        quote: true         // 8. Penutup (Quote)
+        home: true,         
+        profile: true,      
+        schedule: true,     
+        story: true,        
+        gallery: true,      
+        gift: true,         
+        wishes: true,       
+        quote: true         
     },
 
-    // DATA MEMPELAI & ACARA
+    // === EDITABLE: DATA MEMPELAI ===
     mempelai: {
         panggilanSingkat: "Romeo & Juliet",
         panggilanPisah: { wanita: "Juliet", pria: "Romeo" },
@@ -33,6 +36,8 @@ window.WEDDING_CONFIG = {
             foto: "assets/images/Pria.jpg"
         }
     },
+    
+    // === EDITABLE: DETAIL JADWAL ACARA ===
     acara: {
         tanggalSingkat: "25 . 10 . 2025",
         akad: {
@@ -54,28 +59,14 @@ window.WEDDING_CONFIG = {
         liveStreamingUrl: "https://www.youtube.com/live/3o7abhf9EAE?si=YhrTZQZhzlxn91sy"
     },
 
-    // OUR STORY (Bisa tambah/hapus gambar & konten)
+    // === EDITABLE: KISAH CINTA (OUR STORY) ===
     ceritaCinta: [
         {
             tanggal: "31 Januari 2021",
             judul: "*Kenalan*",
             deskripsi: "Dibawah pohon cemara taman cempaka menjadi saksi kami dipertemukan.",
             foto: "assets/images/Our Story Perkenalan.jpg",
-            warnaAksen: "#3b5998" // Kode warna untuk titik & label tanggal
-        },
-        {
-            tanggal: "31 Maret 2021",
-            judul: "*Kencan Pertama*",
-            deskripsi: "Canda tawa dan cerita mengalir begitu saja di sudut kafe kota, perlahan menyatukan rasa di hati kami.",
-            foto: "assets/images/Our Story Kencan Pertama.jpg",
-            warnaAksen: "#d4af37"
-        },
-        {
-            tanggal: "21 Desember 2021",
-            judul: "*Tunangan*",
-            deskripsi: "Banyaknya persamaan di antara kami menyakinkan niat untuk melangkah ke jenjang yang lebih serius.",
-            foto: "assets/images/Our Story Pertunangan.jpg",
-            warnaAksen: "#e11d48"
+            warnaAksen: "#3b5998" 
         },
         {
             tanggal: "25 Oktober 2025",
@@ -86,22 +77,18 @@ window.WEDDING_CONFIG = {
         }
     ],
 
-    // 5. GALLERY (Ubah Link Youtube & Daftar Foto)
+    // === EDITABLE: GALLERY & PREWEDDING ===
     galeri: {
         videoPrewedEmbed: "https://www.youtube.com/embed/azgjMFLA1YU?autoplay=1&mute=1&rel=0&modestbranding=1",
         foto: [
             "assets/images/Gallery-1.jpg",
             "assets/images/Gallery-2.jpg",
             "assets/images/Gallery-3.jpg",
-            "assets/images/Gallery-4.jpg",
-            "assets/images/Gallery-5.jpg",
-            "assets/images/Gallery-6.jpg",
-            "assets/images/Gallery-7.jpg",
-            "assets/images/Gallery-8.jpg"
+            "assets/images/Gallery-4.jpg"
         ]
     },
 
-    // GIFT (Ubah Teks & Isi Rekening/Alamat Kado)
+    // === EDITABLE: DATA AMPLOP & HADIAH FISIK ===
     amplop: {
         teksPengantar: "Doa restu Anda merupakan karunia yang sangat berarti bagi kami, dan jika memberi adalah ungkapan tanda kasih, Anda dapat memberi kado secara cashless.",
         bank: "BCA",
@@ -115,14 +102,15 @@ window.WEDDING_CONFIG = {
         }
     },
 
-    // KIRIM DOA (Ubah Tautan Spreadsheet)
+    // === EDITABLE: LINK SPREADSHEET UCAPAN ===
     wishes: {
         sheetUrl: "https://script.google.com/macros/s/AKfycbwzOtSPn24AJKMRMuRe7QDYHRRQjWBXjFDqJRUiV8VQP3tD1bxYpFHQb-FxuSFGqTg59Q/exec"
     },
 
-    // QUOTE (Ubah Kutipan Terakhir)
+    // === EDITABLE: KUTIPAN / QUOTE PENUTUP ===
     quote: {
         teks: `"Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya diantaramu rasa kasih dan sayang."`,
         sumber: "( QS. Ar-Rum: 21 )"
     }
 };
+window.WEDDING_CONFIG = WEDDING_CONFIG; 
