@@ -1,8 +1,9 @@
-/* ================================================================= */
-/* CORE SYSTEM ENGINE LOGIC                                          */
-/* STATUS: DO NOT EDIT (DILARANG MENGUBAH AREA INI)                  */
-/* PETUNJUK: File ini berisi arsitektur logika sistem inti.          */
-/* ================================================================= */
+/* ==================================================================== */
+/* ANOTASI 1: MESIN INJEKSI DATA & PENGATURAN FITUR MENU                */
+/* CORE SYSTEM ENGINE LOGIC                                             */
+/* STATUS: DO NOT EDIT (DILARANG MENGUBAH AREA INI)                     */
+/* PETUNJUK: File ini berisi arsitektur logika sistem inti.             */
+/* ==================================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
     const config = window.WEDDING_CONFIG;
@@ -89,6 +90,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    /* ==================================================================== */
+    /* ANOTASI 2: ANIMASI PARTIKEL & SCROLL LISTENER                        */
+    /* STATUS: DO NOT EDIT (CORE SYSTEM)                                    */
+    /* ==================================================================== */
     const container = document.getElementById('mobile-container');
     const sections = document.querySelectorAll('main > section'); 
     const navLinks = document.querySelectorAll('.nav-link');
@@ -304,6 +309,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelectorAll('.animate-on-scroll').forEach(el => animObserver.observe(el));
 
+    /* ==================================================================== */
+    /* ANOTASI 3: PENGATURAN HITUNG MUNDUR (TIMER)                          */
+    /* STATUS: DO NOT EDIT (CORE SYSTEM)                                    */
+    /* ==================================================================== */
     let cdDate = "2026-10-25"; 
     let cdTime = "11:00:00";
     if (config) {
@@ -338,6 +347,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if(elSecs) elSecs.innerText = padZero(Math.floor((diff % (1000 * 60)) / 1000));
     }, 1000);
 
+    /* ==================================================================== */
+    /* ANOTASI 4: INITIALISASI SLIDESHOW FOTO OTOMATIS                      */
+    /* STATUS: DO NOT EDIT (CORE SYSTEM)                                    */
+    /* ==================================================================== */
     function initSlideshow() {
         const slides = document.querySelectorAll('.slide-img');
         const dots = document.querySelectorAll('.slide-dot');
@@ -366,6 +379,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    /* ==================================================================== */
+    /* ANOTASI 5: ACCORDION AMPLOP DIGITAL                                  */
+    /* STATUS: DO NOT EDIT (CORE SYSTEM)                                    */
+    /* ==================================================================== */
     const toggleGiftBtn = document.getElementById('toggle-gift-btn');
     const giftContainer = document.getElementById('gift-cards-container');
     const giftBtnIcon = document.getElementById('gift-btn-icon');
@@ -396,6 +413,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+/* ==================================================================== */
+/* ANOTASI 6: PEMUTAR MUSIK LATAR & PEMBUKAAN AMPLOP                    */
+/* STATUS: DO NOT EDIT (CORE SYSTEM)                                    */
+/* ==================================================================== */
 let isMusicPlaying = false;
 function toggleMusic() {
     const bgMusic = document.getElementById('bg-music');
@@ -432,6 +453,10 @@ function openInvitation() {
     }, 2500); 
 }
 
+/* ==================================================================== */
+/* ANOTASI 7: MODAL LIGHTBOX UNTUK GALERI                               */
+/* STATUS: DO NOT EDIT (CORE SYSTEM)                                    */
+/* ==================================================================== */
 window.galleryImages = []; 
 let currentLightboxIndex = 0;
 let lightboxZoomLevel = 1;
@@ -537,6 +562,10 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+/* ==================================================================== */
+/* ANOTASI 8: LOGIKA REKENING (COPY) & GOOGLE SHEETS UCAPAN             */
+/* STATUS: DO NOT EDIT (CORE SYSTEM)                                    */
+/* ==================================================================== */
 window.copyText = function(elementId, btnElement) {
     const textToCopy = document.getElementById(elementId).innerText;
     navigator.clipboard.writeText(textToCopy).then(() => {

@@ -1,8 +1,9 @@
-/* ================================================================= */
-/* CORE SYSTEM LAYOUT ENGINE                                         */
-/* STATUS: DO NOT EDIT (DILARANG MENGUBAH AREA INI)                  */
-/* PETUNJUK: Berisi ruleset struktural dan animasi antarmuka.        */
-/* ================================================================= */
+/* ==================================================================== */
+/* ANOTASI 1: PENGATURAN DASAR & SCROLLBAR                              */
+/* CORE SYSTEM LAYOUT ENGINE                                            */
+/* STATUS: DO NOT EDIT (DILARANG MENGUBAH AREA INI)                     */
+/* PETUNJUK: Berisi ruleset struktural dan animasi antarmuka.           */
+/* ==================================================================== */
 
 html, body {
   margin: 0;
@@ -30,6 +31,11 @@ html, body {
   background-color: rgba(212, 175, 55, 0.8); 
 }
 
+/* ==================================================================== */
+/* ANOTASI 2: BACKGROUND & ANIMASI ON-SCROLL                            */
+/* CORE SYSTEM LAYOUT ENGINE                                            */
+/* STATUS: DO NOT EDIT (DILARANG MENGUBAH AREA INI)                     */
+/* ==================================================================== */
 .bg-pattern-floral {
   background-image: radial-gradient(#d4af37 0.5px, transparent 0.5px), radial-gradient(#d4af37 0.5px, #1a1a1a 0.5px);
   background-size: 20px 20px;
@@ -47,6 +53,11 @@ html, body {
   transform: translateY(0); 
 }
 
+/* ==================================================================== */
+/* ANOTASI 3: NAVIGASI MENU (MOBILE & PC)                               */
+/* CORE SYSTEM LAYOUT ENGINE                                            */
+/* STATUS: DO NOT EDIT (DILARANG MENGUBAH AREA INI)                     */
+/* ==================================================================== */
 .nav-icon {
   transition: font-variation-settings 0.3s ease-in-out, color 0.3s ease;
 }
@@ -77,6 +88,11 @@ html, body {
   transition: opacity 0.3s ease 0.1s; 
 }
 
+/* ==================================================================== */
+/* ANOTASI 4: ANIMASI 3D AMPLOP COVER DEPAM                             */
+/* CORE SYSTEM LAYOUT ENGINE                                            */
+/* STATUS: DO NOT EDIT (DILARANG MENGUBAH AREA INI)                     */
+/* ==================================================================== */
 body.scroll-locked {
   overflow: hidden !important;
   height: 100dvh !important;
@@ -154,6 +170,11 @@ body.scroll-locked {
   pointer-events: none;
 }
 
+/* ==================================================================== */
+/* ANOTASI 5: ANIMASI GARIS TIMELINE STORY                              */
+/* CORE SYSTEM LAYOUT ENGINE                                            */
+/* STATUS: DO NOT EDIT (DILARANG MENGUBAH AREA INI)                     */
+/* ==================================================================== */
 .animate-on-scroll.timeline-track {
   opacity: 1; 
   transform: scaleY(0);
@@ -172,6 +193,11 @@ body.scroll-locked {
   transform: translateX(0);
 }
 
+/* ==================================================================== */
+/* ANOTASI 6: KEYFRAME ANIMASI MUSIK & UCAPAN                           */
+/* CORE SYSTEM LAYOUT ENGINE                                            */
+/* STATUS: DO NOT EDIT (DILARANG MENGUBAH AREA INI)                     */
+/* ==================================================================== */
 @keyframes spin-slow {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
